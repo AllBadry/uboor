@@ -1,0 +1,192 @@
+/* =========================================
+   قسم الخدمات المتطور (Modern Services Section)
+========================================= */
+
+.services-modern-section {
+  padding: 100px 0 140px 0;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden; /* لمنع خروج الأشكال الخلفية */
+}
+
+/* --- الخلفية الحيوية (Ambient Shapes) --- */
+.services-ambient-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.08; /* شفافية عالية جداً لتبقى هادئة */
+  animation: floatAmbient 20s infinite alternate ease-in-out;
+}
+
+.shape-blue {
+  width: 500px; height: 500px;
+  background-color: var(--blue);
+  top: -10%; right: -10%;
+}
+
+.shape-orange {
+  width: 400px; height: 400px;
+  background-color: var(--orange);
+  bottom: -10%; left: -5%;
+  animation-delay: -5s;
+}
+
+@keyframes floatAmbient {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-50px, 50px) scale(1.1); }
+}
+
+.relative { position: relative; }
+.z-10 { z-index: 10; }
+.text-orange { color: var(--orange); }
+.mx-auto { margin-left: auto; margin-right: auto; display: block; width: fit-content; }
+
+/* --- شبكة البطاقات --- */
+.services-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+  perspective: 1000px; /* لتفعيل التأثير ثلاثي الأبعاد */
+}
+
+/* --- تصميم البطاقة الاحترافية --- */
+.service-pro-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px 30px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.4s ease, border-color 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.service-pro-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+  border-color: rgba(24, 100, 171, 0.1);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); /* تدرج لوني خفيف عند المرور */
+}
+
+/* التوهج العلوي للبطاقة */
+.card-top-glow {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.blue-glow { background: linear-gradient(90deg, var(--blue), #3b82f6); }
+.orange-glow { background: linear-gradient(90deg, var(--orange), #fb923c); }
+.dark-glow { background: linear-gradient(90deg, #0f172a, var(--gray)); }
+
+.service-pro-card:hover .card-top-glow { opacity: 1; }
+
+/* أيقونة الخدمة */
+.service-icon-wrapper {
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: white;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.blue-bg { background: linear-gradient(135deg, var(--blue), #3b82f6); box-shadow: 0 10px 25px rgba(24, 100, 171, 0.3); }
+.orange-bg { background: linear-gradient(135deg, var(--orange), #fb923c); box-shadow: 0 10px 25px rgba(245, 130, 32, 0.3); }
+.dark-bg { background: linear-gradient(135deg, #0f172a, #334155); box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3); }
+
+/* نصوص البطاقة */
+.service-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.service-desc {
+  font-size: 1.05rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+/* روابط التفاصيل */
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: gap 0.3s ease;
+  width: fit-content;
+}
+
+.text-blue-link { color: var(--blue); }
+.text-orange-link { color: var(--orange); }
+.text-dark-link { color: var(--dark); }
+
+.service-link:hover { gap: 14px; }
+.link-icon { font-size: 0.9rem; }
+
+/* --- زر تصفح الكتالوج (Animated Outline Button) --- */
+.mt-60 { margin-top: 60px; }
+
+.outline-animated {
+  display: inline-block;
+  padding: 16px 40px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--blue); /* لون النص الأصلي */
+  background-color: transparent;
+  border: 2px solid var(--blue);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+/* هذا الكود هو المسؤول عن تغيير لون النص ليظهر بوضوح */
+.outline-animated:hover {
+  color: #ffffff; /* نجعل النص أبيض عند المرور ليتناسب مع الخلفية الزرقاء */
+  border-color: var(--blue);
+  box-shadow: 0 10px 30px rgba(24, 100, 171, 0.3);
+}
+
+.outline-animated::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--blue); /* الخلفية الزرقاء */
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+.outline-animated:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}

@@ -1,0 +1,33 @@
+name: Deploy Uboor to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # الروبوت سيعمل فقط عند رفع كود جديد على هذا الفرع
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # إعطاء صلاحية للروبوت للكتابة ورفع الملفات
+
+    steps:
+      - name: Checkout Code 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # نستخدم أحدث نسخة مستقرة من بيئة نود
+
+      - name: Install Dependencies 📦
+        run: npm install
+
+      - name: Build Project 🏗️
+        run: npm run build
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # المجلد الذي يتم توليده بعد البناء في Vite

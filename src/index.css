@@ -1,0 +1,13 @@
+/* إزالة الخط السفلي والألوان الافتراضية من جميع روابط الموقع */
+a {
+  text-decoration: none;
+  color: inherit; /* خدعة سحرية: تجعل الرابط يأخذ لون العنصر الذي يحتويه بدلاً من الأزرق */
+  transition: all 0.3s ease; /* لضمان نعومة أي تغيير لوني مستقبلي */
+}
+
+a:hover, 
+a:visited, 
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
