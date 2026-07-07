@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaEnvelope, FaPaperPlane, FaFacebookF, FaWhatsapp, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 import '../styles/ContactPage.css';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -69,6 +70,13 @@ export default function Contact() {
 
   return (
     <div className="contact-page-wrapper">
+      
+      <SEO 
+        title="تواصل معنا" 
+        description="تواصل مع فريق شركة عبور للحلول البرمجية. نحن هنا للاستماع إلى أفكارك، تقديم استشارات تقنية متخصصة، والبدء بتطوير مشروعك الرقمي أو نظامك الإداري."
+        keywords="تواصل معنا, شركة برمجة الأردن, استشارة تقنية, طلب عرض سعر برمجة, تصميم مواقع, تواصل عبور, Uboor contact"
+        canonicalUrl="/contact"
+      />
       
       {/* البوب أب الفخم (يظهر فقط عند نجاح الإرسال) */}
       <AnimatePresence>

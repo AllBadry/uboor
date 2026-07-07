@@ -6,6 +6,10 @@ import Herosection from '../components/Herosection';
 import Aboutsection from '../components/Aboutsection';
 import ServicesSection from '../components/servicesSection';
 import CTAsection from '../components/CTAsection';
+import SEO from '../components/SEO';
+
+
+
 export default function Home() {
   // --- إعدادات الحركات العامة لباقي الأقسام ---
   const fadeInUp = {
@@ -20,6 +24,13 @@ export default function Home() {
 
   return (
     <div className="home-page-wrapper">
+
+      <SEO 
+        title="الرئيسية" 
+        description="شركة عبور للحلول البرمجية. متخصصون في تطوير مواقع الويب، تطبيقات الديسكتوب، المنصات الرقمية والتعليمية (LMS)، والأنظمة الإدارية المتكاملة (عيادات، حجوزات، مخزون، وموارد بشرية)، بالإضافة إلى تصميم لوحات التحكم (Dashboards) الذكية."
+        keywords="شركة برمجة, تطوير مواقع ويب, تطبيقات ديسكتوب, أنظمة إدارة مخزون, نظام إدارة موارد بشرية, أنظمة عيادات, أنظمة حجوزات, منصات رقمية, منصة تعليمية LMS, لوحات تحكم, داشبورد إحصائيات, إدارة محتوى, مراقبة وتحليل البيانات, الأردن, Uboor"
+        canonicalUrl="/"
+      />
       
       {/* 1. Hero Section (تم استدعاء المكون المستقل هنا) */}
       <Herosection />

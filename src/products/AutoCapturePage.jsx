@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaDownload, FaCrosshairs, FaVectorSquare, FaPlay, FaChrome, FaCheckCircle, FaRobot, FaCogs ,FaArrowRight} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import SEO from '../components/SEO';
 import autoCaptureZipUrl from './autoCollector.zip?url';
 
 export default function AutoCapturePage() {
@@ -23,6 +23,13 @@ export default function AutoCapturePage() {
 
   return (
     <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: 'var(--font-cairo)', direction: 'rtl', paddingBottom: '80px' }}>
+      
+      <SEO 
+        title="Uboor Auto Capture Pro | أداة أتمتة المهام" 
+        description="حمل إضافة Uboor Auto Capture Pro مجاناً. روبوتك الشخصي لأتمتة المهام المكررة، النقر التلقائي الذكي، والتقاط الشاشة بشكل آلي لتجنب الحظر."
+        keywords="أداة أتمتة, النقر التلقائي, تصوير الشاشة آليا, إضافة متصفح, Auto Capture, Uboor Auto Capture Pro, أتمتة المهام, Auto clicker, عبور"
+        canonicalUrl="/products/auto-capture"
+      />
       
       {/* ==================== 1. قسم الهيرو ==================== */}
       <section style={{ background: 'linear-gradient(135deg, #0f172a, #1e293b)', color: 'white', padding: '120px 20px 80px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>

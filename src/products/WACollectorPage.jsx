@@ -4,6 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaDownload, FaUsers, FaAddressBook, FaComments, FaMagic, FaShieldAlt, FaGlobe, FaLink, FaImage, FaBusinessTime, FaTimes, FaFolderOpen, FaChrome, FaCheckCircle, FaArrowRight } from 'react-icons/fa'; // 2. إضافة أيقونة السهم
 import '../styles/products/WACollector.css'; // تأكد من صحة مسار ملف الـ CSS لديك
 import toolZip from './tool.zip?url';
+import SEO from '../components/SEO';
+
+
+
+
 export default function WACollectorPage() {
   const [showInstallGuide, setShowInstallGuide] = useState(false);
   const navigate = useNavigate(); // 3. تهيئة دالة التنقل
@@ -25,6 +30,13 @@ export default function WACollectorPage() {
 
   return (
     <div className="wa-product-wrapper">
+
+      <SEO 
+        title="Uboor WA Collector Pro | استخراج داتا الواتساب" 
+        description="حمل إضافة Uboor WA Collector Pro مجاناً لاستخراج أرقام جهات الاتصال وأعضاء المجموعات من WhatsApp Web بضغطة زر. أداة آمنة ومثالية للمسوقين وتصدير الـ Leads."
+        keywords="استخراج داتا واتساب, سحب أرقام واتساب, إضافة كروم واتساب, أداة تسويق واتساب, استخراج أعضاء جروب واتس, WA Collector Pro, WhatsApp scraper, عبور"
+        canonicalUrl="/products/wacollector"
+      />
       
       {/* ========================================= */}
       {/* 🌟 كود البوب أب (النافذة المنبثقة) 🌟 */}

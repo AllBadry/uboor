@@ -5,6 +5,8 @@ import { FaGlobe, FaDesktop, FaProjectDiagram, FaCodeBranch, FaPuzzlePiece, FaCh
 import { SiCplusplus, SiMongodb } from 'react-icons/si'; 
 import { Link } from 'react-router-dom';
 import '../styles/ServicesPage.css';
+import SEO from '../components/SEO';
+
 
 const servicesData = [
   {
@@ -99,7 +101,14 @@ export default function Services() {
 
   return (
     <div className="services-page-wrapper relative">
-      
+
+      <SEO 
+        title="خدماتنا ومنتجاتنا" 
+        description="اكتشف خدمات عبور الشاملة: برمجة مواقع ويب، تطبيقات ديسكتوب وأنظمة متكاملة (مخزون، موارد بشرية، عيادات، وحجوزات)، منصات رقمية وتعليمية (LMS)، وتطوير لوحات تحكم (Dashboards) تحليلية لإدارة المحتوى."
+        keywords="تطوير مواقع ويب, تطبيقات ديسكتوب, نظام إدارة مخزون, نظام إدارة موارد بشرية, أنظمة عيادات, أنظمة حجوزات, منصات رقمية, منصة تعليمية LMS, لوحات تحكم إدارة محتوى, داشبورد إحصائيات, أدوات أتمتة, عبور"
+        canonicalUrl="/services"
+      />
+
       <div className="page-ambient-background">
         <div className="ambient-blob blob-blue"></div>
         <div className="ambient-blob blob-orange"></div>

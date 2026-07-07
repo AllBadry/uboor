@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { FaLaptopCode, FaTerminal, FaSearchDollar, FaGlobe, FaHandsHelping, FaCubes, FaCode, FaRocket } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import '../styles/AboutUs.css'; 
+import SEO from '../components/SEO';
+
 
 export default function AboutUs() {
   // إعدادات الحركات المتقدمة
@@ -26,6 +28,13 @@ export default function AboutUs() {
 
   return (
     <div className="about-page-wrapper">
+
+      <SEO 
+        title="من نحن" 
+        description="تعرف على شركة عبور للحلول البرمجية. منظومة تقنية متكاملة تنطلق من شفا بدران، عمّان، لتمكين الأعمال وبناء الأنظمة المعقدة، ودعم مجتمع المطورين والمسوقين بأدوات احترافية."
+        keywords="عن شركة عبور, شركة برمجة في عمان, تطوير أنظمة, شفا بدران, الأردن, أدوات للمطورين, إضافات متصفح, برمجيات مفتوحة المصدر, Uboor About"
+        canonicalUrl="/about"
+      />
       
       {/* 1. قسم الهيرو الإبداعي */}
       <section className="about-hero-header">
