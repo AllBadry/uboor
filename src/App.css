@@ -26,10 +26,9 @@
   z-index: 9999;
   display: flex;
   justify-content: center;
-  /* انتقال البادينج الخارجي بنعومة تدريجية لمدة 0.8 ثانية */
-  transition: padding 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+  /* التعديل هنا: تسريع الحركة إلى 0.3 ثانية */
+  transition: padding 0.3s ease-in-out; 
 }
-
 /* عندما يكون في أعلى الصفحة (Full Width) */
 .nav-container-magic {
   width: 100%;
@@ -40,17 +39,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  border-radius: 0px; /* القيمة الافتراضية */
+  border-radius: 0px; 
   border: 1px solid transparent; 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* الخط السفلي الافتراضي */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
   
-  /* السر هنا: تفصيل الانتقالات وتوزيعها بمنحنى مرن وبطيء في نهايته */
-  transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-              padding 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-              border-radius 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-              background 0.8s ease,
-              box-shadow 0.8s ease,
-              border-color 0.8s ease;
+  /* حافظنا على السحر، ولكن سرّعنا الاستجابة إلى 0.4s لإنهاء مشكلة البطء */
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              padding 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              border-radius 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              background 0.4s ease,
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
 }
 /* تأثير الجزيرة العائمة (Floating Pill) عند النزول */
 .magic-navbar.is-floating {
