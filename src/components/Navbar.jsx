@@ -151,7 +151,7 @@ export default function Navbar() {
 
           {/* أزرار الموبايل */}
           <div className="mobile-controls">
-            <button className="mobile-lang-btn" onClick={toggleLang}>{lang}</button>
+            
             <motion.div 
               className="mobile-toggle-btn" 
               onClick={() => setIsOpen(!isOpen)}
