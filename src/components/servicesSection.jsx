@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaLaptopCode, FaCogs, FaServer, FaArrowLeft } from 'react-icons/fa';
-import '../styles/servicesSection.css';
+import '../styles/ServicesSection.css';
 
 export default function ServicesSection() {
   // إعدادات الحركات (3D Flip Animations)
