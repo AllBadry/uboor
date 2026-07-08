@@ -1,3 +1,7 @@
+/*   /src/styles/ContactPage.css */
+
+
+
 /* =========================================
    صفحة تواصل معنا (Premium Contact Page)
 ========================================= */
@@ -59,7 +63,7 @@
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .info-glass-card:hover {
@@ -169,7 +173,7 @@
   font-family: var(--font-cairo);
   font-size: 1.05rem;
   color: var(--text-main);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
 }
 
@@ -292,7 +296,7 @@
   font-family: var(--font-cairo);
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(24, 100, 171, 0.2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
 }
 

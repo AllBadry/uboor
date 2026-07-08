@@ -1,3 +1,7 @@
+/*  /src/styles/Hero.css */
+
+
+
 /* =========================================
    تأثير Weaverly Hero - أداء صاروخي (بدون تعليق)
 ========================================= */
@@ -202,7 +206,7 @@
   font-size: 1.1rem;
   cursor: pointer;
   position: relative;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
   flex: 1;
   text-align: center;
 }

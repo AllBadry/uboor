@@ -1,3 +1,8 @@
+/*  /src/styles/products/WACollector.css */
+
+
+
+
 /* =========================================
    ملف التصميم الخاص بمنتج: Uboor WA Collector Pro
    الهوية البصرية: مستوحاة من WhatsApp (أخضر زمردي)
@@ -73,7 +78,7 @@
   font-weight: 800;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .wa-btn-download:hover {
@@ -224,7 +229,7 @@
   font-size: 1.1rem;
   color: #64748b;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   z-index: 10;
 }
 .close-guide-btn:hover { background: rgba(255, 0, 0, 0.1); color: red; }
