@@ -15,7 +15,7 @@
    2. شريط التنقل (Navbar)
 ========================================= */
 /* =========================================
-   الناف بار السحري (Magic Navbar) - قوة جيميناي!
+   الناف بار السحري (Magic Navbar) - أداء صاروخي 🚀
 ========================================= */
 
 .magic-navbar {
@@ -26,9 +26,14 @@
   z-index: 9999;
   display: flex;
   justify-content: center;
-  /* التعديل هنا: تسريع الحركة إلى 0.3 ثانية */
-  transition: padding 0.3s ease-in-out; 
+  
+  /* إجبار المتصفح على استخدام كرت الشاشة (GPU) */
+  transform: translateZ(0); 
+  will-change: padding-top; 
+  /* منحنى حركة iOS سلس وسريع */
+  transition: padding-top 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
 }
+
 /* عندما يكون في أعلى الصفحة (Full Width) */
 .nav-container-magic {
   width: 100%;
@@ -43,14 +48,19 @@
   border: 1px solid transparent; 
   border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
   
-  /* حافظنا على السحر، ولكن سرّعنا الاستجابة إلى 0.4s لإنهاء مشكلة البطء */
-  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-              padding 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-              border-radius 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-              background 0.4s ease,
-              box-shadow 0.4s ease,
-              border-color 0.4s ease;
+  /* التسريع العتادي للحاوية */
+  transform: translateZ(0);
+  will-change: width, padding, border-radius, background-color, border-color, box-shadow;
+  
+  /* توحيد السرعة واستخدام منحنى سنابي (Snappy) فاخر */
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-radius 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
+
 /* تأثير الجزيرة العائمة (Floating Pill) عند النزول */
 .magic-navbar.is-floating {
   padding-top: 25px;
@@ -61,208 +71,28 @@
   pointer-events: auto;
   width: 85%;
   max-width: 1200px;
-  border-radius: 50px; /* يتحول تدريجياً لكبسولة */
+  border-radius: 50px; 
   padding: 10px 30px;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  
-  /* نغير لون الإطار تدريجياً بدلاً من إخفائه فجأة */
   border-color: rgba(255, 255, 255, 1); 
   border-bottom-color: rgba(255, 255, 255, 1); 
 }
 
+/* --- السر الأكبر: تصغير اللوجو --- */
 .nav-logo img {
   height: 45px;
   object-fit: contain;
-  transition: height 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* اللوجو يصغر بنفس نعومة الناف بار */
+  /* التعديل الجوهري: استخدام scale بدلاً من height لتجنب اهتزاز الصفحة */
+  transform: scale(1);
+  transform-origin: right center; /* لأن الموقع عربي، التصغير يسحب اللوجو لليمين */
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
 }
 
 .magic-navbar.is-floating .nav-logo img {
-  height: 38px;
-}
-/* روابط الديسكتوب */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-item-magic {
-  position: relative;
-  text-decoration: none;
-  color: var(--text-main);
-  font-weight: 800;
-  font-size: 1.05rem;
-  padding: 8px 12px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.nav-item-magic:hover, .nav-item-magic.active {
-  color: var(--uboor-blue);
-}
-
-/* المؤشر النشط السحري (مثل الايباد) */
-.magic-active-indicator {
-  position: absolute;
-  inset: 0;
-  background: var(--uboor-blue-light);
-  border-radius: 12px;
-  z-index: -1;
-}
-
-.magic-navbar.is-floating .magic-active-indicator {
-  border-radius: 25px; /* ليتناسب مع شكل الكبسولة */
-}
-
-/* --- الميجا منيو الزجاجية (Mega Menu) --- */
-.nav-item-magic-dropdown { position: relative; }
-
-.mega-menu-glass {
-  position: absolute;
-  top: 120%;
-  /* التعديل الجوهري هنا: التوسيط بالنسبة للعنصر الأب */
-  right: 50%; 
-  transform: translateX(50%) !important; 
-  
-  width: 650px; /* عرض ثابت للقائمة */
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border-radius: 24px;
-  padding: 25px;
-  border: 1px solid rgba(255,255,255,1);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-  z-index: 1000;
-}
-
-/* تعديل مكان السهم الصغير ليكون تحت كلمة "خدماتنا" مباشرة */
-.mega-menu-glass::before {
-  content: '';
-  position: absolute;
-  top: -8px; 
-  right: 50%;
-  transform: translateX(50%) rotate(45deg);
-  width: 20px; height: 20px;
-  background: rgba(255, 255, 255, 0.98);
-  border-top: 1px solid rgba(255,255,255,1);
-  border-left: 1px solid rgba(255,255,255,1);
-}
-.mega-menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.mega-link-card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px;
-  border-radius: 16px;
-  text-decoration: none;
-  background: transparent;
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mega-link-card:hover { background: var(--bg-off-white); }
-.blue-hover:hover .mega-icon-box { background: var(--gradient-blue); color: white; }
-.orange-hover:hover .mega-icon-box { background: var(--gradient-orange); color: white; }
-.cyan-hover:hover .mega-icon-box { background: var(--gradient-cyan); color: white; }
-.special-hover:hover .mega-icon-box { background: var(--gradient-mixed); color: white; }
-
-.mega-icon-box {
-  width: 50px; height: 50px; min-width: 50px;
-  background: var(--bg-off-white);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; color: var(--text-muted);
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mega-text h4 { font-size: 1.05rem; font-weight: 900; color: var(--text-main); margin-bottom: 4px; }
-.mega-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
-
-/* --- أزرار الناف بار (CTA & Lang) --- */
-.magic-cta-btn {
-  background: var(--text-main);
-  color: white !important;
-  padding: 10px 24px;
-  border-radius: 50px;
-  font-weight: 800;
-  font-size: 1rem;
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-.magic-cta-btn:hover { background: var(--uboor-orange); box-shadow: 0 10px 20px rgba(245, 130, 32, 0.3); }
-
-.magic-lang-btn {
-  background: transparent;
-  border: none;
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-cairo);
-  font-weight: 800;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-.magic-lang-btn:hover { color: var(--uboor-cyan); }
-
-/* --- قائمة الموبايل الزجاجية الكاملة --- */
-.mobile-controls { display: none; align-items: center; gap: 20px; z-index: 10001; }
-.mobile-toggle-btn { font-size: 1.8rem; color: var(--text-main); cursor: pointer; display: flex; }
-
-.fullscreen-mobile-menu {
-  position: fixed;
-  inset: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  z-index: 9998;
-  display: flex;
-  align-items: center;
-  padding: 40px;
-}
-
-.mobile-menu-content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-}
-
-.mobile-huge-link {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--text-main);
-  text-decoration: none;
-  display: block;
-  transition: padding-right 0.3s ease;
-}
-.mobile-huge-link:hover, .mobile-huge-link:active { color: var(--uboor-blue); padding-right: 10px; }
-.text-orange { color: var(--uboor-orange) !important; }
-
-.mobile-menu-footer {
-  margin-top: 40px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-.mobile-menu-footer p { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; margin-bottom: 5px;}
-.mobile-menu-footer a { font-size: 1.2rem; color: var(--uboor-cyan); font-weight: 900; text-decoration: none;}
-
-/* التجاوب مع الجوال */
-@media (max-width: 992px) {
-  .desktop-only { display: none; }
-  .mobile-controls { display: flex; }
-  .nav-container-magic { padding: 15px 20px; }
-  
-  /* في الجوال، الناف بار العائم يتقلص بنسبة أقل لكي لا يكون ضيقاً جداً */
-  .magic-navbar.is-floating .nav-container-magic {
-    width: 92%;
-    padding: 10px 20px;
-  }
+  /* 38px / 45px = 0.84 تصغير بنسبة رياضية دقيقة بدون إرهاق المعالج */
+  transform: scale(0.84);
 }
 /* =========================================
    تحديثات الفوتر المتطور (Modern Pro Footer)
