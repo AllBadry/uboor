@@ -60,7 +60,7 @@ export default function Footer() {
           {/* العمود الأول: الهوية والوصف */}
           <motion.div className="footer-col brand-col" variants={itemVariants}>
             <Link to="/" className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              // الكود الجديد (مع الأبعاد الصريحة)
+              
 <motion.img 
   src="./UB.png" 
   alt="Uboor Logo" 
