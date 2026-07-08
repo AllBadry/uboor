@@ -9,8 +9,10 @@ import { productRoutes } from './routes';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+
+import Home from './pages/Home';
+
 // استخدام الاستيراد الكسول (Lazy) لحل مشكلة السرعة
-const Home = lazy(() => import('./pages/Home'));
 const AboutUs = lazy(() => import('./pages/AboutUs'));
 const Services = lazy(() => import('./pages/Services'));
 const Contact = lazy(() => import('./pages/Contact'));
