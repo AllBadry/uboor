@@ -1,3 +1,5 @@
+// /src/components/Navbar.jsx
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -57,12 +59,14 @@ export default function Navbar() {
           {/* اللوغو */}
           <Link to="/" className="nav-logo" onClick={closeMenu}>
             <motion.img 
-              whileHover={{ scale: 1.05, rotate: -3 }}
-              whileTap={{ scale: 0.95 }}
-              src="./UB.png" 
-              alt="Uboor Logo" 
-              height="45px"
-            />
+  src="./UB.png" 
+  alt="Uboor Logo" 
+  width="45"
+  height="45"
+  whileHover={{ scale: 1.05, rotate: -3 }}
+  whileTap={{ scale: 0.95 }}
+  style={{ objectFit: 'contain' }}
+/>
           </Link>
 
           {/* روابط الديسكتوب */}

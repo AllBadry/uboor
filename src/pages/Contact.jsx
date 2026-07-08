@@ -1,3 +1,5 @@
+// /src/pages/Contact.jsx
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaEnvelope, FaPaperPlane, FaFacebookF, FaWhatsapp, FaCheckCircle, FaSpinner } from 'react-icons/fa';

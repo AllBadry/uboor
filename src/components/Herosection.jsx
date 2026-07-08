@@ -1,3 +1,5 @@
+// /src/components/Herosection.jsx
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLaptopCode, FaCogs, FaDatabase, FaProjectDiagram } from 'react-icons/fa';

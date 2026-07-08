@@ -1,3 +1,5 @@
+// /src/pages/Home.jsx
+
 import React from 'react';
 import Herosection from '../components/Herosection';
 import Aboutsection from '../components/Aboutsection';

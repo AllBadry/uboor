@@ -36,6 +36,21 @@ const defaultData = {
   ]
 };
 
+// 1. يفضل كتابة دالة التوليد خارج المكون (أو داخله) لترتيب الكود
+const generateParticles = () => {
+  const colors = ['#0ea5e9', '#f59e0b', '#06b6d4', '#8b5cf6', '#ec4899'];
+  return Array.from({ length: 25 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 5 + 3,
+    duration: Math.random() * 10 + 8,
+    delay: Math.random() * 5,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  }));
+};
+
+
 export default function AboutSection({ data = defaultData, customStyles = {} }) {
   const controls = useAnimation();
   const ref = useRef(null);
@@ -61,18 +76,11 @@ export default function AboutSection({ data = defaultData, customStyles = {} }) 
   }, [controls, isInView]);
 
   // توليد الجسيمات للخلفية (نقاط صغيرة ملونة)
-  const particles = useMemo(() => {
-    const colors = ['#0ea5e9', '#f59e0b', '#06b6d4', '#8b5cf6', '#ec4899'];
-    return Array.from({ length: 25 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 5 + 3,
-      duration: Math.random() * 10 + 8,
-      delay: Math.random() * 5,
-      color: colors[Math.floor(Math.random() * colors.length)],
-    }));
-  }, []);
+
+  // 2. استخدام التهيئة الكسولة لحالة الجسيمات
+  // تمرير الدالة هنا يجعل React ينفذها مرة واحدة فقط عند البداية
+  // ولن نحتاج إلى useEffect أو setParticles أبداً لهذا الغرض!
+  const [particles] = useState(() => generateParticles());
 
   // متغيرات الأنيميشن
   const containerVariants = {

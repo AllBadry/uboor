@@ -1,3 +1,5 @@
+// /src/components/Footer.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -58,13 +60,16 @@ export default function Footer() {
           {/* العمود الأول: الهوية والوصف */}
           <motion.div className="footer-col brand-col" variants={itemVariants}>
             <Link to="/" className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <motion.img 
-                src="./UB.png" 
-                alt="Uboor Logo" 
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.8, ease: "anticipate" }}
-                style={{ width: '45px' }}
-              />
+              // الكود الجديد (مع الأبعاد الصريحة)
+<motion.img 
+  src="./UB.png" 
+  alt="Uboor Logo" 
+  width="45" 
+  height="45"
+  whileHover={{ rotate: 360 }}
+  transition={{ duration: 0.8, ease: "anticipate" }}
+  style={{ width: '45px', height: '45px', objectFit: 'contain' }}
+/>
               <span className="logo-text">عبور</span>
             </Link>
             <p className="footer-desc">
@@ -122,21 +127,21 @@ export default function Footer() {
             <h3 className="footer-title">تابعنا</h3>
             <div className="social-icons" style={{ display: 'flex', gap: '15px' }}>
               <motion.a 
-                href="https://www.facebook.com/UboorTech" target="_blank" rel="noreferrer" className="social-btn facebook"
+                href="https://www.facebook.com/UboorTech" target="_blank" rel="noreferrer" className="social-btn facebook" aria-label="حسابنا على فيسبوك"
                 whileHover={{ y: -5, scale: 1.1, boxShadow: '0px 10px 20px rgba(59, 130, 246, 0.4)' }}
                 whileTap={{ scale: 0.9 }}
               >
                 <FaFacebookF />
               </motion.a>
               <motion.a 
-                href="https://instagram.com" target="_blank" rel="noreferrer" className="social-btn instagram"
+                href="https://instagram.com" target="_blank" rel="noreferrer" className="social-btn instagram" aria-label="حسابنا على إنستغرام"
                 whileHover={{ y: -5, scale: 1.1, boxShadow: '0px 10px 20px rgba(14, 165, 233, 0.4)' }}
                 whileTap={{ scale: 0.9 }}
               >
                 <FaInstagram />
               </motion.a>
               <motion.a 
-                href="https://github.com/Uboor-Company" target="_blank" rel="noreferrer" className="social-btn github"
+                href="https://github.com/Uboor-Company" target="_blank" rel="noreferrer" className="social-btn github" aria-label="حسابنا على جيت هاب"
                 whileHover={{ y: -5, scale: 1.1, boxShadow: '0px 10px 20px rgba(30, 41, 59, 0.4)' }}
                 whileTap={{ scale: 0.9 }}
               >
