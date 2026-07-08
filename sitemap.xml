@@ -32,12 +32,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://uboor.org/products/data-vault</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
   <!-- صفحة التواصل -->
   <url>
     <loc>https://uboor.org/contact</loc>
