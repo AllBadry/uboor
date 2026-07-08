@@ -61,6 +61,7 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               src="./UB.png" 
               alt="Uboor Logo" 
+              height="45px"
             />
           </Link>
 

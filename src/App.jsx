@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-// 🌟 التصحيح الأهم للـ SEO: استخدام BrowserRouter
+// /src/App.jsx
+
+
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import { productRoutes } from './routes';
 
-// استدعاء المكونات الأساسية
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-// استدعاء الصفحات
-import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import Services from './pages/Services'; 
-import Contact from './pages/Contact';
+// استخدام الاستيراد الكسول (Lazy) لحل مشكلة السرعة
+const Home = lazy(() => import('./pages/Home'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+const Services = lazy(() => import('./pages/Services'));
+const Contact = lazy(() => import('./pages/Contact'));
 
-// مكون ذكي لرفع الصفحة للأعلى عند التنقل بين الروابط
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -31,17 +31,19 @@ function App() {
       <div className="app-container rtl" dir="rtl">
         <Navbar />
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            
-            {/* المسارات الديناميكية (المنتجات) */}
-            {productRoutes && productRoutes.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element} />
-            ))}
-          </Routes>
+          {/* الغلاف الإجباري لمنع انهيار الموقع أثناء تحميل الصفحات */}
+          <Suspense fallback={<div className="loading-screen">جاري التحميل...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/contact" element={<Contact />} />
+              
+              {productRoutes && productRoutes.map((route, index) => (
+                <Route key={index} path={route.path} element={route.element} />
+              ))}
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
       </div>
