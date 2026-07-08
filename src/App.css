@@ -11,6 +11,19 @@
 .rtl { direction: rtl; }
 .home-page-wrapper { overflow-x: hidden; }
 .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+
+
+/*global */
+
+.text-gradient {
+  background: var(--gradient-mixed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+
 /* =========================================
    2. شريط التنقل (Navbar)
 ========================================= */
