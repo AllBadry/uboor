@@ -71,7 +71,7 @@ export default function CTASection() {
               </motion.a>
 
               <motion.a 
-                href="https://facebook.com" /* ضع رابط صفحة الفيسبوك الحقيقي هنا */
+                href="https://www.facebook.com/UboorTech" /* ضع رابط صفحة الفيسبوك الحقيقي هنا */
                 target="_blank" 
                 rel="noreferrer" 
                 className="contact-pill" 

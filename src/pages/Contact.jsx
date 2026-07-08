@@ -160,7 +160,7 @@ export default function Contact() {
             <motion.div variants={itemVariants} className="social-links-wrapper">
               <p>تابعنا على الشبكات الاجتماعية:</p>
               <div className="social-icons">
-                <a href="#" className="social-circle fb"><FaFacebookF /></a>
+                <a href="https://www.facebook.com/UboorTech" className="social-circle fb"><FaFacebookF /></a>
               </div>
             </motion.div>
           </motion.div>

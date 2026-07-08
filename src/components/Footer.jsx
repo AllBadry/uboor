@@ -122,7 +122,7 @@ export default function Footer() {
             <h3 className="footer-title">تابعنا</h3>
             <div className="social-icons" style={{ display: 'flex', gap: '15px' }}>
               <motion.a 
-                href="https://facebook.com" target="_blank" rel="noreferrer" className="social-btn facebook"
+                href="https://www.facebook.com/UboorTech" target="_blank" rel="noreferrer" className="social-btn facebook"
                 whileHover={{ y: -5, scale: 1.1, boxShadow: '0px 10px 20px rgba(59, 130, 246, 0.4)' }}
                 whileTap={{ scale: 0.9 }}
               >
