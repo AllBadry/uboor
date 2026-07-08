@@ -1,3 +1,5 @@
+// /src/pages/AboutUs.jsx
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaLaptopCode, FaTerminal, FaSearchDollar, FaGlobe, FaHandsHelping, FaCubes, FaCode, FaRocket } from 'react-icons/fa';

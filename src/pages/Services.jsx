@@ -1,3 +1,5 @@
+// /src/pages/Services.jsx
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // 🌟 تم إضافة FaRobot هنا للأداة الجديدة
