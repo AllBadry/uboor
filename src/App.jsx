@@ -16,6 +16,7 @@ import Home from './pages/Home';
 const AboutUs = lazy(() => import('./pages/AboutUs'));
 const Services = lazy(() => import('./pages/Services'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Privacy = lazy(() => import('./pages/privacy'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ function App() {
               <Route path="/about" element={<AboutUs />} />
               <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
               
               {productRoutes && productRoutes.map((route, index) => (
                 <Route key={index} path={route.path} element={route.element} />
