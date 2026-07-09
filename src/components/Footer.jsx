@@ -108,9 +108,9 @@ export default function Footer() {
                 <span> عمّان، الأردن</span>
               </motion.li>
               <motion.li whileHover={{ scale: 1.02, x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
-                <a href="tel:+962798500770">
+                <a href="tel:+962785290948">
                   <FaPhoneAlt className="contact-icon text-orange" />
-                  <span dir="ltr">+962 798500770</span>
+                  <span dir="ltr">+962 785290948</span>
                 </a>
               </motion.li>
               <motion.li whileHover={{ scale: 1.02, x: -5 }} transition={{ type: "spring", stiffness: 300 }}>

@@ -64,12 +64,12 @@ export default function CTASection() {
               </motion.a>
 
               <motion.a 
-                href="tel:+962798500770" /* ضع رقم الهاتف الحقيقي هنا */
+                href="tel:+962785290948" /* ضع رقم الهاتف الحقيقي هنا */
                 className="contact-pill" 
                 whileHover={{ y: -5 }}
               >
                 <div className="pill-icon orange"><FaPhoneAlt /></div>
-                <span dir="ltr">+962 79 850 0770</span>
+                <span dir="ltr">+962 78 529 0948</span>
               </motion.a>
 
               <motion.a 
