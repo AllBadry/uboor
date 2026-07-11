@@ -63,7 +63,7 @@ export default function Footer() {
               
 <motion.img 
   src="./UB.png" 
-  alt="Uboor Logo" 
+  alt="Uboor" 
   width="45" 
   height="45"
   whileHover={{ rotate: 360 }}
@@ -73,7 +73,7 @@ export default function Footer() {
               <span className="logo-text">عبور</span>
             </Link>
             <p className="footer-desc">
-              شركة تكنولوجيا متعددة الجوانب تتخصص في برمجة المواقع، الأنظمة اللامركزية، والحلول البرمجية المبتكرة التي تعبر بأعمالك نحو المستقبل.
+              شركة تكنولوجيا متعددة الجوانب تتخصص في برمجة المواقع، الأنظمة ، والحلول البرمجية المبتكرة التي تعبر بأعمالك نحو المستقبل.
             </p>
           </motion.div>
 
