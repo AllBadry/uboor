@@ -28,6 +28,15 @@ jobs:
           npm run build
           cp dist/index.html dist/404.html
 
+          # 🌟 خدعة الـ SEO: إنشاء مجلدات حقيقية لكل مسار في الموقع
+          mkdir -p dist/about dist/services dist/contact dist/privacy
+
+          # نسخ ملف React الأساسي داخل هذه المجلدات لكي يعيد غيت هاب الرمز 200 OK لجوجل
+          cp dist/index.html dist/about/index.html
+          cp dist/index.html dist/services/index.html
+          cp dist/index.html dist/contact/index.html
+          cp dist/index.html dist/privacy/index.html
+
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v4
         with:
