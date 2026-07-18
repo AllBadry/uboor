@@ -239,6 +239,27 @@
   .massive-desc { margin: 0 auto; }
   .massive-bg-number { font-size: 12rem; }
   .glass-icon-circle { width: 120px; height: 120px; font-size: 3rem; }
-  .hero-tabs-container { overflow-x: auto; white-space: nowrap; padding: 0 10px; gap: 20px; }
-  .hero-tab { flex: none; font-size: 1rem; }
+  .hero-tabs-container {
+    display: flex;
+    justify-content: flex-start; /* السر هنا: نلغي التباعد الإجباري ونبدأ من اليمين */
+    overflow-x: auto; /* السماح بسحب الكلمات يميناً ويساراً */
+    white-space: nowrap; /* منع الكلمات من النزول لسطر جديد */
+    width: 100%;
+    padding: 0 20px; /* إعطاء مسافة تنفس من جوانب الشاشة */
+    gap: 30px; /* مسافة أمان مريحة بين كل تاب والآخر */
+    margin-bottom: 20px;
+    
+    /* 🌟 إخفاء شريط التمرير المزعج مع بقاء خاصية السحب */
+    -webkit-overflow-scrolling: touch; /* سحب ناعم جداً على الآيفون وسفاري */
+    scrollbar-width: none; /* لمتصفح فايرفوكس */
+    -ms-overflow-style: none; /* لمتصفح إيدج */
+  }
+  .hero-tabs-container::-webkit-scrollbar {
+    display: none; 
+  }
+  .hero-tab {
+    flex: 0 0 auto; /* يمنع الكلمات من الانضغاط أو التشوه */
+    font-size: 1.05rem;
+    padding: 10px 0;
+  }
 }
