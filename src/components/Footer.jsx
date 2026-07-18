@@ -134,7 +134,7 @@ export default function Footer() {
                 <FaFacebookF />
               </motion.a>
               <motion.a 
-                href="https://instagram.com" target="_blank" rel="noreferrer" className="social-btn instagram" aria-label="حسابنا على إنستغرام"
+                href="https://www.instagram.com/abbadicr?igsh=MWtkajFpZW9wNWEwbw==" target="_blank" rel="noreferrer" className="social-btn instagram" aria-label="حسابنا على إنستغرام"
                 whileHover={{ y: -5, scale: 1.1, boxShadow: '0px 10px 20px rgba(14, 165, 233, 0.4)' }}
                 whileTap={{ scale: 0.9 }}
               >
