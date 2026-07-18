@@ -59,14 +59,14 @@ export default function Navbar() {
           {/* اللوغو */}
           <Link to="/" className="nav-logo" onClick={closeMenu}>
             <motion.img 
-  src="./UB.png" 
-  alt="Uboor Logo" 
-  width="45"
-  height="45"
-  whileHover={{ scale: 1.05, rotate: -3 }}
-  whileTap={{ scale: 0.95 }}
-  style={{ objectFit: 'contain' }}
-/>
+              src="/UB.png" /* 🌟 تم حذف النقطة هنا */
+              alt="Uboor Logo" 
+              width="45"
+              height="45"
+              whileHover={{ scale: 1.05, rotate: -3 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ objectFit: 'contain', display: 'block' }} /* 🌟 إضافة display: block */
+            />
           </Link>
 
           {/* روابط الديسكتوب */}

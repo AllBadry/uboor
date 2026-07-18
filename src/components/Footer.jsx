@@ -60,16 +60,15 @@ export default function Footer() {
           {/* العمود الأول: الهوية والوصف */}
           <motion.div className="footer-col brand-col" variants={itemVariants}>
             <Link to="/" className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              
-<motion.img 
-  src="./UB.png" 
-  alt="Uboor" 
-  width="45" 
-  height="45"
-  whileHover={{ rotate: 360 }}
-  transition={{ duration: 0.8, ease: "anticipate" }}
-  style={{ width: '45px', height: '45px', objectFit: 'contain' }}
-/>
+              <motion.img 
+                src="/UB.png" /* 🌟 تم حذف النقطة هنا */
+                alt="Uboor" 
+                width="45" 
+                height="45"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.8, ease: "anticipate" }}
+                style={{ width: '45px', height: '45px', objectFit: 'contain', display: 'block' }} /* 🌟 إضافة display: block */
+              />
               <span className="logo-text">عبور</span>
             </Link>
             <p className="footer-desc">
