@@ -1,8 +1,5 @@
 /* src/styles/AboutSection.css */
 
-/* =========================================
-   متغيرات الألوان (يجب أن تكون موجودة في root)
-========================================= */
 :root {
   --uboor-cyan: #0ea5e9;
   --uboor-orange: #f59e0b;
@@ -12,11 +9,11 @@
   --orange-gradient: #f59e0b, #ea580c;
   --cyan-gradient: #06b6d4, #0284c7;
   --pink-gradient: #ec4899, #f472b6;
+  /* قيم افتراضية للماوس لتجنب الأخطاء */
+  --mouse-x: 0px;
+  --mouse-y: 0px;
 }
 
-/* =========================================
-   القسم الرئيسي - خلفية بيضاء
-========================================= */
 .about-modern-section {
   padding: 100px 0 80px;
   background: #ffffff;
@@ -26,11 +23,9 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  will-change: transform; /* تحسين الأداء */
 }
 
-/* =========================================
-   الخلفية البيضاء مع العناصر الطائرة
-========================================= */
 .about-background {
   position: absolute;
   inset: 0;
@@ -39,58 +34,37 @@
   pointer-events: none;
 }
 
-/* الدوائر الضبابية الملونة */
+/* تسريع رسوميات الدوائر */
+/* تسريع رسوميات الدوائر بشكل جذري */
 .bg-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(70px);
-  opacity: 0.35; /* شفافية مناسبة لتظهر بوضوح على خلفية بيضاء */
+  opacity: 0.35;
+  
+  /* 🌟 الأسلحة السرية لمنع التعليق */
+  transform: translate3d(0, 0, 0) !important;
+  will-change: transform, filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.orb-1 {
-  width: 450px;
-  height: 450px;
-  top: -10%;
-  right: -5%;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.6), rgba(14, 165, 233, 0.1));
-}
+.orb-1 { width: 450px; height: 450px; top: -10%; right: -5%; background: radial-gradient(circle, rgba(14, 165, 233, 0.6), rgba(14, 165, 233, 0.1)); }
+.orb-2 { width: 350px; height: 350px; bottom: -5%; left: -5%; background: radial-gradient(circle, rgba(245, 158, 11, 0.5), rgba(245, 158, 11, 0.1)); }
+.orb-3 { width: 300px; height: 300px; top: 40%; left: 30%; background: radial-gradient(circle, rgba(236, 72, 153, 0.4), rgba(236, 72, 153, 0.1)); }
+.orb-4 { width: 250px; height: 250px; bottom: 30%; right: 20%; background: radial-gradient(circle, rgba(6, 182, 212, 0.5), rgba(6, 182, 212, 0.1)); }
 
-.orb-2 {
-  width: 350px;
-  height: 350px;
-  bottom: -5%;
-  left: -5%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.5), rgba(245, 158, 11, 0.1));
-}
-
-.orb-3 {
-  width: 300px;
-  height: 300px;
-  top: 40%;
-  left: 30%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.4), rgba(236, 72, 153, 0.1));
-}
-
-.orb-4 {
-  width: 250px;
-  height: 250px;
-  bottom: 30%;
-  right: 20%;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.5), rgba(6, 182, 212, 0.1));
-}
-
-/* الجسيمات الملونة */
+/* تسريع الجسيمات */
 .bg-particle {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   opacity: 0.6;
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
-/* =========================================
-   تخطيط الهيرو
-========================================= */
 .about-hero-layout {
   display: flex;
   flex-direction: column;
@@ -103,9 +77,6 @@
   padding: 0 24px;
 }
 
-/* =========================================
-   النص المركزي
-========================================= */
 .about-header-center {
   max-width: 780px;
   text-align: center;
@@ -134,13 +105,8 @@
   letter-spacing: -0.02em;
 }
 
-/* تلوين "عبور" و "Uboor" */
-.text-cyan {
-  color: var(--uboor-cyan);
-}
-.text-orange {
-  color: var(--uboor-orange);
-}
+.text-cyan { color: var(--uboor-cyan); }
+.text-orange { color: var(--uboor-orange); }
 
 .about-description {
   font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -166,15 +132,16 @@
   color: var(--uboor-cyan);
 }
 
-/* =========================================
-   البطاقات العائمة
-========================================= */
 .floating-elements-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
   width: 100%;
+}
+
+.parallax-wrapper {
+  flex: 0 1 auto;
 }
 
 .floating-item {
@@ -188,19 +155,15 @@
   border-radius: 60px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
   cursor: default;
   min-width: 200px;
-  flex: 0 1 auto;
-  will-change: transform;
+  
+  /* 🌟 الأسلحة السرية للزجاج */
+  transform: translate3d(0, 0, 0);
+  will-change: transform, backdrop-filter;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
-
-.floating-item:hover {
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 25px 50px rgba(14, 165, 233, 0.12);
-  border-color: rgba(14, 165, 233, 0.2);
-}
-
 .floating-icon {
   width: 48px;
   height: 48px;
@@ -220,55 +183,33 @@
   align-items: flex-start;
 }
 
-.floating-title {
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--text-main);
-}
+.floating-title { font-weight: 800; font-size: 1rem; color: var(--text-main); }
+.floating-desc { font-size: 0.8rem; color: var(--text-muted); }
 
-.floating-desc {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* =========================================
-   التجاوب المتقدم
-========================================= */
 @media (max-width: 768px) {
-  .about-modern-section {
-    padding: 60px 0 40px;
-    min-height: auto;
-  }
-
-  .orb-1, .orb-2, .orb-3, .orb-4 {
-    opacity: 0.2;
-    width: 200px;
-    height: 200px;
-  }
-
-  .floating-elements-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .floating-item {
-    width: 100%;
-    max-width: 380px;
-    justify-content: center;
-    padding: 14px 20px;
-  }
-
-  .about-header-center {
-    padding: 0 16px;
-  }
-
+  .about-modern-section { padding: 60px 0 40px; min-height: auto; }
+  .orb-1, .orb-2, .orb-3, .orb-4 { opacity: 0.2; width: 200px; height: 200px; }
+  .floating-elements-container { flex-direction: column; align-items: center; gap: 20px; }
+  .parallax-wrapper { width: 100%; max-width: 380px; }
+  .floating-item { width: 100%; justify-content: flex-start; padding: 14px 20px; }
+  .about-header-center { padding: 0 16px; }
   .badge-light {
-    font-size: 0.8rem;
-    padding: 4px 16px;
-  }
-
-  .about-title {
-    font-size: clamp(1.8rem, 7vw, 2.6rem);
-  }
+  display: inline-block;
+  background: rgba(14, 165, 233, 0.08);
+  color: var(--uboor-cyan);
+  padding: 6px 24px;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(14, 165, 233, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* مهم جداً لسفاري والآيفون */
+  margin-bottom: 24px;
+  
+  /* 🌟 منع التقطيع */
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+}
+  .about-title { font-size: clamp(1.8rem, 7vw, 2.6rem); }
 }

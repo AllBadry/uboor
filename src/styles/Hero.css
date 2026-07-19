@@ -1,15 +1,15 @@
 /* =========================================
-   تأثير Weaverly Hero - أداء صاروخي (تم حل مشكلة الموبايل)
+   تأثير Weaverly Hero - أداء صاروخي (النسخة النهائية والمستقرة)
 ========================================= */
 
 .weaverly-hero-section {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100dvh;
   background-color: #ffffff;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* 🌟 السر هنا: حولنا المحاذاة لعمودية لكي نسمح للمحتوى بالتمدد لأسفل الشاشة */
+  flex-direction: column; 
   overflow: hidden;
   font-family: 'Cairo', sans-serif;
 }
@@ -37,38 +37,13 @@
   will-change: transform, --blob-color;
 }
 
-.hw-blob-1 {
-  width: 90vw; height: 90vw;
-  top: -30%; left: -20%;
-  animation: floatFluid1 15s infinite alternate ease-in-out;
-}
+.hw-blob-1 { width: 90vw; height: 90vw; top: -30%; left: -20%; animation: floatFluid1 15s infinite alternate ease-in-out; }
+.hw-blob-2 { width: 100vw; height: 100vw; bottom: -40%; right: -20%; animation: floatFluid2 18s infinite alternate ease-in-out; }
+.hw-blob-3 { width: 80vw; height: 80vw; top: 10%; left: 10%; animation: floatFluid3 20s infinite alternate ease-in-out; }
 
-.hw-blob-2 {
-  width: 100vw; height: 100vw;
-  bottom: -40%; right: -20%;
-  animation: floatFluid2 18s infinite alternate ease-in-out;
-}
-
-.hw-blob-3 {
-  width: 80vw; height: 80vw;
-  top: 10%; left: 10%;
-  animation: floatFluid3 20s infinite alternate ease-in-out;
-}
-
-@keyframes floatFluid1 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(10%, 10%, 0) scale(1.1); }
-}
-
-@keyframes floatFluid2 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(-10%, -10%, 0) scale(1.2); }
-}
-
-@keyframes floatFluid3 {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(10%, -15%, 0) scale(1.15); }
-}
+@keyframes floatFluid1 { 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(10%, 10%, 0) scale(1.1); } }
+@keyframes floatFluid2 { 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(-10%, -10%, 0) scale(1.2); } }
+@keyframes floatFluid3 { 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(10%, -15%, 0) scale(1.15); } }
 
 .noise-overlay {
   position: absolute;
@@ -83,19 +58,19 @@
 .hero-white-frame {
   position: relative;
   width: 100%;
-  height: 100%;
+  /* 🌟 الإجبار على التمدد: هذا ما يجعل الإطار يملأ الشاشة ويدفع التابات للأسفل */
+  flex-grow: 1; 
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding-top: 100px;
-  /* 🌟 الحل 1: أضفنا حشوة سفلية تدفع الكلمات للأعلى لتبقى داخل الصندوق الملون */
-  padding-bottom: 30px; 
+  padding-top: 110px; /* مسافة مريحة للناف بار */
+  padding-bottom: 20px; /* 🌟 تطابق تماماً مسافة الخلفية الملونة من الأسفل */
 }
 
 /* تخطيط المحتوى */
 .hero-dynamic-content {
-  flex-grow: 1;
+  /* 🌟 هذا السطر هو الذي يضغط التابات للحافة السفلية بقوة */
+  flex-grow: 1; 
   display: flex;
   align-items: center;
   justify-content: space-between; 
@@ -103,13 +78,8 @@
   width: 100%;
 }
 
-.hero-text-side {
-  width: 55%; 
-}
-
-.dynamic-text-wrapper {
-  text-align: right;
-}
+.hero-text-side { width: 55%; }
+.dynamic-text-wrapper { text-align: right; }
 
 .massive-title-en {
   font-size: clamp(3rem, 6vw, 6.5rem); 
@@ -187,7 +157,8 @@
   justify-content: space-between;
   padding: 0 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 20px;
+  /* 🌟 تصفير المسافة السفلية لتلتصق التابات بالحافة تماماً */
+  margin-bottom: 0px; 
 }
 
 .hero-tab {
@@ -202,9 +173,7 @@
   text-align: center;
 }
 
-.hero-tab:hover, .hero-tab.active {
-  color: #ffffff;
-}
+.hero-tab:hover, .hero-tab.active { color: #ffffff; }
 
 .tab-indicator {
   position: absolute;
@@ -216,38 +185,42 @@
   border-radius: 3px 3px 0 0;
 }
 
-/* --- التجاوب مع شاشات الموبايل (هنا السحر) --- */
+/* =========================================
+   التجاوب مع شاشات الموبايل (مستقرة وسلسة)
+========================================= */
 @media (max-width: 992px) {
+  .hero-white-frame {
+    padding-top: 100px;
+    padding-bottom: 20px; /* تحافظ على الالتصاق بالموبايل */
+  }
+
   .hero-dynamic-content { 
     flex-direction: column; 
     justify-content: center; 
-    padding: 0 20px; 
+    padding: 0 15px; 
     text-align: center; 
-    gap: 40px;
+    gap: 20px; 
   }
+
   .hero-text-side, .hero-visual-side { width: 100%; }
   .dynamic-text-wrapper { text-align: center; margin: 0 auto; }
-  .massive-desc { margin: 0 auto; }
-  .massive-bg-number { font-size: 12rem; }
-  .glass-icon-circle { width: 120px; height: 120px; font-size: 3rem; }
+  .massive-desc { margin: 0 auto; font-size: 0.95rem; line-height: 1.6; }
+
+  .visual-content-wrapper { height: 180px; }
+  .massive-bg-number { font-size: 8rem; }
+  .glass-icon-circle { width: 100px; height: 100px; font-size: 2.5rem; }
   
   .hero-tabs-container {
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: nowrap;
     overflow-x: auto;
-    /* 🌟 الحل 2 لمنع التعليقة: منع التمرير العمودي الخاطئ وإجبار المتصفح على السحب الأفقي فقط */
     overflow-y: hidden;
-    touch-action: pan-x; /* السلاح السري: يجعل سحب الموبايل ناعماً جداً ولا يعلق أبداً */
+    touch-action: pan-x;
     scroll-behavior: smooth;
-    
-    white-space: nowrap; 
     width: 100%;
-    padding: 0 20px; 
-    gap: 25px; 
-    
-    /* 🌟 الحل 1 للموبايل: رفع التابات بمسافة 30 بكسل لتدخل داخل الخلفية الملونة تماماً */
-    margin-bottom: 30px; 
-    
+    padding: 0 10px; 
+    gap: 10px; 
+    margin-bottom: 0px; /* 🌟 تأكيد الالتصاق في الموبايل */
     -webkit-overflow-scrolling: touch; 
     scrollbar-width: none; 
     -ms-overflow-style: none; 
@@ -258,10 +231,10 @@
   }
   
   .hero-tab {
-    flex: 0 0 auto; 
-    font-size: 1.05rem;
-    padding: 10px 0;
-    /* 🌟 إزالة المربع الأزرق البشع الذي يظهر عند اللمس في الموبايل */
+    flex: 1 0 auto; 
+    font-size: 0.95rem;
+    padding: 12px 10px;
+    text-align: center;
     -webkit-tap-highlight-color: transparent;
   }
 }

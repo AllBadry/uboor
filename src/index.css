@@ -3,6 +3,21 @@
 @config "../tailwind.config.js"; 
 /* ملاحظة: استخدمنا ../ لأن index.css غالباً داخل مجلد src وملف الكونفيج في الخارج. إذا كانا في نفس المجلد استخدم "./tailwind.config.js" */
 
+
+html, body {
+  /* تمنع التقطيع وتجعل التمرير انسيابياً */
+  scroll-behavior: smooth;
+  /* تمنع سحب الصفحة بالخطأ يميناً ويساراً (أحد أكبر أسباب التعليق في الموبايل) */
+  overflow-x: hidden; 
+  /* تحسين عرض الخطوط أثناء الحركة */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* تسريع أي عنصر يحتوي على تأثير زجاجي (Backdrop-filter) */
+* {
+  -webkit-backface-visibility: hidden;
+}
 a {
   text-decoration: none;
   color: inherit;
