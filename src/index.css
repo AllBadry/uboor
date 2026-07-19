@@ -1,4 +1,8 @@
 /*index.css*/
+@import "tailwindcss";
+@config "../tailwind.config.js"; 
+/* ملاحظة: استخدمنا ../ لأن index.css غالباً داخل مجلد src وملف الكونفيج في الخارج. إذا كانا في نفس المجلد استخدم "./tailwind.config.js" */
+
 a {
   text-decoration: none;
   color: inherit;

@@ -1,9 +1,5 @@
-/*  /src/styles/Hero.css */
-
-
-
 /* =========================================
-   تأثير Weaverly Hero - أداء صاروخي (بدون تعليق)
+   تأثير Weaverly Hero - أداء صاروخي (تم حل مشكلة الموبايل)
 ========================================= */
 
 .weaverly-hero-section {
@@ -18,7 +14,7 @@
   font-family: 'Cairo', sans-serif;
 }
 
-/* --- الخلفية السائلة الصاروخية (Hardware Accelerated) --- */
+/* --- الخلفية السائلة الصاروخية --- */
 .fluid-bg-container {
   position: absolute;
   top: 90px; 
@@ -29,10 +25,9 @@
   background-color: #0f172a; 
   overflow: hidden;
   z-index: 1;
-  transform: translateZ(0); /* تفعيل كرت الشاشة بقوة */
+  transform: translateZ(0); 
 }
 
-/* سر الأداء المطلق: استخدام radial-gradient بدون أي blur */
 .hw-blob {
   position: absolute;
   border-radius: 50%;
@@ -42,7 +37,6 @@
   will-change: transform, --blob-color;
 }
 
-/* أحجام ومسارات البقع اللونية */
 .hw-blob-1 {
   width: 90vw; height: 90vw;
   top: -30%; left: -20%;
@@ -61,7 +55,6 @@
   animation: floatFluid3 20s infinite alternate ease-in-out;
 }
 
-/* حركات خفيفة جداً تعتمد على كرت الشاشة */
 @keyframes floatFluid1 {
   0% { transform: translate3d(0, 0, 0) scale(1); }
   100% { transform: translate3d(10%, 10%, 0) scale(1.1); }
@@ -77,7 +70,6 @@
   100% { transform: translate3d(10%, -15%, 0) scale(1.15); }
 }
 
-/* طبقة ضوضاء (Noise) لإعطاء ملمس فاخر */
 .noise-overlay {
   position: absolute;
   inset: 0;
@@ -97,9 +89,11 @@
   flex-direction: column;
   justify-content: space-between;
   padding-top: 100px;
+  /* 🌟 الحل 1: أضفنا حشوة سفلية تدفع الكلمات للأعلى لتبقى داخل الصندوق الملون */
+  padding-bottom: 30px; 
 }
 
-/* تخطيط المحتوى (النص يميناً والشكل يساراً) */
+/* تخطيط المحتوى */
 .hero-dynamic-content {
   flex-grow: 1;
   display: flex;
@@ -142,7 +136,6 @@
   max-width: 550px;
 }
 
-/* تنسيق الجانب الأيسر (الأشكال الزجاجية والرقم) */
 .hero-visual-side {
   width: 40%;
   display: flex;
@@ -159,7 +152,6 @@
   height: 300px;
 }
 
-/* الرقم العملاق الشفاف */
 .massive-bg-number {
   position: absolute;
   font-size: 18rem; 
@@ -172,7 +164,6 @@
   pointer-events: none;
 }
 
-/* الدائرة الزجاجية الطافية للأيقونة */
 .glass-icon-circle {
   width: 160px;
   height: 160px;
@@ -225,7 +216,7 @@
   border-radius: 3px 3px 0 0;
 }
 
-/* --- التجاوب مع شاشات الموبايل --- */
+/* --- التجاوب مع شاشات الموبايل (هنا السحر) --- */
 @media (max-width: 992px) {
   .hero-dynamic-content { 
     flex-direction: column; 
@@ -239,27 +230,38 @@
   .massive-desc { margin: 0 auto; }
   .massive-bg-number { font-size: 12rem; }
   .glass-icon-circle { width: 120px; height: 120px; font-size: 3rem; }
+  
   .hero-tabs-container {
     display: flex;
-    justify-content: flex-start; /* السر هنا: نلغي التباعد الإجباري ونبدأ من اليمين */
-    overflow-x: auto; /* السماح بسحب الكلمات يميناً ويساراً */
-    white-space: nowrap; /* منع الكلمات من النزول لسطر جديد */
-    width: 100%;
-    padding: 0 20px; /* إعطاء مسافة تنفس من جوانب الشاشة */
-    gap: 30px; /* مسافة أمان مريحة بين كل تاب والآخر */
-    margin-bottom: 20px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    /* 🌟 الحل 2 لمنع التعليقة: منع التمرير العمودي الخاطئ وإجبار المتصفح على السحب الأفقي فقط */
+    overflow-y: hidden;
+    touch-action: pan-x; /* السلاح السري: يجعل سحب الموبايل ناعماً جداً ولا يعلق أبداً */
+    scroll-behavior: smooth;
     
-    /* 🌟 إخفاء شريط التمرير المزعج مع بقاء خاصية السحب */
-    -webkit-overflow-scrolling: touch; /* سحب ناعم جداً على الآيفون وسفاري */
-    scrollbar-width: none; /* لمتصفح فايرفوكس */
-    -ms-overflow-style: none; /* لمتصفح إيدج */
+    white-space: nowrap; 
+    width: 100%;
+    padding: 0 20px; 
+    gap: 25px; 
+    
+    /* 🌟 الحل 1 للموبايل: رفع التابات بمسافة 30 بكسل لتدخل داخل الخلفية الملونة تماماً */
+    margin-bottom: 30px; 
+    
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
   }
+  
   .hero-tabs-container::-webkit-scrollbar {
     display: none; 
   }
+  
   .hero-tab {
-    flex: 0 0 auto; /* يمنع الكلمات من الانضغاط أو التشوه */
+    flex: 0 0 auto; 
     font-size: 1.05rem;
     padding: 10px 0;
+    /* 🌟 إزالة المربع الأزرق البشع الذي يظهر عند اللمس في الموبايل */
+    -webkit-tap-highlight-color: transparent;
   }
 }
