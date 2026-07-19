@@ -1,5 +1,5 @@
 /* =========================================
-   تأثير Weaverly Hero - أداء صاروخي (النسخة النهائية والمستقرة)
+   تأثير Weaverly Hero - أداء صاروخي ومثالي لجميع الشاشات
 ========================================= */
 
 .weaverly-hero-section {
@@ -8,13 +8,12 @@
   min-height: 100dvh;
   background-color: #ffffff;
   display: flex;
-  /* 🌟 السر هنا: حولنا المحاذاة لعمودية لكي نسمح للمحتوى بالتمدد لأسفل الشاشة */
   flex-direction: column; 
   overflow: hidden;
   font-family: 'Cairo', sans-serif;
 }
 
-/* --- الخلفية السائلة الصاروخية --- */
+/* --- الخلفية السائلة --- */
 .fluid-bg-container {
   position: absolute;
   top: 90px; 
@@ -54,22 +53,20 @@
   mix-blend-mode: overlay;
 }
 
-/* --- الإطار الأبيض الداخلي (المحتوى) --- */
+/* --- الإطار الأبيض الداخلي --- */
 .hero-white-frame {
   position: relative;
   width: 100%;
-  /* 🌟 الإجبار على التمدد: هذا ما يجعل الإطار يملأ الشاشة ويدفع التابات للأسفل */
   flex-grow: 1; 
   z-index: 10;
   display: flex;
   flex-direction: column;
-  padding-top: 110px; /* مسافة مريحة للناف بار */
-  padding-bottom: 20px; /* 🌟 تطابق تماماً مسافة الخلفية الملونة من الأسفل */
+  padding-top: 110px; 
+  padding-bottom: 20px; 
 }
 
-/* تخطيط المحتوى */
+/* تخطيط المحتوى الديسكتوب */
 .hero-dynamic-content {
-  /* 🌟 هذا السطر هو الذي يضغط التابات للحافة السفلية بقوة */
   flex-grow: 1; 
   display: flex;
   align-items: center;
@@ -157,7 +154,6 @@
   justify-content: space-between;
   padding: 0 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  /* 🌟 تصفير المسافة السفلية لتلتصق التابات بالحافة تماماً */
   margin-bottom: 0px; 
 }
 
@@ -186,30 +182,45 @@
 }
 
 /* =========================================
-   التجاوب مع شاشات الموبايل (مستقرة وسلسة)
+   التجاوب المثالي مع شاشات الموبايل 📱
 ========================================= */
 @media (max-width: 992px) {
-  .hero-white-frame {
-    padding-top: 100px;
-    padding-bottom: 20px; /* تحافظ على الالتصاق بالموبايل */
+  /* توسعة الصندوق الملون ليحتوي المحتوى براحة أكبر */
+  .fluid-bg-container {
+    top: 80px; 
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
   }
 
+  .hero-white-frame {
+    padding-top: 90px;
+    padding-bottom: 15px; 
+  }
+
+  /* ضغط المسافات العمودية لمنع العناصر من الخروج عن الشاشة */
   .hero-dynamic-content { 
     flex-direction: column; 
     justify-content: center; 
     padding: 0 15px; 
     text-align: center; 
-    gap: 20px; 
+    gap: 15px; /* 🌟 تقليل المسافة بين النص والشكل */
   }
 
   .hero-text-side, .hero-visual-side { width: 100%; }
   .dynamic-text-wrapper { text-align: center; margin: 0 auto; }
-  .massive-desc { margin: 0 auto; font-size: 0.95rem; line-height: 1.6; }
-
-  .visual-content-wrapper { height: 180px; }
-  .massive-bg-number { font-size: 8rem; }
-  .glass-icon-circle { width: 100px; height: 100px; font-size: 2.5rem; }
   
+  /* 🌟 تصغير الخطوط العملاقة التي كانت تكسر الشاشة */
+  .massive-title-en { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: 0; }
+  .massive-title-ar { font-size: clamp(1.4rem, 5vw, 1.8rem); margin: 5px 0 10px 0; }
+  .massive-desc { font-size: 0.95rem; line-height: 1.5; padding: 0 10px; }
+
+  /* 🌟 تصغير الأيقونة والرقم بشكل كبير ليتناسب مع الجوال */
+  .visual-content-wrapper { height: 130px; }
+  .massive-bg-number { font-size: 6rem; }
+  .glass-icon-circle { width: 85px; height: 85px; font-size: 2rem; }
+  
+  /* 🌟 إعدادات التابات السلسة */
   .hero-tabs-container {
     display: flex;
     flex-wrap: nowrap;
@@ -220,7 +231,7 @@
     width: 100%;
     padding: 0 10px; 
     gap: 10px; 
-    margin-bottom: 0px; /* 🌟 تأكيد الالتصاق في الموبايل */
+    margin-bottom: 0px; 
     -webkit-overflow-scrolling: touch; 
     scrollbar-width: none; 
     -ms-overflow-style: none; 
@@ -232,8 +243,8 @@
   
   .hero-tab {
     flex: 1 0 auto; 
-    font-size: 0.95rem;
-    padding: 12px 10px;
+    font-size: 0.9rem;
+    padding: 10px;
     text-align: center;
     -webkit-tap-highlight-color: transparent;
   }
