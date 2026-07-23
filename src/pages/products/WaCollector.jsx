@@ -99,7 +99,7 @@ export default function WaCollector() {
               الرفيق التقني الأمثل للمسوقين وفرق المبيعات. استخرج أي قائمة أرقام من "واتساب ويب" بنقرة واحدة، وصدرها في جداول أنيقة وعالية الدقة (Excel / CSV).
             </p>
             
-            <a href="/products/wacollector.zip" download="Uboor_WA_Collector.zip" className="group inline-flex items-center justify-center gap-3 bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1 transition-all duration-300">
+            <a href="/products/tool.zip" download="Uboor_WA_Collector.zip" className="group inline-flex items-center justify-center gap-3 bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1 transition-all duration-300">
               <DownloadCloud className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
               تنزيل الإضافة الآن
             </a>

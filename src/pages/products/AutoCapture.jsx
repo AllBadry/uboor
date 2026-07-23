@@ -273,7 +273,7 @@ export default function AutoCapture() {
               <h3 className="font-bold text-xl mb-3">1. تنزيل الملف</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">قم بتنزيل ملف الإضافة المضغوط (ZIP) إلى جهاز الكمبيوتر الخاص بك.</p>
               <a 
-                href="/products/autocapture.zip" 
+                href="/products/autoCollector.zip" 
                 download="Uboor_Auto_Capture.zip"
                 className="mt-auto w-full px-6 py-2.5 bg-indigo-500 text-white font-bold rounded-xl text-sm hover:bg-indigo-400 hover:shadow-lg hover:shadow-indigo-500/40 transition-all cursor-pointer"
               >
