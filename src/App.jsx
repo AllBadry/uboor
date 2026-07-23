@@ -4,6 +4,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import AutoCapture from './pages/products/AutoCapture';
+import NotFound from './pages/NotFound';
 // يمكنك إنشاء هذه الصفحات لاحقاً في مجلد pages
 import Services from './pages/Services';
 import About from './pages/About';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/products/auto-capture" element={<AutoCapture />} /> 
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/seo-monster" element={<SeoMonster />}/>
+          <Route path="*" element={<NotFound />} />
         
           {/* <Route path="/privacy" element={<Privacy />} /> */}
         </Routes>
