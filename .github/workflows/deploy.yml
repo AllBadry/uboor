@@ -26,16 +26,23 @@ jobs:
       - name: Build Project 🏗️
         run: |
           npm run build
+
+          # 🌟 خدعة الـ SPA الأساسية لـ GitHub Pages
+          # هذا السطر يعوض حذف ملف 404 القديم، ويجعل غيت هاب يوجه أي مسار خاطئ للـ React
           cp dist/index.html dist/404.html
 
-          # 🌟 خدعة الـ SEO: إنشاء مجلدات حقيقية لكل مسار في الموقع
-          mkdir -p dist/about dist/services dist/contact dist/privacy
+          # 🌟 خدعة الـ SEO: إنشاء مجلدات حقيقية تتطابق تماماً مع App.jsx
+          # لاحظ إضافة المجلدات الفرعية داخل products
+          mkdir -p dist/about dist/services dist/contact dist/products dist/products/wacollector dist/products/auto-capture dist/products/seo-monster
 
           # نسخ ملف React الأساسي داخل هذه المجلدات لكي يعيد غيت هاب الرمز 200 OK لجوجل
           cp dist/index.html dist/about/index.html
           cp dist/index.html dist/services/index.html
           cp dist/index.html dist/contact/index.html
-          cp dist/index.html dist/privacy/index.html
+          cp dist/index.html dist/products/index.html
+          cp dist/index.html dist/products/wacollector/index.html
+          cp dist/index.html dist/products/auto-capture/index.html
+          cp dist/index.html dist/products/seo-monster/index.html
 
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v4
