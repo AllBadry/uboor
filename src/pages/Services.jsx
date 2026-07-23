@@ -1,380 +1,233 @@
-// /src/pages/Services.jsx
-
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-// 🌟 تم إضافة FaRobot هنا للأداة الجديدة
-import { FaGlobe, FaDesktop, FaProjectDiagram, FaCodeBranch, FaPuzzlePiece, FaCheckCircle, FaArrowLeft, FaServer, FaWhatsapp, FaReact, FaHourglassHalf, FaTimes, FaRobot } from 'react-icons/fa';
-import { SiCplusplus, SiMongodb } from 'react-icons/si'; 
+import { useEffect, useRef, useState } from 'react';
+import { Globe, Cpu, ShieldCheck, Terminal, Bot, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import '../styles/ServicesPage.css';
-import SEO from '../components/SEO';
 
+// === بيانات الخدمات والتفاصيل التقنية ===
+const SERVICES_DATA = [
+  {
+    id: '01',
+    title: 'أنظمة ويب وديناميكية',
+    subtitle: 'MERN Stack & Cloud Architecture',
+    desc: 'نبني منصات الويب وأدلة الأعمال من الصفر. لا نعتمد على القوالب، بل نكتب هندسة برمجية خالصة قادرة على معالجة آلاف الطلبات اللحظية وتدعم الاستعلامات الجغرافية المكانية.',
+    features: ['قواعد بيانات جغرافية (MongoDB)', 'واجهات سريعة (React.js)', 'معمارية قابلة للتوسع السحابي'],
+    icon: Globe,
+    color: 'uboor-blue',
+    techCode: `// System Architecture
+const uboorWebNode = {
+  stack: ['MongoDB', 'Express', 'React', 'Node'],
+  latency: '< 50ms',
+  geospatialQueries: true,
+  status: 'ONLINE'
+};`
+  },
+  {
+    id: '02',
+    title: 'تطبيقات سطح مكتب',
+    subtitle: 'C++ Native Performance',
+    desc: 'للأنظمة الداخلية الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام C++ لضمان استقرار وسرعة معالجة لا يمكن لتطبيقات الويب مجاراتها.',
+    features: ['إدارة الذاكرة المباشرة (Memory Mng)', 'تطبيقات مخصصة للشركات', 'أداء خالي من التأخير'],
+    icon: Cpu,
+    color: 'uboor-orange',
+    techCode: `// Native Execution
+#include <iostream>
+int main() {
+    System::initializeCore();
+    Memory::allocateHighPerformance();
+    return uboor::execute();
+}`
+  },
+  {
+    id: '03',
+    title: 'الأمن السيبراني',
+    subtitle: 'Digital Forensics & Security',
+    desc: 'حماية بيانات عملائك ليست خياراً ثانوياً. نطبق مفاهيم الأدلة الجنائية الرقمية ونحمي خوادمك بأحدث بروتوكولات الأمان لمنع الثغرات والاختراقات.',
+    features: ['بروتوكولات (DNS, SPF, DKIM)', 'فحص الثغرات المتقدم', 'الأدلة الجنائية الرقمية'],
+    icon: ShieldCheck,
+    color: 'text-main',
+    techCode: `[ UBOOR SECURE SHELL ]
+> Authenticating keys...
+> SPF/DKIM records: VERIFIED
+> Network vulnerabilities: 0
+> Firewall status: MAX_ENFORCE
+> Connection: SECURE`
+  },
+  {
+    id: '04',
+    title: 'أدوات مفتوحة المصدر',
+    subtitle: 'Community Contributions',
+    desc: 'نحن نرد الجميل للمجتمع التقني. نبتكر أدوات وإضافات مجانية بالكامل (مثل Uboor WA Contacts Exporter) لتسهيل أعمال المطورين والشركات حول العالم.',
+    features: ['إضافات متصفح احترافية', 'أدوات استخراج بيانات', 'مساهمات GitHub'],
+    icon: Terminal,
+    color: 'uboor-cyan',
+    techCode: `$ git clone https://github.com/uboor/...
+$ npm install uboor-tools
+$ npm run build
 
-const servicesData = [
-  {
-    id: "websites",
-    title: "المواقع الإلكترونية",
-    icon: <FaGlobe />,
-    desc: "نبرمج واجهات رقمية سريعة ومتجاوبة تعكس هوية علامتك التجارية وتجذب عملاءك بأحدث تقنيات الويب.",
-    examples: ["مواقع تعريفية للشركات والأفراد", "متاجر إلكترونية (E-commerce)", "صفحات هبوط (Landing Pages) للتسويق", "مدونات ومنصات إخبارية"],
-    theme: "blue"
+> Compiling open-source modules...
+> Ready to deploy. Knowledge is free.`
   },
   {
-    id: "systems",
-    title: "تطبيقات الويب والأنظمة",
-    icon: <FaDesktop />,
-    desc: "نحول العمليات الإدارية المعقدة إلى بيئة رقمية سلسة عبر برمجة أنظمة متكاملة ولوحات تحكم دقيقة.",
-    examples: ["أنظمة إدارة المخزون (ERP)", "لوحات التحكم (Dashboards) المركزية", "أنظمة إدارة علاقات العملاء (CRM)", "منصات التعليم الإلكتروني (LMS)"],
-    theme: "orange"
-  },
-  {
-    id: "apis",
-    title: "واجهات برمجة التطبيقات (API)",
-    icon: <FaProjectDiagram />,
-    desc: "نوفر واجهات برمجية (APIs) قوية وموثوقة لربط أنظمتك ببعضها البعض أو توفير خدمات بيانات خارجية.",
-    examples: ["API التحقق من الإيميلات", "واجهات سحب وتحليل البيانات"],
-    theme: "blue"
-  },
-  {
-    id: "opensource",
-    title: "البرمجيات المفتوحة المصدر",
-    icon: <FaCodeBranch />,
-    desc: "إيماناً منا بدور المجتمع التقني، نساهم في بناء وتوفير برمجيات مجانية ومفتوحة للمبرمجين حول العالم.",
-    examples: ["أنظمة التخزين اللامركزي", "مكتبات برمجية لتسهيل التطوير", "أدوات التشفير وحماية البيانات"],
-    theme: "orange"
-  },
-  {
-    id: "extensions",
-    title: "الأدوات وإضافات المتصفح",
-    icon: <FaPuzzlePiece />,
-    desc: "أدوات ذكية وإضافات متصفح تهدف إلى زيادة إنتاجيتك وتقليل الجهد البشري في المهام اليومية.",
-    examples: ["أدوات استخراج البيانات (Web Scrapers)", "إضافات أتمتة مهام التسويق", "بوتات مخصصة للمنصات"],
-    theme: "blue"
-  }
-];
+    id: '05',
+    title: 'أتمتة العمليات (AI)',
+    subtitle: 'AI Agents & Automation',
+    desc: 'ندمج أحدث نماذج اللغات (LLMs) داخل أنظمتك لتحويل العمليات الروتينية والمكررة إلى أنظمة ذاتية القيادة، مما يوفر مئات الساعات من العمل.',
+    features: ['وكلاء ذكاء اصطناعي (AI Agents)', 'أتمتة المهام اليومية', 'تحليل البيانات الضخمة'],
+    icon: Bot,
+    color: 'purple-500',
+    techCode: `import { AIAgent } from 'uboor-ai'
 
-const liveProductsData = [
-  {
-    id: "wa-collector",
-    name: "Uboor WA Collector Pro",
-    type: "إضافة متصفح (Extension)",
-    status: "متاح مجاناً",
-    desc: "أداة متقدمة لاستخراج بيانات جهات الاتصال وأرقام المجموعات من WhatsApp Web بنقرة واحدة، مصممة لتسهيل عمل المسوقين.",
-    icon: <FaWhatsapp />,
-    link: "/products/wacollector",
-    color: "#25D366" 
-  },
-  {
-    id: "data-vault",
-    name: "DATA Vault",
-    type: "طبقة تخزين لامركزية",
-    status: "مفتوح المصدر",
-    desc: "نظام تخزين لا نهائي، لامركزي ومشفر بالكامل مبني بـ C++ و React، يستخدم البنية التحتية لمنصات المحادثة كطبقة تخزين آمنة.",
-    icon: <FaServer />,
-    link: "/products/data-vault", 
-    color: "#3b82f6"
-  },
-  // 🌟 تم استبدال الـ API بالإضافة الجديدة هنا
-  {
-    id: "auto-capture",
-    name: "Uboor Auto Capture Pro",
-    type: "إضافة متصفح (Extension)",
-    status: "متاح مجاناً",
-    desc: "روبوتك الشخصي لأتمتة المهام المكررة. يتيح لك تحديد الأزرار برمجياً وتصوير الشاشة بشكل آلي وذكي لتجنب الحظر.",
-    icon: <FaRobot />,
-    link: "/products/auto-capture",
-    color: "#ec4899" // لون مميز (وردي/بنفسجي)
+const agent = new AIAgent({
+  model: 'gpt-4-turbo',
+  tasks: ['Data Entry', 'Analysis']
+});
+
+await agent.automateWorkflow();`
   }
 ];
 
 export default function Services() {
-  const [showVaultModal, setShowVaultModal] = useState(false);
+  const [activeNode, setActiveNode] = useState(0);
+  const sectionRefs = useRef([]);
+  const [isMounted, setIsMounted] = useState(false); 
 
-  // تسريع ظهور الكبسولات والأمثلة المتسلسلة
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => setIsMounted(true), 150);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 120, damping: 12 } }
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute('data-index'));
+            setActiveNode(index);
+          }
+        });
+      },
+      {
+        rootMargin: '-40% 0px -40% 0px', 
+        threshold: 0
+      }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const currentService = SERVICES_DATA[activeNode];
+  const ActiveIcon = currentService.icon;
 
   return (
-    <div className="services-page-wrapper relative">
+    <div className="bg-bg-pure-white text-text-main font-cairo min-h-screen selection:bg-uboor-cyan selection:text-white">
+      
+      {/* تم إزالة overflow-hidden التي كانت تكسر تثبيت الشاشة، واستخدام flex-row للوضع الطبيعي (يمين ثم يسار) */}
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row relative pt-28 lg:pt-36">
+        
+        {/* =========================================
+            الجانب الأيمن (اللوحة التقنية التفاعلية - ثابتة لا تتحرك)
+            ========================================= */}
+        <div className={`w-full lg:w-5/12 relative lg:sticky lg:top-32 lg:h-[calc(100vh-140px)] flex flex-col justify-start p-6 sm:p-10 z-10 transition-all duration-[1200ms] delay-300 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+          
+          <div className="bg-bg-off-white rounded-[2rem] p-8 border border-gray-200 shadow-2xl relative overflow-hidden transition-all duration-700 w-full h-auto max-h-[600px] flex flex-col">
+            
+            <div className={`absolute -top-20 -left-20 w-64 h-64 rounded-full blur-[80px] opacity-20 transition-colors duration-1000 bg-${currentService.color}`}></div>
 
-      <SEO 
-        title="خدماتنا ومنتجاتنا" 
-        description="اكتشف خدمات عبور الشاملة: برمجة مواقع ويب، تطبيقات ديسكتوب وأنظمة متكاملة (مخزون، موارد بشرية، عيادات، وحجوزات)، منصات رقمية وتعليمية (LMS)، وتطوير لوحات تحكم (Dashboards) تحليلية لإدارة المحتوى."
-        keywords="تطوير مواقع ويب, تطبيقات ديسكتوب, نظام إدارة مخزون, نظام إدارة موارد بشرية, أنظمة عيادات, أنظمة حجوزات, منصات رقمية, منصة تعليمية LMS, لوحات تحكم إدارة محتوى, داشبورد إحصائيات, أدوات أتمتة, عبور"
-        canonicalUrl="/services"
-      />
-
-      <div className="page-ambient-background">
-        <div className="ambient-blob blob-blue"></div>
-        <div className="ambient-blob blob-orange"></div>
-        <div className="ambient-blob blob-light"></div>
-      </div>
-
-      <motion.div className="floating-tech-icon" style={{ top: '15%', right: '5%', color: 'rgba(59, 130, 246, 0.05)', fontSize: '10rem', position: 'absolute' }} animate={{ y: [0, -30, 0], rotate: [0, 10, 0] }} transition={{ duration: 8, repeat: Infinity }}><FaReact /></motion.div>
-      <motion.div className="floating-tech-icon" style={{ top: '45%', left: '2%', color: 'rgba(245, 130, 32, 0.04)', fontSize: '12rem', position: 'absolute' }} animate={{ y: [0, 40, 0], rotate: [0, -15, 0] }} transition={{ duration: 12, repeat: Infinity }}><SiCplusplus /></motion.div>
-      <motion.div className="floating-tech-icon" style={{ bottom: '20%', right: '8%', color: 'rgba(15, 23, 42, 0.03)', fontSize: '8rem', position: 'absolute' }} animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }} transition={{ duration: 10, repeat: Infinity }}><SiMongodb /></motion.div>
-
-      {/* 1. قسم الهيرو (ظهور خاطف) */}
-      <section className="services-hero">
-        <div className="container relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20, filter: "blur(5px)" }} 
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="text-center"
-          >
-            <div className="glass-badge mx-auto mb-4">ماذا نقدم؟</div>
-            <h1 className="services-main-title">
-              ترسانة <span className="text-gradient">رقمية</span> شاملة
-            </h1>
-            <p className="services-main-subtitle">
-              من بناء الأنظمة المعقدة إلى توفير أدوات وإضافات جاهزة للاستخدام، نحن نغطي كافة احتياجاتك التقنية.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 2. قسم المنتجات والأدوات */}
-      <section className="live-products-section relative z-10">
-        <div className="container">
-          <motion.div 
-            className="section-header-modern"
-            initial={{ opacity: 0, x: 20 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
-            viewport={{ once: true, margin: "-20px" }}
-            transition={{ duration: 0.4 }}
-          >
-            <h2>منتجاتنا <span className="text-orange">وأدواتنا الجاهزة</span></h2>
-            <p>برمجيات، إضافات، وواجهات برمجية طورناها في عبور وهي متاحة للاستخدام المباشر أو التضمين في أنظمتك.</p>
-          </motion.div>
-
-          <motion.div 
-            className="products-glass-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-20px" }}
-          >
-            {liveProductsData.map((product) => (
-              <motion.div 
-                key={product.id}
-                className="glass-product-card"
-                variants={itemVariants}
-                whileHover={{ y: -8, scale: 1.01 }}
-                transition={{ type: "spring", bounce: 0.4 }}
-              >
-                <div className="glass-card-glow" style={{ backgroundColor: product.color }}></div>
-                <div className="product-card-header">
-                  <motion.div 
-                    className="product-icon" 
-                    style={{ background: `linear-gradient(135deg, ${product.color}, ${product.color}dd)` }}
-                    whileHover={{ rotate: 180 }} transition={{ duration: 0.4 }}
-                  >
-                    {product.icon}
-                  </motion.div>
-                  <div className="product-badges">
-                    <span className="badge-type">{product.type}</span>
-                    <span className="badge-status">{product.status}</span>
-                  </div>
-                </div>
-                
-                <h3 className="product-title">{product.name}</h3>
-                <p className="product-desc">{product.desc}</p>
-                
-                <div className="product-footer">
-                  {/* هنا يتم فحص المنتج: إذا كان داتا فولت يفتح البوب أب، غير ذلك يذهب للرابط */}
-                  {product.id === "data-vault" ? (
-                    <button 
-                      onClick={() => setShowVaultModal(true)} 
-                      className="product-action-link" 
-                      style={{ 
-                        color: product.color, 
-                        background: 'none', border: 'none', cursor: 'pointer', 
-                        display: 'flex', alignItems: 'center', gap: '8px', 
-                        padding: 0, font: 'inherit', fontWeight: 'bold' 
-                      }}
-                    >
-                      التوثيق والتفاصيل <motion.span animate={{ x: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}><FaArrowLeft className="action-icon" /></motion.span>
-                    </button>
-                  ) : (
-                    <Link to={product.link} className="product-action-link" style={{ color: product.color }}>
-                      التوثيق والتفاصيل <motion.span animate={{ x: [0, -4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}><FaArrowLeft className="action-icon" /></motion.span>
-                    </Link>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 3. قسم مجالات العمل (Mega Cards) */}
-      <section className="services-mega-list pt-0 relative z-10">
-        <div className="container">
-          <motion.div 
-            className="section-header-modern text-center mb-10"
-            initial={{ opacity: 0, y: 20 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true, margin: "-20px" }}
-            transition={{ duration: 0.4 }}
-          >
-            <h2>مجالات <span className="text-blue">التطوير والبرمجة</span></h2>
-            <p>مجالات خبرتنا التقنية التي نقدم فيها خدمات مخصصة للعملاء والشركات.</p>
-          </motion.div>
-
-          {servicesData.map((service, index) => (
-            <motion.div 
-              key={service.id}
-              className={`mega-card theme-${service.theme}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 100, damping: 15 }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="mega-card-glow"></div>
-              <div className="mega-card-content">
-                <div className="mega-info-side">
-                  <motion.div 
-                    className={`mega-icon-wrapper`}
-                    animate={{ y: [-5, 5] }}
-                    transition={{ duration: 4, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-                  >
-                    {service.icon}
-                  </motion.div>
-                  <h2 className="mega-title">{service.title}</h2>
-                  <p className="mega-desc">{service.desc}</p>
-                </div>
-
-                <div className="mega-examples-side">
-                  <h4 className="examples-header">على سبيل المثال:</h4>
-                  <div className="examples-grid">
-                    {service.examples.map((example, i) => (
-                      <motion.div 
-                        key={i} 
-                        className="example-glass-pill" 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: i * 0.05 }}
-                        viewport={{ once: true }}
-                        whileHover={{ scale: 1.03, backgroundColor: "rgba(255, 255, 255, 1)" }}
-                      >
-                        <FaCheckCircle className="check-icon" />
-                        <span>{example}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+            <div className="flex justify-between items-center mb-8 relative z-10">
+              <span className="font-mono text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                UBOOR_ENGINE // {currentService.id}
+              </span>
+              <div className={`w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center shadow-sm transition-colors duration-500`}>
+                <ActiveIcon className={`w-6 h-6 text-${currentService.color}`} />
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+            </div>
 
-      {/* ===================================== */}
-      {/* 🌟 بوب أب DATA Vault (يظهر فوق كل شيء) 🌟 */}
-      {/* ===================================== */}
-      <AnimatePresence>
-        {showVaultModal && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: 'fixed',
-              top: 0, right: 0, bottom: 0, left: 0,
-              width: '100vw', height: '100vh',
-              background: 'rgba(15, 23, 42, 0.75)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              zIndex: 999999,
-              padding: '20px',
-              direction: 'rtl'
-            }}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, y: 20, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.9, y: 20, opacity: 0 }}
-              transition={{ type: "spring", bounce: 0.4 }}
-              style={{
-                background: '#ffffff',
-                width: '100%',
-                maxWidth: '450px',
-                borderRadius: '24px',
-                padding: '40px 30px',
-                position: 'relative',
-                boxShadow: '0 25px 50px rgba(0,0,0,0.3)',
-                border: '1px solid rgba(14, 165, 233, 0.2)',
-                textAlign: 'center'
-              }}
-            >
-              {/* زر الإغلاق (X) */}
-              <button 
-                onClick={() => setShowVaultModal(false)}
-                style={{
-                  position: 'absolute',
-                  top: '20px', left: '20px',
-                  background: 'rgba(0,0,0,0.04)',
-                  border: 'none', width: '35px', height: '35px', borderRadius: '50%',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#64748b', cursor: 'pointer', transition: '0.3s'
-                }}
-              >
-                <FaTimes />
-              </button>
-
-              {/* أيقونة الحالة */}
-              <div style={{
-                width: '70px', height: '70px',
-                background: 'rgba(14, 165, 233, 0.1)',
-                color: 'var(--uboor-cyan)',
-                borderRadius: '20px',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '2.2rem', margin: '0 auto 20px auto'
-              }}>
-                <FaHourglassHalf />
-              </div>
-
-              {/* نصوص البوب أب */}
-              <h2 style={{ fontSize: '1.6rem', fontWeight: 900, color: '#334155', marginBottom: '12px' }}>
-                البرمجية قيد التطوير
+            <div className="mb-6 relative z-10">
+              <h2 className="text-2xl lg:text-3xl font-black text-text-main mb-2 leading-tight transition-all duration-500">
+                {currentService.title}
               </h2>
-              <p style={{ fontSize: '1.05rem', color: '#64748b', lineHeight: 1.7, marginBottom: '30px' }}>
-                نحن نعمل بجهد على بناء الطبقة اللامركزية للتخزين المشفر في <strong>DATA Vault</strong>. البرمجية ليست متاحة للاستخدام العام بعد.
-              </p>
+              <span className={`font-mono text-[10px] font-bold uppercase tracking-widest text-${currentService.color} transition-colors duration-500`}>
+                {currentService.subtitle}
+              </span>
+            </div>
 
-              {/* زر الإغلاق السفلي */}
-              <button 
-                onClick={() => setShowVaultModal(false)}
-                style={{
-                  width: '100%',
-                  background: '#f8fafc',
-                  color: '#334155',
-                  border: '1px solid rgba(0,0,0,0.05)',
-                  padding: '14px',
-                  fontSize: '1.1rem',
-                  fontWeight: '800',
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
+            <div className="mt-auto bg-[#0a0f1c] rounded-2xl p-6 border border-gray-800 shadow-inner relative overflow-hidden group">
+              <div className="flex gap-1.5 mb-4">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+              </div>
+              
+              <pre className="font-mono text-xs text-gray-300 whitespace-pre-wrap leading-relaxed transition-all duration-500 opacity-90 group-hover:opacity-100" dir="ltr">
+                <code>{currentService.techCode}</code>
+              </pre>
+
+              <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/5 to-transparent pointer-events-none skew-y-[-10deg] -translate-y-10"></div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* =========================================
+            الجانب الأيسر (قائمة الخدمات المتحركة بالسكرول)
+            ========================================= */}
+        <div className="w-full lg:w-7/12 py-10 lg:py-0 px-6 sm:px-10 lg:border-r border-gray-100">
+          
+          <div className={`mb-24 transition-all duration-1000 delay-100 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h1 className="text-5xl lg:text-7xl font-black text-text-main tracking-tighter mb-6">
+              بنيتنا <br /> <span className="text-uboor-cyan">الهندسية</span>
+            </h1>
+            <p className="text-lg text-text-muted leading-relaxed max-w-lg font-medium">
+              نحن لا نبيع حلولاً معلبة. تعرف على الترسانة التقنية التي نستخدمها لهندسة أنظمة قوية، آمنة، وقابلة للتوسع.
+            </p>
+          </div>
+
+          <div className={`flex flex-col gap-24 lg:gap-40 pb-32 transition-all duration-1000 delay-500 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            {SERVICES_DATA.map((service, index) => (
+              <div 
+                key={service.id} 
+                data-index={index}
+                ref={(el) => (sectionRefs.current[index] = el)}
+                className={`transition-all duration-700 ${activeNode === index ? 'opacity-100 translate-x-0' : 'opacity-30 lg:translate-x-8'}`}
               >
-                حسناً، سأنتظر
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <div className="flex items-baseline gap-4 mb-6">
+                  <span className="text-5xl font-black text-gray-200 select-none">{service.id}</span>
+                  <h3 className="text-3xl sm:text-4xl font-black text-text-main leading-tight">{service.title}</h3>
+                </div>
+                
+                <p className="text-lg sm:text-xl text-text-muted leading-relaxed font-medium mb-8 border-r-4 border-gray-200 pr-6">
+                  {service.desc}
+                </p>
 
+                <div className="space-y-4 mb-10">
+                  {service.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <CheckCircle2 className={`w-5 h-5 text-${service.color}`} />
+                      <span className="text-text-main font-bold">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="w-full h-px bg-gradient-to-l from-gray-200 to-transparent"></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 p-10 bg-bg-off-white rounded-3xl border border-gray-200 text-center">
+            <h3 className="text-3xl font-black text-text-main mb-4">هل النظام الذي تبحث عنه غير مدرج؟</h3>
+            <p className="text-text-muted mb-8">نحن مهندسون، يسعدنا بناء الأنظمة المعقدة والمخصصة من الصفر.</p>
+            <Link to="/contact" className="inline-flex items-center justify-center gap-3 bg-text-main text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-uboor-blue transition-colors w-full sm:w-auto">
+              تحدث مع خبرائنا
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+          </div>
+
+        </div>
+
+      </div>
     </div>
   );
 }

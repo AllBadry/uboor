@@ -1,56 +1,36 @@
-// /src/App.jsx
-
-
-import React, { useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import './App.css';
-import { productRoutes } from './routes';
-
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
-
-// استخدام الاستيراد الكسول (Lazy) لحل مشكلة السرعة
-const AboutUs = lazy(() => import('./pages/AboutUs'));
-const Services = lazy(() => import('./pages/Services'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Privacy = lazy(() => import('./pages/privacy'));
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
+import Products from './pages/Products';
+import AutoCapture from './pages/products/AutoCapture';
+// يمكنك إنشاء هذه الصفحات لاحقاً في مجلد pages
+import Services from './pages/Services';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import WaCollector from './pages/products/WaCollector';
+import SeoMonster from './pages/products/SeoMonster';
 
 function App() {
   return (
     <Router>
+      {/* هنا نضع المكون ليعمل ويراقب كل تنقلات الصفحات */}
       <ScrollToTop /> 
       
-      <div className="app-container rtl" dir="rtl">
-        <Navbar />
-        <main>
-          {/* الغلاف الإجباري لمنع انهيار الموقع أثناء تحميل الصفحات */}
-          <Suspense fallback={<div className="loading-screen">جاري التحميل...</div>}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutUs />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy" element={<Privacy />} />
-              
-              {productRoutes && productRoutes.map((route, index) => (
-                <Route key={index} path={route.path} element={route.element} />
-              ))}
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/wacollector" element={<WaCollector />} /> 
+          <Route path="/products/auto-capture" element={<AutoCapture />} /> 
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/products/seo-monster" element={<SeoMonster />}/>
+        
+          {/* <Route path="/privacy" element={<Privacy />} /> */}
+        </Routes>
+      </Layout>
     </Router>
   );
 }

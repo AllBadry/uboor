@@ -1,530 +1,184 @@
-/* app.css */
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.spin-slow {
-  animation: spinSlow 3s infinite linear;
-}
-
-.rtl { direction: rtl; }
-.home-page-wrapper { overflow-x: hidden; }
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-
-
-/*global */
-
-.text-gradient {
-  background: var(--gradient-mixed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-
-/* =========================================
-   2. شريط التنقل (Navbar)
-========================================= */
-/* =========================================
-   2. شريط التنقل (Navbar) - معمارية الأداء الصاروخي 🚀
-========================================= */
-
-.magic-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  /* إجبار المتصفح على استخدام كرت الشاشة (GPU) */
-  transform: translateZ(0); 
-  will-change: padding-top; 
-  transition: padding-top 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
-}
-
-/* عندما يكون في أعلى الصفحة (Full Width) */
-.nav-container-magic {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  border-radius: 0px; 
-  border: 1px solid transparent; 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
-  
-  /* التسريع العتادي للحاوية */
-  transform: translateZ(0);
-  will-change: width, padding, border-radius, background-color, border-color, box-shadow;
-  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-              padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-              border-radius 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-              background-color 0.3s ease,
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
-}
-
-/* تأثير الجزيرة العائمة (Floating Pill) عند النزول */
-.magic-navbar.is-floating {
-  padding-top: 25px;
-  pointer-events: none; /* لتمرير الماوس من الجوانب الفارغة */
-}
-
-.magic-navbar.is-floating .nav-container-magic {
-  pointer-events: auto;
-  width: 85%;
-  max-width: 1200px;
-  border-radius: 50px; /* يتحول تدريجياً لكبسولة */
-  padding: 10px 30px;
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border-color: rgba(255, 255, 255, 1); 
-  border-bottom-color: rgba(255, 255, 255, 1); 
-}
-
-/* --- السر الأكبر: تصغير اللوجو --- */
-.nav-logo img {
-  height: 45px;
-  object-fit: contain;
-  /* استخدام scale بدلاً من height لتجنب اهتزاز الصفحة */
-  transform: scale(1);
-  transform-origin: right center; /* لأن الموقع عربي، التصغير يسحب اللوجو لليمين */
-  will-change: transform;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); 
-}
-
-.magic-navbar.is-floating .nav-logo img {
-  /* تصغير بنسبة رياضية دقيقة بدون إرهاق المعالج */
-  transform: scale(0.84);
-}
-
-/* روابط الديسكتوب */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
-
-.nav-item-magic {
-  position: relative;
-  text-decoration: none;
-  color: var(--text-main);
-  font-weight: 800;
-  font-size: 1.05rem;
-  padding: 8px 12px;
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.nav-item-magic:hover, .nav-item-magic.active {
-  color: var(--uboor-blue);
-}
-
-/* المؤشر النشط السحري (مثل الايباد) */
-.magic-active-indicator {
-  position: absolute;
-  inset: 0;
-  background: var(--uboor-blue-light);
-  border-radius: 12px;
-  z-index: -1;
-}
-
-.magic-navbar.is-floating .magic-active-indicator {
-  border-radius: 25px; /* ليتناسب مع شكل الكبسولة */
-}
-
-/* --- الميجا منيو الزجاجية (Mega Menu) --- */
-.nav-item-magic-dropdown { position: relative; }
-
-.mega-menu-glass {
-  position: absolute;
-  top: 120%;
-  /* التعديل الجوهري هنا: التوسيط بالنسبة للعنصر الأب */
-  right: 50%; 
-  transform: translateX(50%) !important; 
-  width: 650px; /* عرض ثابت للقائمة */
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border-radius: 24px;
-  padding: 25px;
-  border: 1px solid rgba(255,255,255,1);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-  z-index: 1000;
-}
-
-/* تعديل مكان السهم الصغير ليكون تحت كلمة "خدماتنا" مباشرة */
-.mega-menu-glass::before {
-  content: '';
-  position: absolute;
-  top: -8px; 
-  right: 50%;
-  transform: translateX(50%) rotate(45deg);
-  width: 20px; height: 20px;
-  background: rgba(255, 255, 255, 0.98);
-  border-top: 1px solid rgba(255,255,255,1);
-  border-left: 1px solid rgba(255,255,255,1);
-}
-.mega-menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.mega-link-card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px;
-  border-radius: 16px;
-  text-decoration: none;
-  background: transparent;
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mega-link-card:hover { background: var(--bg-off-white); }
-.blue-hover:hover .mega-icon-box { background: var(--gradient-blue); color: white; }
-.orange-hover:hover .mega-icon-box { background: var(--gradient-orange); color: white; }
-.cyan-hover:hover .mega-icon-box { background: var(--gradient-cyan); color: white; }
-.special-hover:hover .mega-icon-box { background: var(--gradient-mixed); color: white; }
-
-.mega-icon-box {
-  width: 50px; height: 50px; min-width: 50px;
-  background: var(--bg-off-white);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; color: var(--text-muted);
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-
-.mega-text h4 { font-size: 1.05rem; font-weight: 900; color: var(--text-main); margin-bottom: 4px; }
-.mega-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
-
-/* --- أزرار الناف بار (CTA & Lang) --- */
-.magic-cta-btn {
-  background: var(--text-main);
-  color: white !important;
-  padding: 10px 24px;
-  border-radius: 50px;
-  font-weight: 800;
-  font-size: 1rem;
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-.magic-cta-btn:hover { background: var(--uboor-orange); box-shadow: 0 10px 20px rgba(245, 130, 32, 0.3); }
-
-.magic-lang-btn {
-  background: transparent;
-  border: none;
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-cairo);
-  font-weight: 800;
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-.magic-lang-btn:hover { color: var(--uboor-cyan); }
-
-/* --- قائمة الموبايل الزجاجية الكاملة --- */
-.mobile-controls { display: none; align-items: center; gap: 20px; z-index: 10001; }
-.mobile-toggle-btn { font-size: 1.8rem; color: var(--text-main); cursor: pointer; display: flex; }
-
-.fullscreen-mobile-menu {
-  position: fixed;
-  inset: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  z-index: 9998;
-  display: flex;
-  align-items: center;
-  padding: 40px;
-}
-
-.mobile-menu-content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-}
-
-.mobile-huge-link {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--text-main);
-  text-decoration: none;
-  display: block;
-  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, padding-right 0.3s ease;
-}
-.mobile-huge-link:hover, .mobile-huge-link:active { color: var(--uboor-blue); padding-right: 10px; }
-.text-orange { color: var(--uboor-orange) !important; }
-
-.mobile-menu-footer {
-  margin-top: 40px;
-  padding-top: 30px;
-  border-top: 1px solid rgba(0,0,0,0.1);
-}
-.mobile-menu-footer p { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; margin-bottom: 5px;}
-.mobile-menu-footer a { font-size: 1.2rem; color: var(--uboor-cyan); font-weight: 900; text-decoration: none;}
-
-/* التجاوب مع الجوال */
-@media (max-width: 992px) {
-  .desktop-only { display: none; }
-  .mobile-controls { display: flex; }
-  .nav-container-magic { padding: 15px 20px; }
-  
-  /* في الجوال، الناف بار العائم يتقلص بنسبة أقل لكي لا يكون ضيقاً جداً */
-  .magic-navbar.is-floating .nav-container-magic {
-    width: 92%;
-    padding: 10px 20px;
-  }
-}
-/* =========================================
-   تحديثات الفوتر المتطور (Modern Pro Footer)
-   (تم تنظيفه ليتوافق تماماً مع حركات Framer Motion)
-========================================= */
-.modern-pro-footer {
-  background-color: #ffffff; /* أبيض نقي */
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding-top: 80px;
-  color: var(--dark);
-  position: relative;
-  z-index: 10;
-  overflow: hidden; /* ضروري جداً لاحتواء الإضاءات الخلفية الجديدة */
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr 1fr;
-  gap: 40px;
-  margin-bottom: 60px;
-}
-
-/* عمود الهوية واللوغو */
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  margin-bottom: 20px;
-}
-
-.footer-logo img {
-  height: 45px;
-  object-fit: contain;
-}
-
-.logo-text {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: var(--dark);
-}
-
-.footer-desc {
-  color: var(--gray);
-  line-height: 1.8;
-  font-size: 1.05rem;
-  max-width: 90%;
-}
-
-/* العناوين في الفوتر */
-.footer-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--dark);
-  margin-bottom: 25px;
-  position: relative;
-}
-
-/* خط تزييني صغير تحت العناوين */
-.footer-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  right: 0;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--blue), var(--orange));
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
   border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
-/* الروابط السريعة */
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 1;
+    top: 34px;
+    height: 28px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+      scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+      scale(0.8);
+  }
+}
+
+#center {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
 
-.footer-links a {
-  text-decoration: none;
-  color: var(--gray);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  /* تم إزالة hover و transition لأن Framer Motion تتحكم بها الآن بنعومة فائقة */
-}
-
-/* السهم التفاعلي بجانب الروابط (نحتفظ به في CSS لأنه يضيف لمسة رائعة) */
-.footer-links a::before {
-  content: '←';
-  margin-left: 8px;
-  color: var(--orange);
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-}
-
-.footer-links li:hover a::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* معلومات التواصل */
-.footer-contact-info {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.footer-contact-info li, 
-.footer-contact-info a {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: var(--gray);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.contact-icon {
-  font-size: 1.2rem;
-}
-
-/* أزرار السوشيال ميديا */
-.social-icons {
-  display: flex;
-  gap: 15px;
-}
-
-.social-btn {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background-color: var(--light);
-  color: var(--gray);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  text-decoration: none;
-  border: 1px solid rgba(0,0,0,0.05);
-  /* تم إزالة تأثيرات CSS Hover هنا، لتسمح لتأثيرات النيون في Framer Motion بالعمل */
-}
-
-/* الشريط السفلي */
-.footer-bottom {
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 25px 0;
-}
-
-.footer-bottom-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.footer-bottom p {
-  color: var(--gray);
-  margin: 0;
-  font-weight: 600;
-}
-
-.footer-bottom-links {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-bottom-links a {
-  color: var(--gray);
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.font-bold { font-weight: 800; }
-
-/* =========================================
-   التجاوب مع الموبايل للفوتر (Responsive)
-========================================= */
-@media (max-width: 992px) {
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
   }
 }
 
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
   }
-  
-  .footer-logo { justify-content: center; }
-  .footer-desc { margin: 0 auto; }
-  .footer-title::after { right: 50%; transform: translateX(50%); }
-  
-  .footer-links a, 
-  .footer-contact-info li, 
-  .footer-contact-info a {
-    justify-content: center;
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
   }
-  
-  .social-icons { justify-content: center; }
-  
-  .footer-bottom-content {
+
+  @media (max-width: 1024px) {
     flex-direction: column;
     text-align: center;
   }
 }
-/* =========================================
-   8. التجاوب مع الشاشات (Responsive Design)
-========================================= */
-@media (max-width: 992px) {
-  .about-grid { grid-template-columns: 1fr; text-align: center; }
-  .link-arrow { justify-content: center; }
-  .tech-circle-container { margin-top: 40px; }
-  .hero-title { font-size: 2.5rem; }
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
 }
 
-@media (max-width: 768px) {
-  .desktop-only { display: none; } /* يمكن برمجة قائمة جانبية للموبايل لاحقاً */
-  .hero-buttons { flex-direction: column; width: 100%; }
-  .btn-glow { width: 100%; }
-  .cta-glass-box h2 { font-size: 2rem; }
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-h);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
 }
 
-/* حماية إضافية للشاشات المتوسطة (لضمان عدم الخروج نهائياً) */
-@media (max-width: 1200px) {
-  .mega-menu-glass {
-    width: 90vw; /* جعل العرض متجاوب مع عرض الشاشة */
-    max-width: 600px;
-    right: 50%;
-    /* دفع القائمة لليمين قليلاً لضمان بقائها داخل الإطار */
-    transform: translateX(50%) !important;
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
   }
 }
