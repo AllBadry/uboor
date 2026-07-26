@@ -14,6 +14,7 @@ import {
   Link as LinkIcon,
   Sparkles,
   Eye,
+  ArrowLeft,
   ArrowRight // استيراد أيقونة السهم
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -337,9 +338,22 @@ export default function WaCollector() {
               <p className="text-slate-600 font-medium">الأداة تقوم بعملية "قراءة فقط" (Read-only) ولا ترسل أي رسائل آلية (Spam)، مما يجعلها آمنة تماماً وتحمي حسابك من مخاطر الحظر.</p>
             </div>
           </div>
+
+          {/* زر سياسة الخصوصية الموجه لمتجر جوجل */}
+          <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col items-center">
+            <p className="text-slate-500 text-sm mb-4">متوافقة تماماً مع سياسات الخصوصية لمتجر إضافات جوجل كروم.</p>
+            <Link 
+              to="/products/wacollector/privacy" 
+              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-emerald-600 text-white font-bold rounded-full transition-colors duration-300 shadow-md group"
+            >
+              <FileArchive className="w-5 h-5 text-emerald-400 group-hover:text-white transition-colors" />
+              الاطلاع على سياسة الخصوصية
+              <ArrowLeft className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
         </div>
       </section>
-
     </div>
   );
 }

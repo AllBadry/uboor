@@ -11,6 +11,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import WaCollector from './pages/products/WaCollector';
 import SeoMonster from './pages/products/SeoMonster';
+import WaCollectorPrivacy from './pages/products/WaCollectorPrivacy';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/seo-monster" element={<SeoMonster />}/>
           <Route path="*" element={<NotFound />} />
+          <Route path="/products/wacollector/privacy" element={<WaCollectorPrivacy />}/>
         
           {/* <Route path="/privacy" element={<Privacy />} /> */}
         </Routes>
