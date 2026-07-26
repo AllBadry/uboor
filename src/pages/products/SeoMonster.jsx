@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   DownloadCloud, 
   Search, 
@@ -15,19 +15,43 @@ import {
   Settings, 
   FolderOpen, 
   Sparkles,
+  ArrowLeft,
   ArrowRight,
   Activity,
   Globe,
-  MonitorCheck
+  MonitorCheck,
+  AlertCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function SeoMonster() {
   const [isMounted, setIsMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsMounted(true), 150);
     return () => clearTimeout(timer);
+  }, []);
+
+  // مراقب التمرير (تم إصلاحه ليراقب ويظهر جميع الأقسام المخفية)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-12');
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    const elements = document.querySelectorAll('.scroll-animate');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, []);
 
   // بيانات الميزات الشاملة (Features)
@@ -106,6 +130,29 @@ export default function SeoMonster() {
     }
   ];
 
+  const USE_CASES = [
+    {
+      id: 0,
+      title: 'الاستهداف',
+      desc: 'انتقل إلى موقع الويب أو الصفحة التي ترغب في تحليلها بدقة.'
+    },
+    {
+      id: 1,
+      title: 'التشغيل',
+      desc: 'انقر على أيقونة الإضافة واضغط على زر "🚀 بدء الفحص".'
+    },
+    {
+      id: 2,
+      title: 'التحليل',
+      desc: 'انتظر ثوانٍ معدودة ريثما يقوم المحرك بجمع وتقييم البيانات من شفرة المصدر.'
+    },
+    {
+      id: 3,
+      title: 'التصدير',
+      desc: 'تصفح النتائج فوراً، أو اضغط على "تصدير" لتحميل ملف Excel شامل.'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-violet-500 selection:text-white pb-24">
       
@@ -147,7 +194,6 @@ export default function SeoMonster() {
           </div>
           
           <div className="w-full lg:w-1/2 relative">
-            {/* واجهة وهمية للأداة تعكس تحليل السيو */}
             <div className="bg-slate-900 rounded-[2rem] p-6 shadow-2xl border-4 border-slate-800 transform rotate-1 hover:rotate-0 transition-transform duration-500">
               <div className="flex items-center justify-between border-b border-slate-700 pb-4 mb-6">
                 <div className="flex items-center gap-3">
@@ -196,7 +242,7 @@ export default function SeoMonster() {
       {/* =========================================
           2. Core Features (الميزات الشاملة)
           ========================================= */}
-      <section className="py-20 bg-white border-y border-slate-100">
+      <section className="py-20 bg-white border-y border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">
@@ -229,7 +275,7 @@ export default function SeoMonster() {
       {/* =========================================
           3. How to Use (طريقة الاستخدام)
           ========================================= */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
+      <section className="py-20 bg-slate-900 text-white relative overflow-hidden scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
         <div className="absolute inset-0 opacity-[0.03]" 
              style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}>
         </div>
@@ -239,29 +285,13 @@ export default function SeoMonster() {
           <h2 className="text-3xl md:text-4xl font-black mb-12">كيف تعمل الأداة؟</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-right">
-            <div className="bg-slate-800 rounded-3xl p-6 border border-slate-700 relative">
-              <span className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-black text-lg border-4 border-slate-900 shadow-lg">1</span>
-              <h3 className="text-lg font-bold mb-2 mt-2 text-violet-300">الاستهداف</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">انتقل إلى موقع الويب أو الصفحة التي ترغب في تحليلها بدقة.</p>
-            </div>
-            
-            <div className="bg-slate-800 rounded-3xl p-6 border border-slate-700 relative">
-              <span className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-black text-lg border-4 border-slate-900 shadow-lg">2</span>
-              <h3 className="text-lg font-bold mb-2 mt-2 text-violet-300">التشغيل</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">انقر على أيقونة الإضافة واضغط على زر "🚀 بدء الفحص".</p>
-            </div>
-
-            <div className="bg-slate-800 rounded-3xl p-6 border border-slate-700 relative">
-              <span className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-black text-lg border-4 border-slate-900 shadow-lg">3</span>
-              <h3 className="text-lg font-bold mb-2 mt-2 text-violet-300">التحليل</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">انتظر ثوانٍ معدودة ريثما يقوم المحرك بجمع وتقييم البيانات من شفرة المصدر.</p>
-            </div>
-
-            <div className="bg-slate-800 rounded-3xl p-6 border border-slate-700 relative">
-              <span className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-black text-lg border-4 border-slate-900 shadow-lg">4</span>
-              <h3 className="text-lg font-bold mb-2 mt-2 text-emerald-400">التصدير</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">تصفح النتائج فوراً، أو اضغط على "تصدير" لتحميل ملف Excel شامل للعميل.</p>
-            </div>
+            {USE_CASES.map((useCase) => (
+              <div key={useCase.id} className="bg-slate-800 rounded-3xl p-6 border border-slate-700 relative hover:-translate-y-1 transition-transform">
+                <span className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-violet-600 flex items-center justify-center font-black text-lg border-4 border-slate-900 shadow-lg">{useCase.id + 1}</span>
+                <h3 className="text-lg font-bold mb-2 mt-2 text-violet-300">{useCase.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{useCase.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -269,7 +299,7 @@ export default function SeoMonster() {
       {/* =========================================
           4. Installation Guide (طريقة التثبيت اليدوي)
           ========================================= */}
-      <section id="install-guide" className="py-20 bg-white relative overflow-hidden border-t border-slate-100">
+      <section id="install-guide" className="py-20 bg-white relative overflow-hidden border-t border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
         
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -278,8 +308,6 @@ export default function SeoMonster() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            
-            {/* خط واصل بين الخطوات */}
             <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
 
             <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
@@ -288,13 +316,6 @@ export default function SeoMonster() {
               </div>
               <h3 className="font-bold text-slate-900 text-xl mb-3">1. تنزيل الملف</h3>
               <p className="text-slate-500 text-sm leading-relaxed mb-6">قم بتنزيل ملف الإضافة المضغوط (ZIP) إلى جهازك.</p>
-              <a 
-                href="/products/seomonster.zip" 
-                download="Uboor_SEO_Monster.zip"
-                className="inline-block px-6 py-2 bg-violet-600 text-white font-bold rounded-full text-sm hover:bg-violet-700 transition-colors w-full text-center cursor-pointer shadow-md"
-              >
-                تنزيل ZIP
-              </a>
             </div>
 
             <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
@@ -302,7 +323,7 @@ export default function SeoMonster() {
                 <FileArchive className="w-8 h-8 text-uboor-orange" />
               </div>
               <h3 className="font-bold text-slate-900 text-xl mb-3">2. فك الضغط</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">انقر بزر الماوس الأيمن على الملف المحمل واختر "استخراج هنا" (Extract Here).</p>
+              <p className="text-slate-500 text-sm leading-relaxed">انقر بزر الماوس الأيمن على الملف واختر "استخراج هنا".</p>
             </div>
 
             <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
@@ -310,7 +331,7 @@ export default function SeoMonster() {
                 <Settings className="w-8 h-8 text-blue-500" />
               </div>
               <h3 className="font-bold text-slate-900 text-xl mb-3">3. وضع المطور</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">افتح صفحة الإضافات <code className="bg-white px-2 py-0.5 rounded text-xs text-violet-600 border border-slate-200">chrome://extensions</code> وقم بتفعيل "وضع المطور".</p>
+              <p className="text-slate-500 text-sm leading-relaxed">افتح الإضافات <code className="bg-white px-1 py-0.5 rounded text-xs border border-slate-200">chrome://extensions</code> وقم بتفعيل "وضع المطور".</p>
             </div>
 
             <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
@@ -318,9 +339,88 @@ export default function SeoMonster() {
                 <FolderOpen className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-bold text-slate-900 text-xl mb-3">4. تحميل الإضافة</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">انقر على زر "تحميل إضافة تم فك ضغطها" (Load unpacked) واختر المجلد المستخرج.</p>
+              <p className="text-slate-500 text-sm leading-relaxed">انقر على "تحميل إضافة تم فك ضغطها" واختر المجلد.</p>
             </div>
             
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================
+          5. Privacy & Security (الخصوصية وملف المانيفست)
+          ========================================= */}
+      <section className="py-24 bg-white border-t border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <ShieldCheck className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">الخصوصية والامتثال لمتجر جوجل</h2>
+            <p className="text-lg text-slate-500 font-medium">تم بناء الأداة لتتوافق 100% مع سياسات مطوري Chrome.</p>
+          </div>
+          
+          <div className="space-y-6">
+            {/* التعهدات */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+              <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                تعهد الخصوصية الأساسي
+              </h3>
+              <ul className="space-y-4 text-slate-600 font-medium">
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                  <p>لا نبيع بيانات المستخدمين أو محتوى صفحات الويب لأطراف ثالثة.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                  <p>لا نستخدم أو ننقل بيانات المستخدمين لأغراض غير متعلّقة بوظيفة فحص الـ SEO.</p>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                  <p><strong>لا نستخدم أي كود برمجي مستضاف عن بُعد (Remote Code).</strong> جميع العمليات تتم محلياً.</p>
+                </li>
+              </ul>
+            </div>
+
+            {/* تبرير الصلاحيات */}
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+              <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <AlertCircle className="w-6 h-6 text-violet-600" />
+                تبرير الصلاحيات (Permissions Justification)
+              </h3>
+              <div className="space-y-5">
+                <div className="bg-white p-5 rounded-2xl border border-slate-100">
+                  <code className="text-violet-600 font-bold bg-violet-50 px-2 py-1 rounded inline-block mb-2 text-sm">activeTab</code>
+                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
+                    نطلب هذه الصلاحية للوصول إلى التبويبة المفتوحة حالياً <strong>فقط</strong> عندما ينقر المستخدم صراحةً على أيقونة الإضافة، وذلك لقراءة هيكل الصفحة (DOM) لتحليل الـ SEO.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-slate-100">
+                  <code className="text-violet-600 font-bold bg-violet-50 px-2 py-1 rounded inline-block mb-2 text-sm">scripting</code>
+                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
+                    تُستخدم لحقن سكربت التحليل (Content Script) داخل الصفحة النشطة، وظيفته قراءة وسوم الميتا (Meta Tags)، العناوين، والروابط، وعرض النتائج للمستخدم دون إرسالها لأي سيرفر.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-slate-100">
+                  <code className="text-violet-600 font-bold bg-violet-50 px-2 py-1 rounded inline-block mb-2 text-sm">Host Permission (*://*/*)</code>
+                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
+                    مطلوبة لأن أداة الـ SEO يجب أن تكون قادرة على العمل وفحص أي موقع ويب يزوره المستخدم ويطلب فحصه، ولا يقتصر عملها على نطاق (Domain) محدد.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* زر سياسة الخصوصية الجديد */}
+            <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col items-center">
+              <p className="text-slate-500 text-sm mb-4">متوافقة تماماً مع الإقرارات الإلزامية لمتجر إضافات جوجل كروم.</p>
+              <Link 
+                to="/products/seo-monster/privacy" 
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-violet-600 text-white font-bold rounded-full transition-colors duration-300 shadow-md group"
+              >
+                <FileArchive className="w-5 h-5 text-violet-400 group-hover:text-white transition-colors" />
+                الاطلاع على سياسة الخصوصية
+                <ArrowLeft className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>
