@@ -6,8 +6,6 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   FileArchive, 
-  Settings, 
-  FolderOpen, 
   Globe2, 
   Briefcase, 
   Image as ImageIcon, 
@@ -15,7 +13,7 @@ import {
   Sparkles,
   Eye,
   ArrowLeft,
-  ArrowRight // استيراد أيقونة السهم
+  ArrowRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -91,7 +89,7 @@ export default function WaCollector() {
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-right">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-sm">
               <Sparkles className="w-4 h-4" />
-              أداة مجانية 100%
+              متوفرة الآن على متجر كروم
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-6">
               Uboor <span className="text-emerald-500">WA Collector</span> Pro
@@ -100,9 +98,14 @@ export default function WaCollector() {
               الرفيق التقني الأمثل للمسوقين وفرق المبيعات. استخرج أي قائمة أرقام من "واتساب ويب" بنقرة واحدة، وصدرها في جداول أنيقة وعالية الدقة (Excel / CSV).
             </p>
             
-            <a href="/products/tool.zip" download="Uboor_WA_Collector.zip" className="group inline-flex items-center justify-center gap-3 bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1 transition-all duration-300">
+            <a 
+              href="https://chromewebstore.google.com/detail/ckddkfenogbeplopcgjjgohpahjccdco?utm_source=item-share-cb" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-3 bg-emerald-500 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_30px_rgba(16,185,129,0.4)] hover:-translate-y-1 transition-all duration-300"
+            >
               <DownloadCloud className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
-              تنزيل الإضافة الآن
+              تثبيت من متجر كروم
             </a>
           </div>
           
@@ -254,71 +257,9 @@ export default function WaCollector() {
       </section>
 
       {/* =========================================
-          4. Installation Guide (طريقة التثبيت اليدوي)
+          4. Privacy & Security (الخصوصية والأمان)
           ========================================= */}
-      <section id="install-guide" className="py-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03]" 
-             style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-6">كيف أقوم بتثبيت الإضافة؟</h2>
-            <p className="text-lg text-slate-400 font-medium">خطوات بسيطة لتثبيت الإضافة يدوياً على متصفحك (Google Chrome / Edge) والبدء بالعمل.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            
-            {/* خط واصل بين الخطوات (للشاشات الكبيرة) */}
-            <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-slate-800 -translate-y-1/2 z-0"></div>
-
-            <div className="bg-slate-800 rounded-3xl p-8 relative z-10 border border-slate-700 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-slate-700 flex items-center justify-center mb-6 shadow-lg border-4 border-slate-900">
-                <DownloadCloud className="w-8 h-8 text-uboor-cyan" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">1. تنزيل الملف</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">قم بتنزيل ملف الإضافة المضغوط (ZIP) إلى جهازك.</p>
-              <a 
-                href="/products/wacollector.zip" 
-                download="Uboor_WA_Collector.zip"
-                className="inline-block px-6 py-2 bg-uboor-cyan text-slate-900 font-bold rounded-full text-sm hover:bg-white transition-colors w-full text-center cursor-pointer"
-              >
-                تنزيل ZIP
-              </a>
-            </div>
-
-            <div className="bg-slate-800 rounded-3xl p-8 relative z-10 border border-slate-700 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-slate-700 flex items-center justify-center mb-6 shadow-lg border-4 border-slate-900">
-                <FileArchive className="w-8 h-8 text-uboor-orange" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">2. فك الضغط</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">انقر بزر الماوس الأيمن على الملف المحمل واختر "استخراج هنا" (Extract Here).</p>
-            </div>
-
-            <div className="bg-slate-800 rounded-3xl p-8 relative z-10 border border-slate-700 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-slate-700 flex items-center justify-center mb-6 shadow-lg border-4 border-slate-900">
-                <Settings className="w-8 h-8 text-blue-400" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">3. وضع المطور</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">افتح صفحة الإضافات <code className="bg-slate-900 px-2 py-0.5 rounded text-xs text-emerald-400">chrome://extensions</code> وقم بتفعيل "وضع المطور" في الزاوية العلوية.</p>
-            </div>
-
-            <div className="bg-slate-800 rounded-3xl p-8 relative z-10 border border-slate-700 flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-full bg-emerald-500 flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.4)] border-4 border-slate-900">
-                <FolderOpen className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">4. تحميل الإضافة</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">انقر على زر "تحميل إضافة تم فك ضغطها" (Load unpacked) واختر المجلد الذي استخرجته.</p>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================
-          5. Privacy & Security (الخصوصية والأمان)
-          ========================================= */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <ShieldCheck className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
           <h2 className="text-3xl font-black text-slate-900 mb-6">خصوصيتك وأمانك أولويتنا</h2>
@@ -354,6 +295,7 @@ export default function WaCollector() {
 
         </div>
       </section>
+
     </div>
   );
 }
