@@ -349,65 +349,7 @@ export default function SeoMonster() {
       {/* =========================================
           5. Privacy & Security (الخصوصية وملف المانيفست)
           ========================================= */}
-      <section className="py-24 bg-white border-t border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <ShieldCheck className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">الخصوصية والامتثال لمتجر جوجل</h2>
-            <p className="text-lg text-slate-500 font-medium">تم بناء الأداة لتتوافق 100% مع سياسات مطوري Chrome.</p>
-          </div>
-          
-          <div className="space-y-6">
-            {/* التعهدات */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
-              <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-                تعهد الخصوصية الأساسي
-              </h3>
-              <ul className="space-y-4 text-slate-600 font-medium">
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                  <p>لا نبيع بيانات المستخدمين أو محتوى صفحات الويب لأطراف ثالثة.</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                  <p>لا نستخدم أو ننقل بيانات المستخدمين لأغراض غير متعلّقة بوظيفة فحص الـ SEO.</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
-                  <p><strong>لا نستخدم أي كود برمجي مستضاف عن بُعد (Remote Code).</strong> جميع العمليات تتم محلياً.</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* تبرير الصلاحيات */}
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
-              <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <AlertCircle className="w-6 h-6 text-violet-600" />
-                تبرير الصلاحيات (Permissions Justification)
-              </h3>
-              <div className="space-y-5">
-                <div className="bg-white p-5 rounded-2xl border border-slate-100">
-                  <code className="text-violet-600 font-bold bg-violet-50 px-2 py-1 rounded inline-block mb-2 text-sm">activeTab</code>
-                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                    نطلب هذه الصلاحية للوصول إلى التبويبة المفتوحة حالياً <strong>فقط</strong> عندما ينقر المستخدم صراحةً على أيقونة الإضافة، وذلك لقراءة هيكل الصفحة (DOM) لتحليل الـ SEO.
-                  </p>
-                </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-100">
-                  <code className="text-violet-600 font-bold bg-violet-50 px-2 py-1 rounded inline-block mb-2 text-sm">scripting</code>
-                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                    تُستخدم لحقن سكربت التحليل (Content Script) داخل الصفحة النشطة، وظيفته قراءة وسوم الميتا (Meta Tags)، العناوين، والروابط، وعرض النتائج للمستخدم دون إرسالها لأي سيرفر.
-                  </p>
-                </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-100">
-                  <code className="text-violet-600 font-bold bg-violet-50 px-2 py-1 rounded inline-block mb-2 text-sm">Host Permission (*://*/*)</code>
-                  <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                    مطلوبة لأن أداة الـ SEO يجب أن تكون قادرة على العمل وفحص أي موقع ويب يزوره المستخدم ويطلب فحصه، ولا يقتصر عملها على نطاق (Domain) محدد.
-                  </p>
-                </div>
-              </div>
-            </div>
-            
+      <section className="py-24 bg-white border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
             {/* زر سياسة الخصوصية الجديد */}
             <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col items-center">
               <p className="text-slate-500 text-sm mb-4">متوافقة تماماً مع الإقرارات الإلزامية لمتجر إضافات جوجل كروم.</p>
@@ -421,8 +363,8 @@ export default function SeoMonster() {
               </Link>
             </div>
 
-          </div>
-        </div>
+          
+        
       </section>
 
     </div>

@@ -65,7 +65,7 @@ export default function SeoMonsterPrivacy() {
             </h2>
             <div className="bg-white border border-slate-200 rounded-2xl p-6">
               <h3 className="text-lg font-bold text-slate-800 mb-3">معلومات محتوى الموقع الإلكتروني</h3>
-              <p className="mb-4">تقوم الإضافة بقراءة محتوى الصفحات المفتوحة (على سبيل المثال: النصوص، الصور، الروابط التشعّبية، والبيانات الهيكلية) بهدف تقديم تحليل جراحي لـ SEO الصفحة.</p>
+              <p className="mb-4">تقوم الإضافة حصراً بقراءة محتوى الصفحة المفتوحة (HTML DOM) مثل العناوين، النصوص، الروابط، الصور، والبيانات المنظمة، بهدف تحليلها وعرضها للمستخدم في تقرير السيو (SEO Report). هذه البيانات لا تُخزن ولا تُرسل لأي جهة خارجية.</p>
               
               <div className="mt-4 p-5 bg-emerald-50 border border-emerald-100 rounded-xl text-emerald-800 text-sm font-bold flex items-start gap-3">
                 <ShieldCheck className="w-6 h-6 shrink-0 text-emerald-600" />
@@ -105,7 +105,7 @@ export default function SeoMonsterPrivacy() {
                   <code className="text-violet-600 text-xs font-bold bg-violet-50 px-2 py-1 rounded">activeTab</code>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  نحتاج إذن activeTab لكي تتمكن الإضافة من قراءة وفحص هيكل الصفحة (DOM) المفتوحة حالياً لاستخراج أخطاء الـ SEO والروابط والصور، ويحدث ذلك فقط عندما ينقر المستخدم صراحةً على أيقونة الإضافة لتشغيلها على هذه التبويبة.
+                  نطلب هذه الصلاحية لتتمكن الإضافة من الوصول المؤقت إلى محتوى الصفحة المفتوحة حالياً. هذا الوصول يحدث فقط عندما ينقر المستخدم صراحةً على أيقونة الإضافة لبدء عملية الفحص، ولا تعمل الإضافة في الخلفية بأي شكل من الأشكال.
                 </p>
               </div>
 
@@ -115,17 +115,7 @@ export default function SeoMonsterPrivacy() {
                   <code className="text-violet-600 text-xs font-bold bg-violet-50 px-2 py-1 rounded">scripting</code>
                 </div>
                 <p className="text-sm leading-relaxed text-slate-600">
-                  نحتاج إذن scripting لحقن سكربت التحليل (Content Script) داخل صفحة الويب الحالية بهدف قراءة عناصر الميتا المخفية (Meta tags) وإحصاء الروابط وتقييم الأداء، لعرض التقرير للمستخدم في نافذة الإضافة دون مغادرة الصفحة.
-                </p>
-              </div>
-
-              <div className="p-6 border border-slate-200 rounded-2xl bg-white hover:border-violet-300 transition-colors">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-slate-900">سبب طلب إذن المضيف</h3>
-                  <code className="text-violet-600 text-xs font-bold bg-violet-50 px-2 py-1 rounded">*://*/*</code>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-600">
-                  بما أن هذه الأداة مخصصة لتحليل الـ SEO لأي موقع إلكتروني، فإنها تتطلب إذن المضيف الشامل (*://*/*) لتعمل على أي صفحة ويب يتصفحها المستخدم ويطلب تحليلها، ولا يمكن قصرها على نطاق موقع واحد فقط.
+                  تُستخدم لحقن سكربت الفحص (content.js) ديناميكياً ومؤقتاً داخل الصفحة النشطة فقط بعد تفاعل المستخدم مع الإضافة. وظيفة هذا السكربت هي قراءة هيكل الصفحة لتحليل السيو، وينتهي عمله بمجرد الانتهاء من الفحص وتوليد التقرير.
                 </p>
               </div>
             </div>
