@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   DownloadCloud, 
   Search, 
@@ -12,28 +12,24 @@ import {
   FileSpreadsheet,
   CheckCircle2, 
   FileArchive, 
-  Settings, 
-  FolderOpen, 
   Sparkles,
   ArrowLeft,
   ArrowRight,
   Activity,
   Globe,
-  MonitorCheck,
-  AlertCircle
+  MonitorCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function SeoMonster() {
   const [isMounted, setIsMounted] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsMounted(true), 150);
     return () => clearTimeout(timer);
   }, []);
 
-  // مراقب التمرير (تم إصلاحه ليراقب ويظهر جميع الأقسام المخفية)
+  // مراقب التمرير لظهور الأقسام بسلاسة
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -177,8 +173,8 @@ export default function SeoMonster() {
         <div className={`flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10 transition-all duration-1000 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-right">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-violet-50 border border-violet-100 text-violet-600 font-bold text-sm shadow-sm">
-              <Activity className="w-4 h-4 animate-pulse" />
-              أداة مجانية - Zero-Cost Architecture
+              <Sparkles className="w-4 h-4" />
+              متوفرة الآن على متجر كروم
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight mb-6">
               SEO <span className="text-violet-600">Monster</span>
@@ -187,9 +183,15 @@ export default function SeoMonster() {
               المُحلل الشامل لأي صفحة ويب. إضافة متصفح متطورة تعمل بالكامل داخل جهازك (Client-Side) لتقديم فحص جراحي وعميق لمحركات البحث دون الحاجة لاشتراكات مدفوعة أو سيرفرات خارجية.
             </p>
             
-            <a href="/products/seo-tool.zip" download="Uboor_SEO_Monster.zip" className="group inline-flex items-center justify-center gap-3 bg-violet-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(124,58,237,0.3)] hover:shadow-[0_15px_30px_rgba(124,58,237,0.4)] hover:-translate-y-1 transition-all duration-300">
+            {/* زر التثبيت من متجر كروم */}
+            <a 
+              href="https://chromewebstore.google.com/detail/banlcegojcdoihcocighlchaenabdohh?utm_source=item-share-cb" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-3 bg-violet-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(124,58,237,0.3)] hover:shadow-[0_15px_30px_rgba(124,58,237,0.4)] hover:-translate-y-1 transition-all duration-300"
+            >
               <DownloadCloud className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
-              تنزيل الإضافة (ZIP)
+              تثبيت من متجر كروم
             </a>
           </div>
           
@@ -297,74 +299,23 @@ export default function SeoMonster() {
       </section>
 
       {/* =========================================
-          4. Installation Guide (طريقة التثبيت اليدوي)
-          ========================================= */}
-      <section id="install-guide" className="py-20 bg-white relative overflow-hidden border-t border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
-        
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">كيف أقوم بتثبيت الإضافة؟</h2>
-            <p className="text-lg text-slate-600 font-medium">خطوات بسيطة لتثبيت الإضافة يدوياً على متصفحك (Google Chrome / Edge).</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
-
-            <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border-2 border-slate-100">
-                <DownloadCloud className="w-8 h-8 text-violet-500" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">1. تنزيل الملف</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6">قم بتنزيل ملف الإضافة المضغوط (ZIP) إلى جهازك.</p>
-            </div>
-
-            <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border-2 border-slate-100">
-                <FileArchive className="w-8 h-8 text-uboor-orange" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">2. فك الضغط</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">انقر بزر الماوس الأيمن على الملف واختر "استخراج هنا".</p>
-            </div>
-
-            <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border-2 border-slate-100">
-                <Settings className="w-8 h-8 text-blue-500" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">3. وضع المطور</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">افتح الإضافات <code className="bg-white px-1 py-0.5 rounded text-xs border border-slate-200">chrome://extensions</code> وقم بتفعيل "وضع المطور".</p>
-            </div>
-
-            <div className="bg-slate-50 rounded-3xl p-8 relative z-10 border border-slate-200 flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
-              <div className="w-16 h-16 rounded-full bg-emerald-500 flex items-center justify-center mb-6 shadow-lg border-2 border-emerald-400">
-                <FolderOpen className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">4. تحميل الإضافة</h3>
-              <p className="text-slate-500 text-sm leading-relaxed">انقر على "تحميل إضافة تم فك ضغطها" واختر المجلد.</p>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================
-          5. Privacy & Security (الخصوصية وملف المانيفست)
+          4. Privacy & Security (سياسة الخصوصية)
           ========================================= */}
       <section className="py-24 bg-white border-slate-100 scroll-animate opacity-0 translate-y-12 transition-all duration-700 ease-out">
-            {/* زر سياسة الخصوصية الجديد */}
-            <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col items-center">
-              <p className="text-slate-500 text-sm mb-4">متوافقة تماماً مع الإقرارات الإلزامية لمتجر إضافات جوجل كروم.</p>
-              <Link 
-                to="/products/seo-monster/privacy" 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-violet-600 text-white font-bold rounded-full transition-colors duration-300 shadow-md group"
-              >
-                <FileArchive className="w-5 h-5 text-violet-400 group-hover:text-white transition-colors" />
-                الاطلاع على سياسة الخصوصية
-                <ArrowLeft className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <ShieldCheck className="w-16 h-16 text-emerald-500 mx-auto mb-6" />
+          <h2 className="text-3xl font-black text-slate-900 mb-4">خصوصيتك وأمانك أولويتنا</h2>
+          <p className="text-lg text-slate-500 font-medium mb-10">متوافقة تماماً مع الإقرارات الإلزامية لمتجر إضافات جوجل كروم وتعمل محلياً بالكامل.</p>
           
-        
+          <Link 
+            to="/products/seo-monster/privacy" 
+            className="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 hover:bg-violet-600 text-white font-bold text-lg rounded-full transition-colors duration-300 shadow-lg group"
+          >
+            <FileArchive className="w-6 h-6 text-violet-400 group-hover:text-white transition-colors" />
+            الاطلاع على سياسة الخصوصية
+            <ArrowLeft className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+          </Link>
+        </div>
       </section>
 
     </div>
