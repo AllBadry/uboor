@@ -47,7 +47,7 @@ const PRODUCTS_DATA = [
     glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(14,165,233,0.3)]',
     desc: 'منصة متكاملة لتخصيص وكيل ذكاء اصطناعي (AI Chatbot) خاص بعملك. درّبه على بيانات متجرك وضمنّه في موقعك بنسخ كود بسيط.',
     features: ['تضمين بكود بسيط', 'تدريب مخصص لعملك', 'ردود آلية ذكية', 'باقات مرنة'],
-    link: '/contact'
+    link: 'https://mosaned.org/'
   },
   {
     id: 'data-vault',
