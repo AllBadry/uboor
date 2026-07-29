@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Camera, 
-  MessageCircle, 
-  Search, 
   Database, 
   Bot, 
   Blocks, 
@@ -26,7 +23,8 @@ const PRODUCTS_DATA = [
     title: 'WhatsApp Collector',
     category: 'extension',
     categoryLabel: 'إضافة متصفح',
-    icon: MessageCircle,
+    logo: '/WACollectorLogo.png',
+    icon: null,
     color: 'text-emerald-500',
     bgIcon: 'bg-emerald-500/10',
     borderHover: 'hover:border-emerald-500/30',
@@ -40,7 +38,8 @@ const PRODUCTS_DATA = [
     title: 'Uboor AI Widget',
     category: 'saas',
     categoryLabel: 'منصة ذكاء اصطناعي',
-    icon: Bot,
+    logo: '/mosanedlogo.png',
+    icon: null,
     color: 'text-sky-500',
     bgIcon: 'bg-sky-500/10',
     borderHover: 'hover:border-sky-500/30',
@@ -68,7 +67,8 @@ const PRODUCTS_DATA = [
     title: 'SEO Monster',
     category: 'extension',
     categoryLabel: 'إضافة متصفح',
-    icon: Search,
+    logo: '/SEO.png',
+    icon: null,
     color: 'text-violet-500',
     bgIcon: 'bg-violet-500/10',
     borderHover: 'hover:border-violet-500/30',
@@ -82,11 +82,12 @@ const PRODUCTS_DATA = [
     title: 'Auto Capture',
     category: 'extension',
     categoryLabel: 'إضافة متصفح',
-    icon: Camera,
-    color: 'text-slate-700',
-    bgIcon: 'bg-slate-200/50',
-    borderHover: 'hover:border-slate-400/30',
-    glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(71,85,105,0.3)]',
+    logo: '/AutoCaptureLogo.png',
+    icon: null,
+    color: 'text-yellow-600',
+    bgIcon: 'bg-yellow-100/80',
+    borderHover: 'hover:border-yellow-400/30',
+    glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(234,179,8,0.35)]',
     desc: 'أداة أتمتة لأخذ لقطات شاشة متتابعة. مثالية لأرشفة الكتب الإلكترونية والمقالات الطويلة وحفظها في مجلد واحد.',
     features: ['أخذ لقطات شاشة آلياً', 'تجميع وحفظ في مجلد', 'توفير وقت الأرشفة', 'لا تستهلك الموارد'],
     link: '/products/auto-capture'
@@ -188,7 +189,6 @@ export default function Products() {
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           <AnimatePresence mode="popLayout">
             {filteredProducts.map((product) => {
-              const Icon = product.icon;
               return (
                 <motion.div 
                   layout
@@ -204,8 +204,12 @@ export default function Products() {
                     <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 rounded-full transform scale-0 group-hover:scale-150 transition-transform duration-700 ease-out z-0"></div>
                     
                     <div className="relative z-10 flex items-start justify-between mb-6">
-                      <div className={`w-14 h-14 rounded-2xl ${product.bgIcon} flex items-center justify-center transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 shadow-sm`}>
-                        <Icon className={`w-7 h-7 ${product.color}`} />
+                      <div className={`w-14 h-14 rounded-2xl ${product.bgIcon} flex items-center justify-center transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 shadow-sm ${product.logo ? 'p-1.5' : ''}`}>
+                        {product.logo ? (
+                          <img src={product.logo} alt={product.title} className="w-full h-full object-contain" />
+                        ) : (
+                          <product.icon className={`w-7 h-7 ${product.color}`} />
+                        )}
                       </div>
                       <span className="px-3 py-1 bg-white border border-slate-100 shadow-sm text-slate-500 text-[10px] font-bold uppercase tracking-widest rounded-full font-mono">
                         {product.categoryLabel}
