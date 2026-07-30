@@ -109,7 +109,9 @@ export default function FeaturedProducts() {
                   {/* الأيقونة المركزية مع حركة خفيفة جداً بالترانسفورم */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     {product.logoImg ? (
-                      <img src={product.logoImg} alt={product.name} className="w-32 h-32 object-contain opacity-40 transition-transform duration-500 ease-out group-hover:scale-110" />
+                      <div className="w-28 h-28 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center p-3 shadow-lg transform group-hover:scale-110 transition-transform duration-500">
+                        <img src={product.logoImg} alt={product.name} className="w-full h-full object-contain" />
+                      </div>
                     ) : (
                       <product.logo className={`w-32 h-32 ${product.iconColor} opacity-40 transition-transform duration-500 ease-out group-hover:scale-110`} />
                     )}
@@ -118,7 +120,9 @@ export default function FeaturedProducts() {
                   {/* اسم المنتج بالأسفل */}
                   <div className="absolute bottom-6 right-6 flex items-center gap-2 text-white font-black text-lg">
                     {product.logoImg ? (
-                      <img src={product.logoImg} alt={product.name} className="w-5 h-5 object-contain" />
+                      <div className="w-6 h-6 rounded-md bg-white/30 backdrop-blur-sm flex items-center justify-center p-1">
+                        <img src={product.logoImg} alt={product.name} className="w-full h-full object-contain" />
+                      </div>
                     ) : (
                       <product.logo className="w-5 h-5" />
                     )}
