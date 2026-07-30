@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Database, 
-  Bot, 
   Blocks, 
   Code2, 
   ArrowUpRight,

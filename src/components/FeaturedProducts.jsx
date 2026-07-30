@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, MessageCircle, Search, Camera, Database, ArrowUpLeft, Rocket, Code2 } from 'lucide-react';
+import { ChevronLeft, Database, ArrowUpLeft, Rocket, Code2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function FeaturedProducts() {
@@ -28,7 +28,7 @@ export default function FeaturedProducts() {
   const PRODUCTS = [
     {
       id: 'wa-collector',
-      logo: MessageCircle,
+      logoImg: '/WACollectorLogo.png',
       name: 'WA Collector',
       title: 'استخراج بيانات واتساب بضغطة زر.',
       desc: 'أداة سكرابينج متطورة تسحب بيانات جهات الاتصال من أي قائمة مرئية عبر التمرير التلقائي بأمان تام.',
@@ -38,7 +38,7 @@ export default function FeaturedProducts() {
     },
     {
       id: 'seo-monster',
-      logo: Search,
+      logoImg: '/SEO.png',
       name: 'SEO Monster',
       title: 'المُحلل الشامل لأي صفحة ويب.',
       desc: 'إضافة متطورة تعمل داخل جهازك لتقديم فحص جراحي وعميق لمحركات البحث والأداء.',
@@ -48,7 +48,7 @@ export default function FeaturedProducts() {
     },
     {
       id: 'auto-capture',
-      logo: Camera,
+      logoImg: '/AutoCaptureLogo.png',
       name: 'Auto Capture',
       title: 'أتمتة لقطات الشاشة بذكاء.',
       desc: 'أداة لأخذ لقطات متتابعة آلياً. مثالية لأرشفة الكتب الإلكترونية والمقالات الطويلة.',
@@ -108,12 +108,20 @@ export default function FeaturedProducts() {
                   
                   {/* الأيقونة المركزية مع حركة خفيفة جداً بالترانسفورم */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                     <product.logo className={`w-32 h-32 ${product.iconColor} opacity-40 transition-transform duration-500 ease-out group-hover:scale-110`} />
+                    {product.logoImg ? (
+                      <img src={product.logoImg} alt={product.name} className="w-32 h-32 object-contain opacity-40 transition-transform duration-500 ease-out group-hover:scale-110" />
+                    ) : (
+                      <product.logo className={`w-32 h-32 ${product.iconColor} opacity-40 transition-transform duration-500 ease-out group-hover:scale-110`} />
+                    )}
                   </div>
                   
                   {/* اسم المنتج بالأسفل */}
                   <div className="absolute bottom-6 right-6 flex items-center gap-2 text-white font-black text-lg">
-                    <product.logo className="w-5 h-5" />
+                    {product.logoImg ? (
+                      <img src={product.logoImg} alt={product.name} className="w-5 h-5 object-contain" />
+                    ) : (
+                      <product.logo className="w-5 h-5" />
+                    )}
                     {product.name}
                   </div>
                 </div>
