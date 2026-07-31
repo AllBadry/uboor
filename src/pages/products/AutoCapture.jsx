@@ -1,20 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { 
-  DownloadCloud, 
   MousePointerClick, 
   Maximize, 
   Play, 
   AlertTriangle, 
   CheckCircle2, 
-  FileArchive, 
-  Settings, 
-  FolderOpen, 
   Blocks,
   Sparkles,
   ArrowRight,
   RefreshCcw,
   Camera,
-  Cpu
+  Cpu,
+  Puzzle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -116,9 +113,14 @@ export default function AutoCapture() {
               أداة أتمتة ذكية مصممة لتسهيل تحديد العناصر وأخذ لقطات شاشة متتابعة للصفحات وحفظها منظمة في جهازك، مثالية لأرشفة المحتوى وتوفير الوقت.
             </p>
             
-            <a href="/products/autocapture.zip" download="Uboor_Auto_Capture.zip" className="group inline-flex items-center justify-center gap-3 bg-yellow-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(234,179,8,0.3)] hover:shadow-[0_15px_30px_rgba(234,179,8,0.4)] hover:-translate-y-1 transition-all duration-300">
-              <DownloadCloud className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
-              تنزيل الإضافة الآن
+            <a 
+              href="https://chromewebstore.google.com/detail/hpldcclhflibgonfimabdceomfebhepo?utm_source=item-share-cb" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group inline-flex items-center justify-center gap-3 bg-yellow-600 text-white px-8 py-4 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(234,179,8,0.3)] hover:shadow-[0_15px_30px_rgba(234,179,8,0.4)] hover:-translate-y-1 transition-all duration-300"
+            >
+              <Puzzle className="w-6 h-6 group-hover:-translate-y-1 transition-transform" />
+              أضفها من متجر كروم
             </a>
           </div>
           
@@ -239,7 +241,7 @@ export default function AutoCapture() {
       </section>
 
       {/* =========================================
-          5. Installation Guide (طريقة التثبيت ScrollTriggered)
+          5. Installation Guide (التثبيت من متجر كروم)
           ========================================= */}
       <section 
         id="install-guide" 
@@ -253,61 +255,27 @@ export default function AutoCapture() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[300px] bg-yellow-600/10 blur-[100px] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
-          <div className={`text-center max-w-3xl mx-auto mb-20 transition-all duration-1000 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-3xl md:text-4xl font-black mb-6">كيف أقوم بتثبيت الإضافة؟</h2>
-            <p className="text-lg text-slate-400 font-medium">خطوات بسيطة لتثبيت الإضافة يدوياً على متصفحك (Google Chrome / Edge) والبدء بالعمل في أقل من دقيقة.</p>
+          <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-3xl md:text-4xl font-black mb-6">
+              تثبيت فوري من <span className="text-yellow-400">متجر كروم</span>
+            </h2>
+            <p className="text-lg text-slate-400 font-medium">لا حاجة للتنزيل اليدوي أو فك الضغط بعد الآن. بضغطة واحدة ستضيف الإضافة إلى متصفحك وتستخدمها مباشرة.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
-            
-            {/* خط واصل نيون (يضيء عند ظهور القسم) */}
-            <div className={`hidden lg:block absolute top-[40%] left-[10%] right-[10%] h-0.5 bg-slate-800 -translate-y-1/2 z-0 overflow-hidden`}>
-              <div className={`h-full bg-gradient-to-r from-transparent via-yellow-500 to-transparent w-full transition-transform duration-[2000ms] ${isInstallVisible ? 'translate-x-0' : '-translate-x-[100%]'}`}></div>
+          <div className={`flex flex-col items-center gap-8 transition-all duration-1000 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center shadow-lg shadow-yellow-500/30">
+              <Puzzle className="w-10 h-10 text-white" />
             </div>
-
-            {/* Step 1 */}
-            <div className={`bg-white/5 backdrop-blur-md rounded-3xl p-8 relative z-10 border border-white/10 flex flex-col items-center text-center shadow-xl hover:-translate-y-2 hover:bg-white/10 transition-all duration-500 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '100ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center mb-6 shadow-lg shadow-yellow-500/30">
-                <DownloadCloud className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">1. تنزيل الملف</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">قم بتنزيل ملف الإضافة المضغوط (ZIP) إلى جهاز الكمبيوتر الخاص بك.</p>
-              <a 
-                href="/products/autoCollector.zip" 
-                download="Uboor_Auto_Capture.zip"
-                className="mt-auto w-full px-6 py-2.5 bg-yellow-500 text-white font-bold rounded-xl text-sm hover:bg-yellow-400 hover:shadow-lg hover:shadow-yellow-500/40 transition-all cursor-pointer"
-              >
-                تنزيل ZIP
-              </a>
-            </div>
-
-            {/* Step 2 */}
-            <div className={`bg-white/5 backdrop-blur-md rounded-3xl p-8 relative z-10 border border-white/10 flex flex-col items-center text-center shadow-xl hover:-translate-y-2 hover:bg-white/10 transition-all duration-500 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '300ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center mb-6 shadow-lg border border-white/10">
-                <FileArchive className="w-8 h-8 text-uboor-orange" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">2. فك الضغط</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">انقر بزر الماوس الأيمن على الملف المحمل واختر "استخراج هنا" أو "Extract Here".</p>
-            </div>
-
-            {/* Step 3 */}
-            <div className={`bg-white/5 backdrop-blur-md rounded-3xl p-8 relative z-10 border border-white/10 flex flex-col items-center text-center shadow-xl hover:-translate-y-2 hover:bg-white/10 transition-all duration-500 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '500ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center mb-6 shadow-lg border border-white/10">
-                <Settings className="w-8 h-8 text-emerald-400" />
-              </div>
-              <h3 className="font-bold text-xl mb-3">3. وضع المطور</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">افتح صفحة الإضافات <code className="bg-black/50 px-2 py-0.5 rounded text-xs text-yellow-300 font-mono mt-1 inline-block">chrome://extensions</code> وقم بتفعيل "وضع المطور".</p>
-            </div>
-
-            {/* Step 4 */}
-            <div className={`bg-yellow-900/40 backdrop-blur-md rounded-3xl p-8 relative z-10 border border-yellow-500/30 flex flex-col items-center text-center shadow-[0_0_30px_rgba(234,179,8,0.2)] hover:-translate-y-2 hover:bg-yellow-900/60 transition-all duration-500 transform ${isInstallVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`} style={{ transitionDelay: '700ms' }}>
-              <div className="w-16 h-16 rounded-2xl bg-yellow-500 flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(234,179,8,0.5)]">
-                <FolderOpen className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-bold text-white text-xl mb-3">4. تحميل الإضافة</h3>
-              <p className="text-yellow-200 text-sm leading-relaxed">انقر على زر "تحميل إضافة تم فك ضغطها" (Load unpacked) واختر المجلد المستخرج.</p>
-            </div>
-            
+            <a 
+              href="https://chromewebstore.google.com/detail/hpldcclhflibgonfimabdceomfebhepo?utm_source=item-share-cb" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-yellow-500 text-white px-10 py-4 rounded-2xl font-black text-lg hover:bg-yellow-400 hover:shadow-lg hover:shadow-yellow-500/40 hover:-translate-y-1 transition-all cursor-pointer"
+            >
+              <Puzzle className="w-6 h-6" />
+              أضفها إلى متصفحك الآن
+            </a>
+            <p className="text-slate-500 text-sm font-medium">مجانية 100% • متوافقة مع Google Chrome و Edge</p>
           </div>
         </div>
       </section>
