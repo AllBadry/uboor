@@ -53,8 +53,8 @@ export default function FeaturedProducts() {
       title: 'أتمتة لقطات الشاشة بذكاء.',
       desc: 'أداة لأخذ لقطات متتابعة آلياً. مثالية لأرشفة الكتب الإلكترونية والمقالات الطويلة.',
       link: '/products/auto-capture',
-      gradient: 'from-cyan-500 to-blue-700',
-      iconColor: 'text-cyan-100',
+      gradient: 'from-yellow-500 to-amber-700',
+      iconColor: 'text-yellow-100',
     },
     {
       id: 'data-vault',
