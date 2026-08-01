@@ -11,7 +11,10 @@ import {
   RefreshCcw,
   Camera,
   Cpu,
-  Puzzle
+  Puzzle,
+  ArrowLeft,
+  FileArchive,
+  ShieldCheck
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -277,6 +280,36 @@ export default function AutoCapture() {
             </a>
             <p className="text-slate-500 text-sm font-medium">مجانية 100% • متوافقة مع Google Chrome و Edge</p>
           </div>
+        </div>
+        
+      </section>
+
+      {/* =========================================
+          Privacy & Security (الخصوصية والأمان)
+          ========================================= */}
+      <section className="py-24 bg-white border-t border-slate-100">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          
+          <div className="w-20 h-20 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-cyan-100">
+            <ShieldCheck className="w-10 h-10 text-uboor-cyan" />
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">خصوصيتك وأمانك أولويتنا</h2>
+          <p className="text-lg text-slate-500 font-medium mb-10 leading-relaxed">
+            تعمل هذه الأداة بشكل محلي 100% (Client-Side) دون أي خوادم خارجية، وهي متوافقة تماماً مع سياسات الخصوصية والإقرارات الإلزامية لمتجر إضافات جوجل كروم.
+          </p>
+          
+          <div className="flex flex-col items-center">
+            <Link 
+              to="/products/auto-capture/privacy" 
+              className="inline-flex items-center gap-3 px-8 py-4 bg-slate-900 hover:bg-uboor-cyan text-white font-bold text-lg rounded-full transition-all duration-300 shadow-[0_10px_20px_rgba(15,23,42,0.15)] hover:shadow-[0_10px_20px_rgba(6,182,212,0.3)] group"
+            >
+              <FileArchive className="w-6 h-6 text-cyan-400 group-hover:text-white transition-colors" />
+              الاطلاع على سياسة الخصوصية
+              <ArrowLeft className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
         </div>
       </section>
 
