@@ -123,7 +123,7 @@ export default function Contact() {
               </div>
               <div className="flex flex-col">
                 <span className="text-xs text-slate-500 uppercase tracking-widest font-bold font-mono">Email Us</span>
-                <a href="mailto:info@uboor.dev" className="text-lg font-bold text-slate-900 hover:text-uboor-blue transition-colors" dir="ltr">info@uboor.dev</a>
+                <a href="mailto:info@uboor.org" className="text-lg font-bold text-slate-900 hover:text-uboor-blue transition-colors" dir="ltr">info@uboor.org</a>
               </div>
             </div>
 
