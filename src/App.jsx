@@ -14,6 +14,7 @@ import SeoMonster from './pages/products/SeoMonster';
 import WaCollectorPrivacy from './pages/products/WaCollectorPrivacy';
 import SeoMonsterPrivacy from './pages/products/SeoMonsterPrivacy';
 import AutoCapturePrivacy from './pages/products/AutoCapturePrivacy';
+import Support from './pages/Support';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/products/auto-capture" element={<AutoCapture />} /> 
           <Route path="/contact" element={<Contact />} />
           <Route path="/products/seo-monster" element={<SeoMonster />}/>
+          <Route path="/support" element={<Support />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/products/wacollector/privacy" element={<WaCollectorPrivacy />}/>
           <Route path="/products/seo-monster/privacy" element={<SeoMonsterPrivacy />} />

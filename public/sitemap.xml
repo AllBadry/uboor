@@ -48,6 +48,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <url>
+    <loc>https://uboor.org/support</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <url>
     <loc>https://uboor.org/products/seo-monster/privacy</loc>
     <changefreq>monthly</changefreq>

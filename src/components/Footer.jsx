@@ -60,8 +60,8 @@ export default function Footer() {
               روابط هامة
             </h4>
             <ul className="space-y-4">
-              {['الرئيسية', 'خدمات الويب والأنظمة', 'عن الشركة', 'سياسة الخصوصية'].map((item, idx) => {
-                const paths = ['/', '/services', '/about', '/privacy'];
+              {['الرئيسية', 'خدمات الويب والأنظمة', 'عن الشركة', 'سياسة الخصوصية' , 'الدعم الفني'].map((item, idx) => {
+                const paths = ['/', '/services', '/about', '/privacy', '/support'];
                 return (
                   <li key={idx}>
                     <Link to={paths[idx]} className="group flex items-center text-text-muted hover:text-uboor-cyan transition-colors">
