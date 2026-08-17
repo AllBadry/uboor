@@ -32,7 +32,7 @@ import {
   Cloud
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+import UWPSLicenseCheckoutModal from '../../components/UWPSLicenseCheckoutModal';
 export default function UwpsProduct() {
   const [isMounted, setIsMounted] = useState(false);
   const [copiedWin, setCopiedWin] = useState(false);
@@ -164,7 +164,7 @@ export default function UwpsProduct() {
       desc: 'يعمل على Windows، macOS، و Linux، مع أوامر تثبيت بسيطة وسريعة، ويتم توزيعه كملف ثنائي واحد (Single Binary).'
     }
   ];
-
+const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-uboor-cyan selection:text-white pb-24 overflow-hidden">
       
@@ -523,12 +523,16 @@ export default function UwpsProduct() {
               </li>
             </ul>
 
-            <button 
-              onClick={() => alert('سيتم تفعيل بوابة الدفع وطلب الترخيص قريباً!')}
-              className="w-full py-4 bg-gradient-to-l from-uboor-blue to-uboor-cyan text-white font-black rounded-2xl shadow-lg hover:shadow-cyan-500/25 hover:opacity-95 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
-            >
-              طلب ترخيص شهري (5 د.أ)
-            </button>
+            
+<button 
+  onClick={() => setIsModalOpen(true)}
+  className="w-full py-4 bg-gradient-to-l from-uboor-blue to-uboor-cyan text-white font-black rounded-2xl shadow-lg..."
+>
+  طلب ترخيص شهري (5 د.أ)
+</button>
+
+{/* في نهاية الكود قبل إغلاق الحاضنة الرئيسية */}
+<UWPSLicenseCheckoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
       </section>
