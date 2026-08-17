@@ -18,6 +18,21 @@ import { Link } from 'react-router-dom';
 // === قاعدة بيانات المنتجات (لم تتغير) ===
 const PRODUCTS_DATA = [
   {
+    id: 'uwps',
+    title: 'UWPS Scanner',
+    category: 'software',
+    categoryLabel: 'برمجيات',
+    logo: '/UWPSR.png',
+    icon: null,
+    color: 'text-red-500',
+    bgIcon: 'bg-red-500/10',
+    borderHover: 'hover:border-red-500/30',
+    glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(239,68,68,0.3)]',
+    desc: 'أداة متقدمة لفحص وتأمين مواقع ووردبريس مبنية بلغة Rust. تفحص الثغرات، تكشف البرمجيات الخبيثة، وتحلل دوال XML-RPC والترويسات الأمنية.',
+    features: ['فحص الثغرات والمسارات الحساسة', 'كشف البرمجيات الخبيثة والأكواد الخفية', 'فحص دوال XML-RPC و REST API', 'قدرات تخفي متطورة ضد جدران الحماية'],
+    link: '/products/uwps'
+  },
+  {
     id: 'wa-collector',
     title: 'WhatsApp Collector',
     category: 'extension',
@@ -95,6 +110,7 @@ const PRODUCTS_DATA = [
 
 const FILTERS = [
   { id: 'all', label: 'الكل' },
+  { id: 'software', label: 'برمجيات' },
   { id: 'extension', label: 'إضافات المتصفح' },
   { id: 'saas', label: 'الذكاء الاصطناعي' },
   { id: 'opensource', label: 'مفتوحة المصدر' }
