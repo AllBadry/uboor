@@ -22,7 +22,7 @@ const PRODUCTS_DATA = [
     title: 'UWPS Scanner',
     category: 'software',
     categoryLabel: 'برمجيات',
-    logo: '/UWPSR.png',
+    logo: '/UWPSRS.png',
     icon: null,
     color: 'text-red-500',
     bgIcon: 'bg-red-500/10',
