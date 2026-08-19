@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async'; // 🌟 استيراد Helmet
 import { 
   MousePointerClick, 
   Maximize, 
@@ -49,6 +50,27 @@ export default function AutoCapture() {
     return () => observer.disconnect();
   }, []);
 
+  // 🌟 سكيما إضافة Auto Capture
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Uboor Auto Capture",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Chrome OS, Windows, macOS, Linux",
+    "browserRequirements": "Requires Google Chrome or Microsoft Edge",
+    "description": "أداة أتمتة ذكية لأخذ لقطات شاشة متتابعة للصفحات وحفظها منظمة في جهازك.",
+    "author": {
+      "@type": "Organization",
+      "name": "Uboor"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   // خطوات الاستخدام
   const USAGE_STEPS = [
     {
@@ -86,6 +108,15 @@ export default function AutoCapture() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-yellow-500 selection:text-white pb-24">
       
+      {/* 🌟 حقن الـ SEO والسكيما */}
+      <Helmet>
+        <title>Auto Capture | التقاط الصور التلقائي من عبور</title>
+        <meta name="description" content="أداة ذكية لأتمتة وأخذ لقطات شاشة متتابعة لصفحات الويب وحفظها بجهازك بضغطة زر. مجانية 100% ومتوفرة لمتصفح كروم." />
+        <script type="application/ld+json">
+          {JSON.stringify(softwareSchema)}
+        </script>
+      </Helmet>
+
       {/* =========================================
           1. Hero Section (القسم الترحيبي)
           ========================================= */}
@@ -128,6 +159,7 @@ export default function AutoCapture() {
           </div>
           
           <div className="w-full lg:w-1/2 relative">
+            {/* واجهة وهمية للأداة كعنصر مرئي */}
             <div className="bg-slate-900 rounded-[2rem] p-8 shadow-2xl border-4 border-slate-800 transform -rotate-2 hover:rotate-0 transition-transform duration-500 max-w-md mx-auto">
               <div className="flex items-center justify-between border-b border-slate-700 pb-4 mb-6">
                 <div className="flex items-center gap-3">
@@ -285,7 +317,7 @@ export default function AutoCapture() {
       </section>
 
       {/* =========================================
-          Privacy & Security (الخصوصية والأمان)
+          6. Privacy & Security (الخصوصية والأمان)
           ========================================= */}
       <section className="py-24 bg-white border-t border-slate-100">
         <div className="max-w-3xl mx-auto px-6 text-center">

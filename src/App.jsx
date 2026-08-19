@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import AutoCapture from './pages/products/AutoCapture';
 import NotFound from './pages/NotFound';
+import { HelmetProvider } from 'react-helmet-async'; // استيراد الموفر
 // يمكنك إنشاء هذه الصفحات لاحقاً في مجلد pages
 import Services from './pages/Services';
 import About from './pages/About';
@@ -20,6 +21,7 @@ import UPWS from './pages/products/UwpsProduct';
 import Privacy from './pages/Privacy';
 function App() {
   return (
+    <HelmetProvider> {/* تغليف التطبيق بالكامل هنا */}
     <Router>
       {/* هنا نضع المكون ليعمل ويراقب كل تنقلات الصفحات */}
       <ScrollToTop /> 
@@ -46,6 +48,7 @@ function App() {
         </Routes>
       </Layout>
     </Router>
+    </HelmetProvider>
   );
 }
 

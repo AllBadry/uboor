@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async'; // 🌟 استيراد Helmet
 import { Globe, Cpu, ShieldCheck, Terminal, Bot, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -121,9 +122,43 @@ export default function Services() {
   const currentService = SERVICES_DATA[activeNode];
   const ActiveIcon = currentService.icon;
 
+  // 🌟 بناء السكيما ديناميكياً للخدمات المتاحة في الشركة
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "الخدمات الهندسية والبرمجية | شركة عبور",
+    "description": "تعرف على الترسانة التقنية التي نستخدمها لهندسة أنظمة قوية، آمنة، وقابلة للتوسع. خدماتنا تشمل أنظمة الويب، تطبيقات C++، والأمن السيبراني.",
+    "url": "https://uboor.org/services",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Uboor"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": SERVICES_DATA.map((service, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Service",
+          "name": service.title,
+          "description": service.desc
+        }
+      }))
+    }
+  };
+
   return (
     <div className="bg-bg-pure-white text-text-main font-cairo min-h-screen selection:bg-uboor-cyan selection:text-white">
       
+      {/* 🌟 حقن الـ SEO والسكيما */}
+      <Helmet>
+        <title>الخدمات الهندسية والبرمجية | شركة عبور</title>
+        <meta name="description" content="نحن لا نبيع حلولاً معلبة. اكتشف خدمات عبور المتقدمة في بناء أنظمة MERN السحابية، تطبيقات C++، الأمن السيبراني، وأتمتة العمليات بالذكاء الاصطناعي." />
+        <script type="application/ld+json">
+          {JSON.stringify(servicesSchema)}
+        </script>
+      </Helmet>
+
       {/* تم إزالة overflow-hidden التي كانت تكسر تثبيت الشاشة، واستخدام flex-row للوضع الطبيعي (يمين ثم يسار) */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row relative pt-28 lg:pt-36">
         

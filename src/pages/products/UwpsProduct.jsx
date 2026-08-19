@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async'; // 🌟 استيراد مكتبة Helmet
 import {
   Terminal,
   ShieldCheck,
@@ -33,10 +34,12 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import UWPSLicenseCheckoutModal from '../../components/UWPSLicenseCheckoutModal';
+
 export default function UwpsProduct() {
   const [isMounted, setIsMounted] = useState(false);
   const [copiedWin, setCopiedWin] = useState(false);
   const [copiedUnix, setCopiedUnix] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsMounted(true), 150);
@@ -56,6 +59,35 @@ export default function UwpsProduct() {
 
   const winCommand = "iwr -useb https://uwps.uboor.org/install.ps1 | iex";
   const unixCommand = "curl -sSL https://uwps.uboor.org/install.sh | sudo bash";
+
+  // 🌟 سكيما مخصصة للبرمجيات (Software Application Schema)
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UWPS - WordPress Security Scanner",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "0.5.0",
+    "description": "أداة احترافية مبنية بلغة Rust بالكامل، تفحص مواقع ووردبريس بعمق لا مثيل له، تكتشف الثغرات بدقة عالية، وتتجاوز جدران الحماية.",
+    "author": {
+      "@type": "Person",
+      "name": "Adam Albdour"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Uboor"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "5.00",
+      "priceCurrency": "JOD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Uboor"
+      }
+    }
+  };
 
   // وحدات الفحص المتقدمة مع وصف تفصيلي
   const ADVANCED_MODULES = [
@@ -164,10 +196,21 @@ export default function UwpsProduct() {
       desc: 'يعمل على Windows، macOS، و Linux، مع أوامر تثبيت بسيطة وسريعة، ويتم توزيعه كملف ثنائي واحد (Single Binary).'
     }
   ];
-const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-uboor-cyan selection:text-white pb-24 overflow-hidden">
       
+      {/* =========================================
+          حقن الـ SEO والـ Schema
+          ========================================= */}
+      <Helmet>
+        <title>UWPS | الفاحص الأمني المتقدم لـ WordPress</title>
+        <meta name="description" content="أداة فحص أمني احترافية مبنية بـ Rust لاكتشاف ثغرات ووردبريس، فحص الإضافات، وتخطي جدران الحماية WAF. اشترك الآن بـ 5 دنانير شهرياً." />
+        <script type="application/ld+json">
+          {JSON.stringify(softwareSchema)}
+        </script>
+      </Helmet>
+
       {/* =========================================
           1. Hero Section
           ========================================= */}
@@ -523,16 +566,15 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               </li>
             </ul>
 
-            
-<button 
-  onClick={() => setIsModalOpen(true)}
-  className="w-full py-4 bg-gradient-to-l from-uboor-blue to-uboor-cyan text-white font-black rounded-2xl shadow-lg..."
->
-  طلب ترخيص شهري (5 د.أ)
-</button>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="w-full py-4 bg-gradient-to-l from-uboor-blue to-uboor-cyan text-white font-black rounded-2xl shadow-lg cursor-pointer transform hover:-translate-y-1 transition-transform duration-300"
+            >
+              طلب ترخيص شهري (5 د.أ)
+            </button>
 
-{/* في نهاية الكود قبل إغلاق الحاضنة الرئيسية */}
-<UWPSLicenseCheckoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            {/* Modal */}
+            <UWPSLicenseCheckoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
       </section>

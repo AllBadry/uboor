@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async'; // 🌟 استيراد Helmet
 import { Rocket, MonitorSmartphone, Code2, Cpu, Globe2, Sparkles, Box, Heart } from 'lucide-react';
 
 // مكون الظهور السلس لضبط توقيت ظهور العناصر
@@ -32,9 +33,36 @@ const RevealOnScroll = ({ children, className = "", delay = "delay-0", threshold
 };
 
 export default function About() {
+  // 🌟 سكيما مخصصة لصفحة "من نحن" (AboutPage Schema)
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "من نحن | شركة عبور للحلول البرمجية",
+    "description": "شركة عبور المتخصصة في بناء أنظمة الويب وتطبيقات سطح المكتب ودعم مجتمع البرمجيات مفتوحة المصدر.",
+    "url": "https://uboor.org/about",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Uboor - عبور",
+      "logo": "https://uboor.org/UB.png",
+      "sameAs": [
+        "https://github.com/uboor", // وضع حساب القيت هاب هنا مهم جداً كمرجع لجوجل
+        "https://www.linkedin.com/company/uboor"
+      ]
+    }
+  };
+
   return (
     <div className="relative font-cairo selection:bg-uboor-orange selection:text-white bg-bg-pure-white">
       
+      {/* 🌟 حقن الـ SEO والسكيما */}
+      <Helmet>
+        <title>من نحن | شركة عبور للحلول البرمجية</title>
+        <meta name="description" content="تعرف على شركة عبور. نحن لا نكتفي ببرمجة الأنظمة والتطبيقات، بل نساهم بقوة في المصادر المفتوحة ونطور أدوات مجانية لمجتمع المطورين." />
+        <script type="application/ld+json">
+          {JSON.stringify(aboutSchema)}
+        </script>
+      </Helmet>
+
       {/* 
         =========================================
         الطبقة الأولى: الغلاف الجوي (واجهة الشركة والتصميم)

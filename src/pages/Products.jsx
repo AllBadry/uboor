@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async'; // 🌟 استيراد Helmet
 import { 
   Database, 
   Blocks, 
@@ -139,9 +140,43 @@ export default function Products() {
     ? PRODUCTS_DATA 
     : PRODUCTS_DATA.filter(p => p.category === filter);
 
+  // 🌟 بناء سكيما الكتالوج (CollectionPage & ItemList) ديناميكياً
+  const productsSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "منتجات عبور | أدوات، إضافات وأنظمة ذكاء اصطناعي",
+    "description": "استكشف إيكوسيستم عبور. مجموعة من البرمجيات، إضافات المتصفح (WA Collector, SEO Monster)، وأنظمة المراقبة (URM, UWPS) لتعزيز إنتاجيتك.",
+    "url": "https://uboor.org/products",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Uboor"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": PRODUCTS_DATA.map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": product.title,
+        "description": product.desc,
+        "url": product.link 
+          ? (product.link.startsWith('http') ? product.link : `https://uboor.org${product.link}`) 
+          : "https://uboor.org/products"
+      }))
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-uboor-cyan selection:text-white relative overflow-hidden">
       
+      {/* 🌟 حقن الـ SEO والسكيما */}
+      <Helmet>
+        <title>المنتجات والأدوات | شركة عبور للحلول البرمجية</title>
+        <meta name="description" content="استكشف الإيكوسيستم الخاص بشركة عبور. نوفر إضافات متصفح مجانية وأدوات سيو، بالإضافة إلى أنظمة برمجية متطورة مثل URM و UWPS لتعزيز إنتاجيتك." />
+        <script type="application/ld+json">
+          {JSON.stringify(productsSchema)}
+        </script>
+      </Helmet>
+
       {/* 🌟 خلفيات متحركة ببطء (Framer Motion) */}
       <motion.div 
         animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}

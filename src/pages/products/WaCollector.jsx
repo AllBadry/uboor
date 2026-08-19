@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async'; // 🌟 استيراد Helmet
 import { 
   DownloadCloud, 
   Users, 
@@ -26,7 +27,27 @@ export default function WaCollector() {
     return () => clearTimeout(timer);
   }, []);
 
-  // بيانات حالات الاستخدام (Use Cases)
+  // 🌟 سكيما إضافة WA Collector
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Uboor WA Collector Pro",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Chrome OS, Windows, macOS, Linux",
+    "browserRequirements": "Requires Google Chrome or Microsoft Edge",
+    "description": "استخرج أي قائمة أرقام من واتساب ويب بنقرة واحدة، وصدرها في جداول أنيقة وعالية الدقة.",
+    "author": {
+      "@type": "Organization",
+      "name": "Uboor"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  };
+
   const USE_CASES = [
     {
       id: 0,
@@ -67,14 +88,21 @@ export default function WaCollector() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-emerald-500 selection:text-white pb-24">
       
+      {/* 🌟 حقن الـ SEO والسكيما */}
+      <Helmet>
+        <title>WA Collector Pro | استخراج داتا واتساب بسهولة</title>
+        <meta name="description" content="إضافة كروم لاستخراج جهات الاتصال وأعضاء المجموعات من واتساب ويب وتصديرها إلى إكسل بسهولة وأمان." />
+        <script type="application/ld+json">
+          {JSON.stringify(softwareSchema)}
+        </script>
+      </Helmet>
+
       {/* =========================================
           1. Hero Section (القسم الترحيبي)
           ========================================= */}
       <section className="relative pt-28 pb-20 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto overflow-hidden">
-        {/* إضاءات خلفية */}
         <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
         
-        {/* زر الرجوع للخلف */}
         <div className={`relative z-20 mb-8 transition-all duration-700 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
           <Link 
             to="/products" 
@@ -110,7 +138,6 @@ export default function WaCollector() {
           </div>
           
           <div className="w-full lg:w-1/2 relative">
-            {/* واجهة وهمية للأداة كعنصر مرئي */}
             <div className="bg-slate-900 rounded-[2rem] p-6 shadow-2xl border-4 border-slate-800 transform rotate-2 hover:rotate-0 transition-transform duration-500">
               <div className="flex items-center justify-between border-b border-slate-700 pb-4 mb-4">
                 <div className="flex items-center gap-3">
@@ -158,7 +185,6 @@ export default function WaCollector() {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-10">
-            {/* أزرار التحكم (Tabs) */}
             <div className="w-full lg:w-1/3 flex flex-col gap-4">
               {USE_CASES.map((useCase) => {
                 const Icon = useCase.icon;
@@ -185,7 +211,6 @@ export default function WaCollector() {
               })}
             </div>
 
-            {/* محتوى الـ Tab المفتوح */}
             <div className="w-full lg:w-2/3 bg-slate-50 rounded-[2rem] p-8 md:p-12 border border-slate-100 shadow-inner flex flex-col justify-center">
               <h3 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <Eye className="w-6 h-6 text-emerald-500" />
@@ -280,7 +305,6 @@ export default function WaCollector() {
             </div>
           </div>
 
-          {/* زر سياسة الخصوصية الموجه لمتجر جوجل */}
           <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col items-center">
             <p className="text-slate-500 text-sm mb-4">متوافقة تماماً مع سياسات الخصوصية لمتجر إضافات جوجل كروم.</p>
             <Link 
@@ -292,7 +316,6 @@ export default function WaCollector() {
               <ArrowLeft className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
             </Link>
           </div>
-
         </div>
       </section>
 

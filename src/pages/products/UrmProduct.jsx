@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async'; // 🌟 تم استيراد Helmet
 import { 
   Terminal, 
   Cpu, 
@@ -90,6 +91,30 @@ export default function UrmProduct() {
     }
   };
 
+  // 🌟 سكيما مخصصة للبرمجيات (Software Application Schema) لـ URM
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Uboor Requests Monitor (URM)",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux",
+    "description": "أداة مراقبة شبكية متقدمة مبنية بلغة Rust تستخدم تقنية eBPF لالتقاط كافة طلبات HTTP و HTTPS على مستوى النواة.",
+    "author": {
+      "@type": "Organization",
+      "name": "Uboor"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "5.00",
+      "priceCurrency": "JOD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Uboor"
+      }
+    }
+  };
+
   const MODULES = [
     {
       icon: Cpu,
@@ -145,6 +170,15 @@ export default function UrmProduct() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 font-cairo selection:bg-blue-500 selection:text-white pb-24 overflow-hidden">
       
+      {/* 🌟 حقن الـ SEO والسكيما */}
+      <Helmet>
+        <title>URM | مراقب الشبكات و eBPF من عبور</title>
+        <meta name="description" content="أداة URM لمراقبة شبكات لينكس والتقاط طلبات HTTP/HTTPS من النواة باستخدام تقنية eBPF باشتراك 5 دنانير شهرياً." />
+        <script type="application/ld+json">
+          {JSON.stringify(softwareSchema)}
+        </script>
+      </Helmet>
+
       {/* =========================================
           1. Hero Section 
           ========================================= */}

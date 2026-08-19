@@ -33,9 +33,9 @@ jobs:
 
           # 🌟 خدعة الـ SEO: إنشاء مجلدات حقيقية تتطابق تماماً مع App.jsx
           # لاحظ إضافة المجلدات الفرعية داخل products
-          mkdir -p dist/about dist/services dist/contact dist/products dist/products/wacollector dist/products/auto-capture dist/products/seo-monster
+          mkdir -p dist/about dist/services dist/contact dist/products dist/products/wacollector dist/products/auto-capture dist/products/seo-monster dist/products/uwps dist/products/urm dist/privacy
 
-          # نسخ ملف React الأساسي داخل هذه المجلدات لكي يعيد غيت هاب الرمز 200 OK لجوجل
+          # نسخ الملف للمجلدات الجديدة
           cp dist/index.html dist/about/index.html
           cp dist/index.html dist/services/index.html
           cp dist/index.html dist/contact/index.html
@@ -43,6 +43,9 @@ jobs:
           cp dist/index.html dist/products/wacollector/index.html
           cp dist/index.html dist/products/auto-capture/index.html
           cp dist/index.html dist/products/seo-monster/index.html
+          cp dist/index.html dist/products/uwps/index.html
+          cp dist/index.html dist/products/urm/index.html
+          cp dist/index.html dist/privacy/index.html
 
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v4
