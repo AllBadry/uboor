@@ -18,6 +18,21 @@ import { Link } from 'react-router-dom';
 // === قاعدة بيانات المنتجات (لم تتغير) ===
 const PRODUCTS_DATA = [
   {
+    id: 'urm',
+    title: 'URM Monitor',
+    category: 'software',
+    categoryLabel: 'برمجيات',
+    logo: '/URMR.png',
+    icon: null,
+    color: 'text-blue-600',
+    bgIcon: 'bg-blue-600/10',
+    borderHover: 'hover:border-blue-600/30',
+    glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(37,99,235,0.3)]',
+    desc: 'أداة مراقبة شبكية متقدمة مبنية بلغة Rust. تستخدم تقنية eBPF لالتقاط كافة طلبات HTTP/HTTPS من جذور النظام (Kernel-Level) وعرضها في واجهة TUI تفاعلية.',
+    features: ['مراقبة عميقة عبر مجسات eBPF', 'فك تشفير طلبات HTTPS/SSL', 'واجهة طرفية تفاعلية (TUI)', 'تحليل الأداء وزمن الاستجابة'],
+    link: '/products/urm'
+  },
+  {
     id: 'uwps',
     title: 'UWPS Scanner',
     category: 'software',
