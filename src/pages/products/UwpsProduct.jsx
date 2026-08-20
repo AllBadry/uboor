@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async'; // 🌟 استيراد مكتبة Helmet
 import {
   Terminal,
@@ -30,16 +31,26 @@ import {
   AlertTriangle,
   HardDrive,
   Network,
-  Cloud
+  Cloud,
+  X,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import UWPSLicenseCheckoutModal from '../../components/UWPSLicenseCheckoutModal';
+import Portal from '../../components/Portal'; 
 
 export default function UwpsProduct() {
   const [isMounted, setIsMounted] = useState(false);
   const [copiedWin, setCopiedWin] = useState(false);
   const [copiedUnix, setCopiedUnix] = useState(false);
+  
+  // حالات النافذة المنبثقة للطلب (Modal States)
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => setIsMounted(true), 150);
@@ -60,6 +71,41 @@ export default function UwpsProduct() {
   const winCommand = "iwr -useb https://uwps.uboor.org/install.ps1 | iex";
   const unixCommand = "curl -sSL https://uwps.uboor.org/install.sh | sudo bash";
 
+  // معالجة إرسال طلب الاشتراك المجاني
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!name || !email) {
+      setError('الرجاء تعبئة جميع الحقول المطلوبة.');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('https://uwps.uboor.org/api/request', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json' // إرسال JSON عادي
+        },
+        body: JSON.stringify({ name, email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess(true);
+      } else {
+        setError(data.error || 'حدث خطأ ما، يرجى المحاولة لاحقاً.');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // 🌟 سكيما مخصصة للبرمجيات (Software Application Schema)
   const softwareSchema = {
     "@context": "https://schema.org",
@@ -79,7 +125,7 @@ export default function UwpsProduct() {
     },
     "offers": {
       "@type": "Offer",
-      "price": "5.00",
+      "price": "0.00",
       "priceCurrency": "JOD",
       "availability": "https://schema.org/InStock",
       "seller": {
@@ -205,7 +251,7 @@ export default function UwpsProduct() {
           ========================================= */}
       <Helmet>
         <title>UWPS | الفاحص الأمني المتقدم لـ WordPress</title>
-        <meta name="description" content="أداة فحص أمني احترافية مبنية بـ Rust لاكتشاف ثغرات ووردبريس، فحص الإضافات، وتخطي جدران الحماية WAF. اشترك الآن بـ 5 دنانير شهرياً." />
+        <meta name="description" content="أداة فحص أمني احترافية مبنية بـ Rust لاكتشاف ثغرات ووردبريس، فحص الإضافات، وتخطي جدران الحماية WAF. احصل على رخصتك المجانية الآن." />
         <script type="application/ld+json">
           {JSON.stringify(softwareSchema)}
         </script>
@@ -237,9 +283,9 @@ export default function UwpsProduct() {
             <div className="flex items-center gap-4 mb-6">
               <img src="/UWPSR.png" alt="UWPS Logo" className="w-16 h-16 object-contain rounded-2xl bg-slate-900 p-2 shadow-md border border-slate-800" />
               <div className="text-right">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-uboor-blue font-bold text-xs">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs shadow-sm">
                   <Sparkles className="w-3.5 h-3.5" />
-                  Version 0.5.0 • By Adam Albdour
+                  رخصة مجانية لفترة محدودة
                 </div>
                 <div className="text-slate-500 font-mono text-xs mt-1">Rust-Powered CLI Security Scanner</div>
               </div>
@@ -518,7 +564,7 @@ export default function UwpsProduct() {
       </section>
 
       {/* =========================================
-          6. اشتراك Pro (5 دنانير شهرياً)
+          6. اشتراك Pro (Free License)
           ========================================= */}
       <section className="py-24 bg-[#0B1121] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" 
@@ -528,9 +574,9 @@ export default function UwpsProduct() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-uboor-cyan/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-white/10 border border-white/20 text-uboor-cyan font-bold text-sm backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-sm backdrop-blur-md">
             <Zap className="w-4 h-4" />
-            اشتراك احترافي مرن
+            عرض خاص ومحدود
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">
@@ -542,14 +588,14 @@ export default function UwpsProduct() {
           </p>
 
           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 max-w-md mx-auto shadow-2xl relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-uboor-orange text-slate-900 font-black text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
-              رخصة Pro
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-uboor-orange text-slate-900 font-black text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
+              Pro License
             </div>
 
-            <div className="text-4xl sm:text-5xl font-black text-white mb-2 font-mono">
-              5 <span className="text-lg font-bold text-slate-400">دينار / شهرياً</span>
+            <div className="mb-8">
+              <span className="text-4xl md:text-5xl font-black text-emerald-400 block mb-2">مجاناً</span>
+              <span className="text-sm font-bold text-slate-400 block">لفترة محدودة (ترخيص صالح لشهر)</span>
             </div>
-            <p className="text-slate-400 text-xs mb-8">يتم تجديد الترخيص شهرياً تلقائياً، إمكانية الإلغاء في أي وقت.</p>
 
             <ul className="space-y-4 text-right mb-10 text-slate-300 text-sm font-medium">
               <li className="flex items-center gap-3">
@@ -570,14 +616,117 @@ export default function UwpsProduct() {
               onClick={() => setIsModalOpen(true)}
               className="w-full py-4 bg-gradient-to-l from-uboor-blue to-uboor-cyan text-white font-black rounded-2xl shadow-lg cursor-pointer transform hover:-translate-y-1 transition-transform duration-300"
             >
-              طلب ترخيص شهري (5 د.أ)
+              اطلب رخصتك المجانية الآن
             </button>
 
-            {/* Modal */}
-            <UWPSLicenseCheckoutModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
         </div>
       </section>
+
+      {/* =========================================
+          7. Checkout Modal (بواسطة Portal وبدون مرفقات)
+          ========================================= */}
+      <Portal>
+        <AnimatePresence>
+          {isModalOpen && (
+            <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 font-cairo">
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-slate-900/70 backdrop-blur-md"
+                onClick={() => !loading && setIsModalOpen(false)}
+              />
+
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-white rounded-[2.5rem] w-full max-w-lg overflow-hidden shadow-2xl border border-slate-100 z-10 max-h-[90vh] overflow-y-auto"
+              >
+                <button 
+                  onClick={() => !loading && setIsModalOpen(false)}
+                  className="absolute top-6 left-6 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-20 cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="bg-[#0B1121] p-8 text-center text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-uboor-cyan/20 rounded-full blur-2xl pointer-events-none"></div>
+                  <Server className="w-12 h-12 text-uboor-cyan mx-auto mb-3" />
+                  <h3 className="text-2xl font-black mb-1">طلب ترخيص UWPS</h3>
+                  <p className="text-slate-400 text-sm font-medium">الترخيص: <span className="text-emerald-400 font-bold">مجاني (صالح لمدة شهر)</span></p>
+                </div>
+
+                <div className="p-8">
+                  {success ? (
+                    <div className="text-center py-8">
+                      <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4 animate-bounce" />
+                      <h4 className="text-xl font-bold text-slate-900 mb-2">تم استلام طلبك بنجاح!</h4>
+                      <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                        سيتم إرسال مفتاح الترخيص المجاني (الصالح لمدة شهر) تلقائياً إلى بريدك الإلكتروني الذي قمت بتسجيله ({email}) خلال وقت قصير.
+                      </p>
+                      <button onClick={() => setIsModalOpen(false)} className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
+                        حسناً، شكراً لك
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-6">
+                      
+                      {error && (
+                        <div className="p-4 bg-rose-50 border border-rose-100 text-rose-700 rounded-xl text-sm font-bold flex items-center gap-2">
+                          <AlertCircle className="w-5 h-5 shrink-0" /><span>{error}</span>
+                        </div>
+                      )}
+
+                      <form onSubmit={handleSubmit} className="space-y-5">
+                        <div>
+                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">الاسم الكامل</label>
+                          <input 
+                            type="text" 
+                            value={name} 
+                            onChange={(e) => setName(e.target.value)} 
+                            placeholder="أدخل اسمك هنا" 
+                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:border-uboor-cyan transition-colors" 
+                            required 
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">البريد الإلكتروني (لاستلام المفتاح)</label>
+                          <input 
+                            type="email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            placeholder="name@example.com" 
+                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:border-uboor-cyan transition-colors" 
+                            required 
+                          />
+                        </div>
+
+                        <button 
+                          type="submit" 
+                          disabled={loading} 
+                          className="w-full py-4 bg-gradient-to-l from-uboor-blue to-uboor-cyan text-white font-black rounded-xl shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-4"
+                        >
+                          {loading ? (
+                            <>
+                              <Loader2 className="w-5 h-5 animate-spin" />
+                              <span>جاري إرسال الطلب...</span>
+                            </>
+                          ) : (
+                            <span>اطلب الترخيص المجاني</span>
+                          )}
+                        </button>
+                      </form>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </Portal>
 
     </div>
   );

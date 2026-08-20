@@ -20,9 +20,7 @@ import {
   Server,
   X,
   Loader2,
-  AlertCircle,
-  PhoneCall,
-  Upload
+  AlertCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Portal from '../../components/Portal'; 
@@ -35,7 +33,6 @@ export default function UrmProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [receipt, setReceipt] = useState(null); // تحديث: حالة صورة الوصل
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -53,27 +50,25 @@ export default function UrmProduct() {
 
   const unixCommand = "curl -sSL https://urm.uboor.org/install.sh | sudo bash";
 
-  // معالجة إرسال طلب الاشتراك مع صورة الوصل
+  // معالجة إرسال طلب الاشتراك
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email || !receipt) {
-      setError('الرجاء تعبئة جميع الحقول وإرفاق صورة وصل الدفع.');
+    if (!name || !email) {
+      setError('الرجاء تعبئة جميع الحقول المطلوبة.');
       return;
     }
 
     setLoading(true);
     setError('');
 
-    // استخدام FormData لإرسال الملفات
     const formData = new FormData();
     formData.append('name', name);
     formData.append('email', email);
-    formData.append('receipt', receipt);
 
     try {
       const response = await fetch('https://urm.uboor.org/api/request', {
         method: 'POST',
-        body: formData // إرسال الفورم داتا مباشرة بدون تحديد Content-Type
+        body: formData
       });
 
       const data = await response.json();
@@ -105,7 +100,7 @@ export default function UrmProduct() {
     },
     "offers": {
       "@type": "Offer",
-      "price": "5.00",
+      "price": "0.00",
       "priceCurrency": "JOD",
       "availability": "https://schema.org/InStock",
       "seller": {
@@ -173,7 +168,7 @@ export default function UrmProduct() {
       {/* 🌟 حقن الـ SEO والسكيما */}
       <Helmet>
         <title>URM | مراقب الشبكات و eBPF من عبور</title>
-        <meta name="description" content="أداة URM لمراقبة شبكات لينكس والتقاط طلبات HTTP/HTTPS من النواة باستخدام تقنية eBPF باشتراك 5 دنانير شهرياً." />
+        <meta name="description" content="أداة URM لمراقبة شبكات لينكس والتقاط طلبات HTTP/HTTPS من النواة باستخدام تقنية eBPF. احصل على رخصتك المجانية لفترة محدودة." />
         <script type="application/ld+json">
           {JSON.stringify(softwareSchema)}
         </script>
@@ -205,9 +200,9 @@ export default function UrmProduct() {
                 <img src="/URM.png" alt="URM Logo" className="w-full h-full object-contain" />
               </div>
               <div className="text-right">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs shadow-sm">
                   <Sparkles className="w-3.5 h-3.5" />
-                  eBPF Network Monitor
+                  رخصة مجانية لفترة محدودة
                 </div>
                 <div className="text-slate-500 font-mono text-xs mt-1">Linux Kernel-Space Tracer</div>
               </div>
@@ -363,7 +358,7 @@ export default function UrmProduct() {
       </section>
 
       {/* =========================================
-          4. Subscription Section (5 JOD)
+          4. Subscription Section (Free License)
           ========================================= */}
       <section className="py-24 bg-[#0B1121] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" 
@@ -373,9 +368,9 @@ export default function UrmProduct() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-white/10 border border-white/20 text-blue-400 font-bold text-sm backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-sm backdrop-blur-md">
             <Zap className="w-4 h-4" />
-            اشتراك احترافي للسيرفرات
+            عرض خاص ومحدود
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">
@@ -387,14 +382,14 @@ export default function UrmProduct() {
           </p>
 
           <div className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12 max-w-md mx-auto shadow-2xl relative">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white font-black text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white font-black text-xs px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
               Server License
             </div>
 
-            <div className="text-4xl sm:text-5xl font-black text-white mb-2 font-mono">
-              5 <span className="text-lg font-bold text-slate-400">دينار / شهرياً</span>
+            <div className="mb-8">
+              <span className="text-4xl md:text-5xl font-black text-emerald-400 block mb-2">مجاناً</span>
+              <span className="text-sm font-bold text-slate-400 block">لفترة محدودة (ترخيص صالح لشهر)</span>
             </div>
-            <p className="text-slate-400 text-xs mb-8">ترخيص لكل سيرفر (Node)، إمكانية الإلغاء في أي وقت.</p>
 
             <ul className="space-y-4 text-right mb-10 text-slate-300 text-sm font-medium">
               <li className="flex items-center gap-3">
@@ -413,16 +408,16 @@ export default function UrmProduct() {
 
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="w-full py-4 bg-blue-600 text-white font-black rounded-2xl shadow-lg hover:bg-blue-500 hover:shadow-blue-500/25 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
+              className="w-full py-4 bg-emerald-600 text-white font-black rounded-2xl shadow-[0_10px_20px_rgba(5,150,105,0.2)] hover:bg-emerald-500 hover:shadow-emerald-500/40 transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
-              طلب ترخيص السيرفر (5 د.أ)
+              اطلب رخصتك المجانية الآن
             </button>
           </div>
         </div>
       </section>
 
       {/* =========================================
-          5. Checkout Modal (بواسطة Portal مع رفع الملفات)
+          5. Checkout Modal (بواسطة Portal وبدون مرفقات)
           ========================================= */}
       <Portal>
         <AnimatePresence>
@@ -453,16 +448,16 @@ export default function UrmProduct() {
                   <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/20 rounded-full blur-2xl pointer-events-none"></div>
                   <Server className="w-12 h-12 text-blue-400 mx-auto mb-3" />
                   <h3 className="text-2xl font-black mb-1">طلب ترخيص URM</h3>
-                  <p className="text-slate-400 text-sm font-medium">الاشتراك الشهري: <span className="text-blue-400 font-bold">5 دنانير أردنية</span></p>
+                  <p className="text-slate-400 text-sm font-medium">الترخيص: <span className="text-emerald-400 font-bold">مجاني (صالح لمدة شهر)</span></p>
                 </div>
 
                 <div className="p-8">
                   {success ? (
                     <div className="text-center py-8">
                       <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4 animate-bounce" />
-                      <h4 className="text-xl font-bold text-slate-900 mb-2">تم إرسال طلبك بنجاح!</h4>
+                      <h4 className="text-xl font-bold text-slate-900 mb-2">تم استلام طلبك بنجاح!</h4>
                       <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                        سيقوم الفريق بمراجعة وصل الدفع الذي أرفقته. بمجرد الاعتماد، سيتم إرسال مفتاح الترخيص تلقائياً إلى بريدك الإلكتروني ({email}).
+                        سيتم إرسال مفتاح الترخيص المجاني (الصالح لمدة شهر) تلقائياً إلى بريدك الإلكتروني الذي قمت بتسجيله ({email}) خلال وقت قصير.
                       </p>
                       <button onClick={() => setIsModalOpen(false)} className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors cursor-pointer">
                         حسناً، شكراً لك
@@ -470,26 +465,14 @@ export default function UrmProduct() {
                     </div>
                   ) : (
                     <div className="space-y-6">
-                      <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-900 text-sm">
-                        <div className="flex items-center gap-2 font-black mb-1">
-                          <PhoneCall className="w-4 h-4 text-amber-600" />
-                          <span>تعليمات الدفع عبر زين كاش:</span>
-                        </div>
-                        <p className="text-xs text-amber-800 leading-relaxed mb-2">
-                          يرجى تحويل مبلغ <strong>5 دنانير</strong> إلى محفظة زين كاش الخاصة بالشركة على الرقم التالي:
-                        </p>
-                        <div className="bg-white p-2.5 rounded-xl border border-amber-200 text-center font-mono font-bold text-slate-900 text-base tracking-wider" dir="ltr">
-                          +962 785290948
-                        </div>
-                      </div>
-
+                      
                       {error && (
                         <div className="p-4 bg-rose-50 border border-rose-100 text-rose-700 rounded-xl text-sm font-bold flex items-center gap-2">
                           <AlertCircle className="w-5 h-5 shrink-0" /><span>{error}</span>
                         </div>
                       )}
 
-                      <form onSubmit={handleSubmit} className="space-y-4">
+                      <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
                           <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">الاسم الكامل</label>
                           <input 
@@ -514,30 +497,10 @@ export default function UrmProduct() {
                           />
                         </div>
 
-                        {/* حقل رفع صورة الوصل الجديد */}
-                        <div>
-                          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">صورة وصل الدفع (إيصال التحويل)</label>
-                          <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-slate-300 border-dashed rounded-xl cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors">
-                            <div className="flex flex-col items-center justify-center pt-4 pb-4 px-4 text-center">
-                              <Upload className="w-6 h-6 text-slate-400 mb-1" />
-                              <p className="text-xs text-slate-600 font-medium">
-                                {receipt ? <span className="text-emerald-600 font-bold">{receipt.name}</span> : "انقر هنا لرفع صورة الوصل (PNG, JPG)"}
-                              </p>
-                            </div>
-                            <input 
-                              type="file" 
-                              accept="image/*" 
-                              onChange={(e) => setReceipt(e.target.files[0])} 
-                              className="hidden" 
-                              required 
-                            />
-                          </label>
-                        </div>
-
                         <button 
                           type="submit" 
                           disabled={loading} 
-                          className="w-full py-4 bg-blue-600 text-white font-black rounded-xl shadow-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
+                          className="w-full py-4 bg-blue-600 text-white font-black rounded-xl shadow-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-4"
                         >
                           {loading ? (
                             <>
@@ -545,7 +508,7 @@ export default function UrmProduct() {
                               <span>جاري إرسال الطلب...</span>
                             </>
                           ) : (
-                            <span>تأكيد وإرسال الطلب</span>
+                            <span>اطلب الترخيص المجاني</span>
                           )}
                         </button>
                       </form>
