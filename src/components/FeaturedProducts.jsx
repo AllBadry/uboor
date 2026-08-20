@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, Database, ArrowUpLeft, Rocket, Code2 } from 'lucide-react';
+import { ChevronLeft, ArrowUpLeft, Rocket, Code2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function FeaturedProducts() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // مراقب التمرير للظهور المتدرج (خفيف جداً)
+  // مراقب التمرير للظهور المتدرج
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -25,10 +25,12 @@ export default function FeaturedProducts() {
     return () => observer.disconnect();
   }, []);
 
+  // تم تحديث هيكل البيانات ليدعم صورتين (كبيرة للمنتصف، وصغيرة للزاوية)
   const PRODUCTS = [
     {
       id: 'wa-collector',
-      logoImg: '/WACollectorLogo.png',
+      logoImgLarge: '/WACollectorLogo.png',
+      logoImgSmall: '/WACollectorLogo.png',
       name: 'WA Collector',
       title: 'استخراج بيانات واتساب بضغطة زر.',
       desc: 'أداة سكرابينج متطورة تسحب بيانات جهات الاتصال من أي قائمة مرئية عبر التمرير التلقائي بأمان تام.',
@@ -38,7 +40,8 @@ export default function FeaturedProducts() {
     },
     {
       id: 'seo-monster',
-      logoImg: '/SEO.png',
+      logoImgLarge: '/SEO.png',
+      logoImgSmall: '/SEO.png',
       name: 'SEO Monster',
       title: 'المُحلل الشامل لأي صفحة ويب.',
       desc: 'إضافة متطورة تعمل داخل جهازك لتقديم فحص جراحي وعميق لمحركات البحث والأداء.',
@@ -47,24 +50,26 @@ export default function FeaturedProducts() {
       iconColor: 'text-violet-200',
     },
     {
-      id: 'auto-capture',
-      logoImg: '/AutoCaptureLogo.png',
-      name: 'Auto Capture',
-      title: 'أتمتة لقطات الشاشة بذكاء.',
-      desc: 'أداة لأخذ لقطات متتابعة آلياً. مثالية لأرشفة الكتب الإلكترونية والمقالات الطويلة.',
-      link: '/products/auto-capture',
-      gradient: 'from-yellow-500 to-amber-700',
-      iconColor: 'text-yellow-100',
+      id: 'uwps',
+      logoImgLarge: '/UWPSR.png', // اللوغو الكبير (بِخلفية)
+      logoImgSmall: '/UWPS.png',  // اللوغو الصغير (بدون خلفية)
+      name: 'UWPS',
+      title: 'الفاحص الأمني لـ WordPress.',
+      desc: 'أداة احترافية مبنية بـ Rust تفحص مواقع ووردبريس بعمق لاكتشاف الثغرات وتخطي جدران الحماية.',
+      link: '/products/uwps',
+      gradient: 'from-slate-700 to-slate-900',
+      iconColor: 'text-cyan-100',
     },
     {
-      id: 'data-vault',
-      logo: Database,
-      name: 'Data Vault',
-      title: 'تخزين لامركزي لا نهائي.',
-      desc: 'مخزنة بيانات تعتمد على بروتوكول الحرية لتوزيع وتشفير البيانات دون سيطرة خوادم مركزية.',
-      link: '/products',
-      gradient: 'from-orange-500 to-red-600',
-      iconColor: 'text-orange-100',
+      id: 'urm',
+      logoImgLarge: '/URM2R.png', // اللوغو الكبير
+      logoImgSmall: '/URM.png',  // اللوغو الصغير
+      name: 'URM',
+      title: 'مراقب الشبكات المتقدم (eBPF).',
+      desc: 'أداة مراقبة شبكية مبنية بـ Rust تلتقط طلبات HTTP/HTTPS من النواة وتتبع اتصالات السيرفر بدقة.',
+      link: '/products/urm',
+      gradient: 'from-cyan-500 to-blue-700',
+      iconColor: 'text-slate-100',
     }
   ];
 
@@ -91,12 +96,11 @@ export default function FeaturedProducts() {
         {/* ================= شبكة الكروت الطولية ================= */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {PRODUCTS.map((product, index) => {
-            const delay = index * 75; // تأخير خفيف جداً لسرعة الظهور
+            const delay = index * 75;
             return (
               <Link 
                 key={product.id}
                 to={product.link}
-                // استخدمنا transition-transform فقط للهوفر (الأخف على المتصفح)
                 className={`group flex flex-col transition-transform duration-300 ease-out hover:-translate-y-1.5 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
                 style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
               >
@@ -106,25 +110,25 @@ export default function FeaturedProducts() {
                   {/* الخلفية الملونة */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-90 transition-opacity duration-300 group-hover:opacity-100`}></div>
                   
-                  {/* الأيقونة المركزية مع حركة خفيفة جداً بالترانسفورم */}
+                  {/* الشعار المركزي الكبير (بدون المربع الأبيض المزعج) */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    {product.logoImg ? (
-                      <div className="w-28 h-28 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center p-3 shadow-lg transform group-hover:scale-110 transition-transform duration-500">
-                        <img src={product.logoImg} alt={product.name} className="w-full h-full object-contain" />
+                    {product.logoImgLarge ? (
+                      <div className="w-28 h-28 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
+                        <img src={product.logoImgLarge} alt={product.name} className="w-full h-full object-contain drop-shadow-2xl" />
                       </div>
                     ) : (
                       <product.logo className={`w-32 h-32 ${product.iconColor} opacity-40 transition-transform duration-500 ease-out group-hover:scale-110`} />
                     )}
                   </div>
                   
-                  {/* اسم المنتج بالأسفل */}
-                  <div className="absolute bottom-6 right-6 flex items-center gap-2 text-white font-black text-lg">
-                    {product.logoImg ? (
-                      <div className="w-6 h-6 rounded-md bg-white/30 backdrop-blur-sm flex items-center justify-center p-1">
-                        <img src={product.logoImg} alt={product.name} className="w-full h-full object-contain" />
+                  {/* اسم المنتج والشعار الصغير بالأسفل */}
+                  <div className="absolute bottom-6 right-6 flex items-center gap-2 text-white font-black text-lg drop-shadow-md">
+                    {product.logoImgSmall ? (
+                      <div className="w-6 h-6 flex items-center justify-center">
+                        <img src={product.logoImgSmall} alt={product.name} className="w-full h-full object-contain drop-shadow-md" />
                       </div>
                     ) : (
-                      <product.logo className="w-5 h-5" />
+                      <product.logo className="w-5 h-5 drop-shadow-md" />
                     )}
                     {product.name}
                   </div>
@@ -151,7 +155,6 @@ export default function FeaturedProducts() {
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-all duration-700 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           
           <Link to="/contact" className="group relative bg-slate-50 border border-slate-200/80 rounded-[2rem] p-8 sm:p-10 overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col justify-center min-h-[220px]">
-            {/* التوهج الخلفي يعتمد على opacity فقط للحفاظ على الأداء */}
             <div className="absolute left-0 top-0 bottom-0 w-3/4 bg-gradient-to-r from-uboor-cyan/10 via-uboor-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             
             <div className="relative z-10 w-full sm:w-4/5">
