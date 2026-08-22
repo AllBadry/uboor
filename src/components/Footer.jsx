@@ -96,6 +96,18 @@ export default function Footer() {
                   Auto Capture
                 </Link>
               </li>
+              <li>
+                <Link to="/products/uwps" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
+                  Uboor WordPress scanner
+                </Link>
+              </li>
+              <li>
+                <Link to="/products/urm" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
+                  Uboor Requests monitor
+                </Link>
+              </li>
             </ul>
           </div>
 

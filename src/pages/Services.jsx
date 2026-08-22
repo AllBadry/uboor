@@ -123,7 +123,6 @@ export default function Services() {
   const currentService = SERVICES_DATA[activeNode];
   const ActiveIcon = currentService.icon;
 
-  // 🌟 بناء السكيما ديناميكياً للخدمات المتاحة في الشركة
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -151,7 +150,6 @@ export default function Services() {
   return (
     <div className="bg-bg-pure-white text-text-main font-cairo min-h-screen selection:bg-uboor-cyan selection:text-white">
       
-      {/* 🌟 حقن الـ SEO والسكيما */}
       <Helmet>
         <title>الخدمات الهندسية والبرمجية | شركة عبور</title>
         <meta name="description" content="نحن لا نبيع حلولاً معلبة. اكتشف خدمات عبور المتقدمة في بناء أنظمة MERN السحابية، تطبيقات C++، الأمن السيبراني، وأتمتة العمليات بالذكاء الاصطناعي." />
@@ -160,11 +158,11 @@ export default function Services() {
         </script>
       </Helmet>
 
-      {/* تم إزالة overflow-hidden التي كانت تكسر تثبيت الشاشة، واستخدام flex-row للوضع الطبيعي (يمين ثم يسار) */}
+      {/* تم إضافة pb-10 أو مسافة سفلية عامة إذا لزم الأمر، لكن الاعتماد الأكبر على الصندوق نفسه */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row relative pt-28 lg:pt-36">
         
         {/* =========================================
-            الجانب الأيمن (اللوحة التقنية التفاعلية - ثابتة لا تتحرك)
+            الجانب الأيمن (اللوحة التقنية التفاعلية)
             ========================================= */}
         <div className={`w-full lg:w-5/12 relative lg:sticky lg:top-32 lg:h-[calc(100vh-140px)] flex flex-col justify-start p-6 sm:p-10 z-10 transition-all duration-[1200ms] delay-300 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
           
@@ -252,7 +250,8 @@ export default function Services() {
             ))}
           </div>
 
-          <div className="mt-10 p-10 bg-bg-off-white rounded-3xl border border-gray-200 text-center">
+          {/* 🌟 التعديل هنا: إضافة mb-20 lg:mb-32 لفك الارتباط مع الفوتر */}
+          <div className="mt-10 mb-20 lg:mb-32 p-10 bg-bg-off-white rounded-3xl border border-gray-200 text-center">
             <h3 className="text-3xl font-black text-text-main mb-4">هل النظام الذي تبحث عنه غير مدرج؟</h3>
             <p className="text-text-muted mb-8">نحن مهندسون، يسعدنا بناء الأنظمة المعقدة والمخصصة من الصفر.</p>
             <Link to="/contact" className="inline-flex items-center justify-center gap-3 bg-text-main text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-uboor-blue transition-colors w-full sm:w-auto">
