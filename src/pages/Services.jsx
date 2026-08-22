@@ -24,17 +24,18 @@ const uboorWebNode = {
   {
     id: '02',
     title: 'تطبيقات سطح مكتب',
-    subtitle: 'C++ Native Performance',
-    desc: 'للأنظمة الداخلية الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام C++ لضمان استقرار وسرعة معالجة لا يمكن لتطبيقات الويب مجاراتها.',
-    features: ['إدارة الذاكرة المباشرة (Memory Mng)', 'تطبيقات مخصصة للشركات', 'أداء خالي من التأخير'],
+    subtitle: 'Tauri & Rust Native Performance',
+    desc: 'للأنظمة الداخلية الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام إطار Tauri ولغة Rust لضمان أمان الذاكرة، استقرار النظام، وسرعة معالجة صاروخية بحجم ملفات خفيف جداً لا يمكن لتقنيات الويب التقليدية مجاراته.',
+    features: ['أمان الذاكرة (Memory Safety)', 'تطبيقات خفيفة جداً (Tauri)', 'أداء متفوق خالي من التأخير'],
     icon: Cpu,
     color: 'uboor-orange',
-    techCode: `// Native Execution
-#include <iostream>
-int main() {
-    System::initializeCore();
-    Memory::allocateHighPerformance();
-    return uboor::execute();
+    techCode: `// Native Execution with Tauri & Rust
+#[tauri::command]
+fn main() {
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![initialize_core])
+        .run(tauri::generate_context!())
+        .expect("Error running Uboor app");
 }`
   },
   {
