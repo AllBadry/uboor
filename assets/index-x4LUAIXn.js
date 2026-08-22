@@ -80,12 +80,13 @@ const uboorWebNode = {
   latency: '< 50ms',
   geospatialQueries: true,
   status: 'ONLINE'
-};`},{id:`02`,title:`تطبيقات سطح مكتب`,subtitle:`C++ Native Performance`,desc:`للأنظمة الداخلية الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام C++ لضمان استقرار وسرعة معالجة لا يمكن لتطبيقات الويب مجاراتها.`,features:[`إدارة الذاكرة المباشرة (Memory Mng)`,`تطبيقات مخصصة للشركات`,`أداء خالي من التأخير`],icon:Lr,color:`uboor-orange`,techCode:`// Native Execution
-#include <iostream>
-int main() {
-    System::initializeCore();
-    Memory::allocateHighPerformance();
-    return uboor::execute();
+};`},{id:`02`,title:`تطبيقات سطح مكتب`,subtitle:`Tauri & Rust Native Performance`,desc:`للأنظمة الداخلية الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام إطار Tauri ولغة Rust لضمان أمان الذاكرة، استقرار النظام، وسرعة معالجة صاروخية بحجم ملفات خفيف جداً لا يمكن لتقنيات الويب التقليدية مجاراته.`,features:[`أمان الذاكرة (Memory Safety)`,`تطبيقات خفيفة جداً (Tauri)`,`أداء متفوق خالي من التأخير`],icon:Lr,color:`uboor-orange`,techCode:`// Native Execution with Tauri & Rust
+#[tauri::command]
+fn main() {
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![initialize_core])
+        .run(tauri::generate_context!())
+        .expect("Error running Uboor app");
 }`},{id:`03`,title:`الأمن السيبراني`,subtitle:`Digital Forensics & Security`,desc:`حماية بيانات عملائك ليست خياراً ثانوياً. نطبق مفاهيم الأدلة الجنائية الرقمية ونحمي خوادمك بأحدث بروتوكولات الأمان لمنع الثغرات والاختراقات.`,features:[`بروتوكولات (DNS, SPF, DKIM)`,`فحص الثغرات المتقدم`,`الأدلة الجنائية الرقمية`],icon:ji,color:`text-main`,techCode:`[ UBOOR SECURE SHELL ]
 > Authenticating keys...
 > SPF/DKIM records: VERIFIED
