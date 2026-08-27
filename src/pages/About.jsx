@@ -43,7 +43,7 @@ export default function About() {
     "publisher": {
       "@type": "Organization",
       "name": "Uboor - عبور",
-      "logo": "https://uboor.org/UB.png",
+      "logo": "https://uboor.org/UB.webp",
       "sameAs": [
         "https://github.com/uboor", // وضع حساب القيت هاب هنا مهم جداً كمرجع لجوجل
         "https://www.linkedin.com/company/uboor"

@@ -43,7 +43,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-3 group">
             <img 
               className="h-12 w-auto transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" 
-              src="/UB.png" 
+              src="/UB.webp" 
               alt="شعار شركة عبور" 
             />
             <span className="font-bold text-2xl bg-gradient-blue bg-clip-text text-transparent">

@@ -281,7 +281,7 @@ export default function UwpsProduct() {
             
             {/* الشعار */}
             <div className="flex items-center gap-4 mb-6">
-              <img src="/UWPSR.png" alt="UWPS Logo" className="w-16 h-16 object-contain rounded-2xl bg-slate-900 p-2 shadow-md border border-slate-800" />
+              <img src="/UWPSR.webp" alt="UWPS Logo" className="w-16 h-16 object-contain rounded-2xl bg-slate-900 p-2 shadow-md border border-slate-800" />
               <div className="text-right">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs shadow-sm">
                   <Sparkles className="w-3.5 h-3.5" />

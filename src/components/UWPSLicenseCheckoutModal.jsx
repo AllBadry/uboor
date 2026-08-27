@@ -154,7 +154,7 @@ export default function UWPSLicenseCheckoutModal({ isOpen, onClose }) {
                         <div className="flex flex-col items-center justify-center pt-4 pb-4 px-4 text-center">
                           <Upload className="w-6 h-6 text-slate-400 mb-1" />
                           <p className="text-xs text-slate-600 font-medium">
-                            {receipt ? <span className="text-emerald-600 font-bold">{receipt.name}</span> : "انقر هنا لرفع صورة الوصل (PNG, JPG)"}
+                            {receipt ? <span className="text-emerald-600 font-bold">{receipt.name}</span> : "انقر هنا لرفع صورة الوصل (webp, JPG)"}
                           </p>
                         </div>
                         <input 

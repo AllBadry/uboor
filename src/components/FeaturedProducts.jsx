@@ -28,8 +28,8 @@ export default function FeaturedProducts() {
   const PRODUCTS = [
     {
       id: 'wa-collector',
-      logoImgLarge: '/WACollectorLogo.png',
-      logoImgSmall: '/WACollectorLogo.png',
+      logoImgLarge: '/WACollectorLogo.webp',
+      logoImgSmall: '/WACollectorLogo.webp',
       name: 'WA Collector',
       title: 'استخراج بيانات واتساب بضغطة زر.',
       desc: 'أداة سكرابينج متطورة تسحب بيانات جهات الاتصال من أي قائمة مرئية عبر التمرير التلقائي بأمان تام.',
@@ -39,8 +39,8 @@ export default function FeaturedProducts() {
     },
     {
       id: 'seo-monster',
-      logoImgLarge: '/SEO.png',
-      logoImgSmall: '/SEO.png',
+      logoImgLarge: '/SEO.webp',
+      logoImgSmall: '/SEO.webp',
       name: 'SEO Monster',
       title: 'المُحلل الشامل لأي صفحة ويب.',
       desc: 'إضافة متطورة تعمل داخل جهازك لتقديم فحص جراحي وعميق لمحركات البحث والأداء.',
@@ -50,8 +50,8 @@ export default function FeaturedProducts() {
     },
     {
       id: 'uwps',
-      logoImgLarge: '/UWPS2R.png',
-      logoImgSmall: '/UWPSR.png',
+      logoImgLarge: '/UWPS2R.webp',
+      logoImgSmall: '/UWPSR.webp',
       name: 'UWPS',
       title: 'الفاحص الأمني لـ WordPress.',
       desc: 'أداة احترافية مبنية بـ Rust تفحص مواقع ووردبريس بعمق لاكتشاف الثغرات وتخطي جدران الحماية.',
@@ -61,8 +61,8 @@ export default function FeaturedProducts() {
     },
     {
       id: 'urm',
-      logoImgLarge: '/URMR.png',
-      logoImgSmall: '/URM2R.png',
+      logoImgLarge: '/URMR.webp',
+      logoImgSmall: '/URM2R.webp',
       name: 'URM',
       title: 'مراقب الشبكات المتقدم (eBPF).',
       desc: 'أداة مراقبة شبكية مبنية بـ Rust تلتقط طلبات HTTP/HTTPS من النواة وتتبع اتصالات السيرفر بدقة.',

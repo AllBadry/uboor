@@ -197,7 +197,7 @@ export default function UrmProduct() {
             
             <div className="flex items-center gap-4 mb-6">
               <div className="bg-white p-3 rounded-2xl shadow-md border border-slate-100 flex items-center justify-center w-20 h-20">
-                <img src="/URM.png" alt="URM Logo" className="w-full h-full object-contain" />
+                <img src="/URM.webp" alt="URM Logo" className="w-full h-full object-contain" />
               </div>
               <div className="text-right">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs shadow-sm">
@@ -255,7 +255,7 @@ export default function UrmProduct() {
                  <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
               </div>
               <img 
-                src="/urmpic.png" 
+                src="/urmpic.webp" 
                 alt="URM Ratatui Interface" 
                 className="w-full h-auto rounded-xl border border-slate-800/50 shadow-inner"
               />

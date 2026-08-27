@@ -11,7 +11,7 @@ export default function Home() {
     "@type": "Organization",
     "name": "Uboor - عبور",
     "url": "https://uboor.org",
-    "logo": "https://uboor.org/UB.png",
+    "logo": "https://uboor.org/UB.webp",
     "description": "شركة تكنولوجيا متعددة الجوانب تتخصص في برمجة المواقع، الأنظمة، والحلول البرمجية المبتكرة.",
     "address": {
       "@type": "PostalAddress",

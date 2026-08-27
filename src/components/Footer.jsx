@@ -27,7 +27,7 @@ export default function Footer() {
             <Link to="/" className="inline-flex items-center gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-uboor-cyan blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
-                <img className="h-14 w-auto relative transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" src="/UB.png" alt="شعار شركة عبور" />
+                <img className="h-14 w-auto relative transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" src="/UB.webp" alt="شعار شركة عبور" />
               </div>
               <span className="font-black text-3xl bg-gradient-blue bg-clip-text text-transparent">عُبـور</span>
             </Link>
