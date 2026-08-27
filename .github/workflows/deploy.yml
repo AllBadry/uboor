@@ -31,56 +31,61 @@ jobs:
           # 🌟 إنشاء المجلدات
           mkdir -p dist/about dist/services dist/contact dist/support dist/privacy dist/products dist/products/wacollector dist/products/auto-capture dist/products/seo-monster dist/products/uwps dist/products/urm dist/products/wacollector/privacy dist/products/seo-monster/privacy dist/products/auto-capture/privacy
 
-          # 🌟 نسخ وتعديل العناوين برمجياً لكل صفحة (SEO Hack)
+          # 🌟 نسخ وتعديل العناوين وإضافة وسم Canonical برمجياً لكل صفحة
 
           # 1. من نحن
           cp dist/index.html dist/about/index.html
-          sed -i 's/<title>.*<\/title>/<title>من نحن | شركة عبور للحلول البرمجية<\/title>/' dist/about/index.html
+          sed -i 's/<title>.*<\/title>/<title>من نحن | شركة عبور للحلول البرمجية<\/title><link rel="canonical" href="https:\/\/uboor.org\/about\/" \/>/' dist/about/index.html
 
           # 2. الخدمات
           cp dist/index.html dist/services/index.html
-          sed -i 's/<title>.*<\/title>/<title>الخدمات الهندسية | شركة عبور<\/title>/' dist/services/index.html
+          sed -i 's/<title>.*<\/title>/<title>الخدمات الهندسية | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/services\/" \/>/' dist/services/index.html
 
           # 3. التواصل
           cp dist/index.html dist/contact/index.html
-          sed -i 's/<title>.*<\/title>/<title>تواصل معنا | شركة عبور<\/title>/' dist/contact/index.html
+          sed -i 's/<title>.*<\/title>/<title>تواصل معنا | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/contact\/" \/>/' dist/contact/index.html
 
           # 4. الدعم الفني
           cp dist/index.html dist/support/index.html
-          sed -i 's/<title>.*<\/title>/<title>الدعم الفني | شركة عبور<\/title>/' dist/support/index.html
+          sed -i 's/<title>.*<\/title>/<title>الدعم الفني | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/support\/" \/>/' dist/support/index.html
 
           # 5. الخصوصية
           cp dist/index.html dist/privacy/index.html
-          sed -i 's/<title>.*<\/title>/<title>سياسة الخصوصية | شركة عبور<\/title>/' dist/privacy/index.html
+          sed -i 's/<title>.*<\/title>/<title>سياسة الخصوصية | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/privacy\/" \/>/' dist/privacy/index.html
 
           # 6. المنتجات الرئيسية
           cp dist/index.html dist/products/index.html
-          sed -i 's/<title>.*<\/title>/<title>المنتجات والأدوات | شركة عبور<\/title>/' dist/products/index.html
+          sed -i 's/<title>.*<\/title>/<title>المنتجات والأدوات | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/" \/>/' dist/products/index.html
 
           # 7. أداة WA Collector
           cp dist/index.html dist/products/wacollector/index.html
-          sed -i 's/<title>.*<\/title>/<title>WA Collector Pro | استخراج داتا واتساب<\/title>/' dist/products/wacollector/index.html
+          sed -i 's/<title>.*<\/title>/<title>WA Collector Pro | استخراج داتا واتساب<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/wacollector\/" \/>/' dist/products/wacollector/index.html
 
           # 8. أداة SEO Monster
           cp dist/index.html dist/products/seo-monster/index.html
-          sed -i 's/<title>.*<\/title>/<title>SEO Monster | فحص السيو الشامل<\/title>/' dist/products/seo-monster/index.html
+          sed -i 's/<title>.*<\/title>/<title>SEO Monster | فحص السيو الشامل<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/seo-monster\/" \/>/' dist/products/seo-monster/index.html
 
           # 9. أداة Auto Capture
           cp dist/index.html dist/products/auto-capture/index.html
-          sed -i 's/<title>.*<\/title>/<title>Auto Capture | التقاط الصور التلقائي<\/title>/' dist/products/auto-capture/index.html
+          sed -i 's/<title>.*<\/title>/<title>Auto Capture | التقاط الصور التلقائي<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/auto-capture\/" \/>/' dist/products/auto-capture/index.html
 
           # 10. أداة URM
           cp dist/index.html dist/products/urm/index.html
-          sed -i 's/<title>.*<\/title>/<title>URM | مراقب الشبكات و eBPF<\/title>/' dist/products/urm/index.html
+          sed -i 's/<title>.*<\/title>/<title>URM | مراقب الشبكات و eBPF<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/urm\/" \/>/' dist/products/urm/index.html
 
           # 11. أداة UWPS
           cp dist/index.html dist/products/uwps/index.html
-          sed -i 's/<title>.*<\/title>/<title>UWPS | الفاحص الأمني لـ WordPress<\/title>/' dist/products/uwps/index.html
+          sed -i 's/<title>.*<\/title>/<title>UWPS | الفاحص الأمني لـ WordPress<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/uwps\/" \/>/' dist/products/uwps/index.html
 
           # 12. سياسات خصوصية الأدوات
           cp dist/index.html dist/products/wacollector/privacy/index.html
+          sed -i 's/<title>.*<\/title>/<title>سياسة الخصوصية - WA Collector | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/wacollector\/privacy\/" \/>/' dist/products/wacollector/privacy/index.html
+
           cp dist/index.html dist/products/seo-monster/privacy/index.html
+          sed -i 's/<title>.*<\/title>/<title>سياسة الخصوصية - SEO Monster | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/seo-monster\/privacy\/" \/>/' dist/products/seo-monster/privacy/index.html
+
           cp dist/index.html dist/products/auto-capture/privacy/index.html
+          sed -i 's/<title>.*<\/title>/<title>سياسة الخصوصية - Auto Capture | شركة عبور<\/title><link rel="canonical" href="https:\/\/uboor.org\/products\/auto-capture\/privacy\/" \/>/' dist/products/auto-capture/privacy/index.html
 
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v4
