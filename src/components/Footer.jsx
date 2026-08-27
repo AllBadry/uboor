@@ -79,31 +79,31 @@ export default function Footer() {
             <h4 className="text-lg font-black text-text-main mb-6">أدواتنا المجانية</h4>
             <ul className="space-y-4">
               <li>
-                <Link to="/products/wacollector" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                <Link to="/products/wacollector/" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
                   WhatsApp Collector
                 </Link>
               </li>
               <li>
-                <Link to="/products/seo-monster" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                <Link to="/products/seo-monster/" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
                   SEO Monster
                 </Link>
               </li>
               <li>
-                <Link to="/products/auto-capture" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                <Link to="/products/auto-capture/" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
                   Auto Capture
                 </Link>
               </li>
               <li>
-                <Link to="/products/uwps" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                <Link to="/products/uwps/" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
                   Uboor WordPress scanner
                 </Link>
               </li>
               <li>
-                <Link to="/products/urm" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
+                <Link to="/products/urm/" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-gray-300 ml-2 group-hover:bg-uboor-orange group-hover:scale-150 transition-all duration-300"></span>
                   Uboor Requests monitor
                 </Link>

@@ -23,9 +23,9 @@ export default function Navbar() {
   // الروابط الأربعة الأساسية
   const navLinks = [
     { name: 'الرئيسية', path: '/' },
-    { name: 'خدماتنا', path: '/services' },
-    {name: 'منتجاتنا' , path: '/products'},
-    { name: 'من نحن', path: '/about' },
+    { name: 'خدماتنا', path: '/services/' },
+    {name: 'منتجاتنا' , path: '/products/' },
+    { name: 'من نحن', path: '/about/' },
   ];
 
   return (
