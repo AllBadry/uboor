@@ -42,7 +42,7 @@ export default function Navbar() {
           
           {/* 1. الشعار (Logo) - يمين */}
           <Link to="/" className="flex items-center gap-3 group">
-            <ResponsiveImage 
+            <ResponsiveImage width="200" height="200"
               className="h-12 w-auto transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" 
               src="/UB.webp" 
               alt="شعار شركة عبور" 

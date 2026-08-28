@@ -23,7 +23,7 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 
 function LoadingFallback() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="min-h-[95vh] flex items-center justify-center">
       <div className="w-10 h-10 rounded-full border-4 border-slate-200 border-t-uboor-cyan animate-spin"></div>
     </div>
   );

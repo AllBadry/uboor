@@ -12,8 +12,10 @@ export default function Footer() {
   return (
     <footer className="relative bg-bg-pure-white pt-20 pb-10 mt-auto overflow-hidden">
       
-      {/* 1. الخط العلوي المضيء والمتحرك */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-uboor-blue via-uboor-cyan to-uboor-orange bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]"></div>
+      {/* 1. الخط العلوي المضيء والمتحرك (إصدار composited يُحرّك transform بدلاً من background-position لتجنب إعادة الرسم) */}
+      <div className="absolute top-0 left-0 w-full h-1 overflow-hidden">
+        <div className="w-[200%] h-full bg-gradient-to-r from-uboor-blue via-uboor-cyan to-uboor-orange animate-[gradient-slide_3s_linear_infinite]"></div>
+      </div>
       
       {/* إضاءات خلفية خافتة جداً للعمق */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-uboor-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
@@ -28,7 +30,7 @@ export default function Footer() {
             <Link to="/" className="inline-flex items-center gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-uboor-cyan blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
-                <ResponsiveImage className="h-14 w-auto relative transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" src="/UB.webp" alt="شعار شركة عبور" sizes="(max-width: 768px) 56px, 112px" />
+                <ResponsiveImage width="200" height="200" className="h-14 w-auto relative transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" src="/UB.webp" alt="شعار شركة عبور" sizes="(max-width: 768px) 56px, 112px" />
               </div>
               <span className="font-black text-3xl bg-gradient-blue bg-clip-text text-transparent">عُبـور</span>
             </Link>
@@ -152,12 +154,11 @@ export default function Footer() {
 
       </div>
 
-      {/* حركة الخط العلوي المضيء */}
+      {/* حركة الخط العلوي المضيء — تُستخدم transform (مركّبة على الـ GPU) بدلاً من background-position */}
       <style dangerouslySetInnerHTML={{__html: `
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        @keyframes gradient-slide {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
       `}} />
     </footer>
