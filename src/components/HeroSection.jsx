@@ -28,11 +28,23 @@ export default function HeroSection() {
     const resize = () => {
       // الحفاظ على أداء عالي مع دقة شاشة ممتازة
       const dpr = Math.min(window.devicePixelRatio, 1.5); 
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      canvas.width = vw * dpr;
+      canvas.height = vh * dpr;
       ctx.scale(dpr, dpr);
+      // تخزين الأبعاد محلياً لتجنب قراءة تخطيط الصفحة داخل حلقة الرسم
+      // (قراءة innerWidth/innerHeight كل إطار تسبب Forced Reflow)
+      const waves = {
+        amp1: vh * 0.25,
+        amp2: vh * 0.15,
+        mid: vh * 0.5,
+        span: vw / 1.2,
+      };
+      drawState.waves = waves;
     };
     window.addEventListener('resize', resize);
+    const drawState = { waves: null };
     resize();
 
     const draw = () => {
@@ -45,17 +57,19 @@ export default function HeroSection() {
       // سر وضوح الألوان: استخدام multiply يجعل الألوان المتداخلة أغمق وأجمل
       ctx.globalCompositeOperation = 'multiply';
 
+      const { amp1, amp2, mid, span } = drawState.waves;
+
       for (let j = 0; j < colors.length; j++) {
         ctx.beginPath();
         
         // 35 نقطة للحفاظ على نعومة المنحنى والأداء السريع
         for (let i = 0; i <= 35; i++) {
-          const x = (i / 35) * (canvas.width / 1.2); 
+          const x = (i / 35) * span; 
           
-          const wave1 = Math.sin(i * 0.15 + time + j) * (window.innerHeight * 0.25);
-          const wave2 = Math.cos(i * 0.08 - time * 1.5 + j * 0.5) * (window.innerHeight * 0.15);
+          const wave1 = Math.sin(i * 0.15 + time + j) * amp1;
+          const wave2 = Math.cos(i * 0.08 - time * 1.5 + j * 0.5) * amp2;
           
-          const y = (window.innerHeight * 0.5) + wave1 + wave2;
+          const y = mid + wave1 + wave2;
 
           if (i === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
