@@ -1,0 +1,1 @@
+import{a as e}from"./rolldown-runtime-CNC7AqOf.js";import{Mt as t}from"./icons-D3Oc_ypn.js";import{a as n}from"./index-BUq9cqTo.js";var r=e(t(),1),i=e(n(),1);function a({children:e}){let[t]=(0,r.useState)(()=>document.createElement(`div`));return(0,r.useEffect)(()=>(document.body.appendChild(t),()=>{document.body.removeChild(t)}),[t]),i.createPortal(e,t)}export{a as t};
