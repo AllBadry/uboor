@@ -64,20 +64,26 @@
     <script>
       (function () {
         var widgetLoaded = false;
+        // 1. تعريف المتغير في النطاق الخارجي ليكون متاحاً للجميع
+        var allowed = ['scroll', 'click', 'touchstart', 'pointerdown', 'keydown'];
+
         function loadMosanedWidget() {
           if (widgetLoaded) return;
           widgetLoaded = true;
-          var allowed = ['scroll', 'click', 'touchstart', 'pointerdown', 'keydown'];
-          var events = allowed.slice();
-          for (var i = 0; i < events.length; i++) {
-            window.removeEventListener(events[i], loadMosanedWidget, { passive: true });
+          
+          // 2. إزالة مستمعي الأحداث بمجرد التحميل
+          for (var i = 0; i < allowed.length; i++) {
+            window.removeEventListener(allowed[i], loadMosanedWidget, { passive: true });
           }
+          
           var s = document.createElement('script');
           s.src = 'https://api.mosaned.org/mosaned-widget.js';
           s.setAttribute('data-widget-key', 'a5ef35e12ca114688dc6bc3436d213b3894a3662');
           s.async = true;
           document.body.appendChild(s);
         }
+
+        // 3. إضافة مستمعي الأحداث
         for (var j = 0; j < allowed.length; j++) {
           window.addEventListener(allowed[j], loadMosanedWidget, { passive: true, once: true });
         }
