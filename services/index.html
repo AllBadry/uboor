@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
   <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PXJ52XRMJW"></script>
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-PXJ52XRMJW"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -56,11 +56,33 @@
 }
 </script>
 
-    <script type="module" crossorigin src="/assets/index-5hPeXypq.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CPD7vkwH.css">
+    <script type="module" crossorigin src="/assets/index-DLMS_AUX.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BZITmjP-.css">
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://api.mosaned.org/mosaned-widget.js" data-widget-key="a5ef35e12ca114688dc6bc3436d213b3894a3662"></script>
+    <!-- أداة المحادثة (Mosaned): تُحمَّل فقط عند أول تفاعل مع الصفحة لتسريع التحميل الأولي -->
+    <script>
+      (function () {
+        var widgetLoaded = false;
+        function loadMosanedWidget() {
+          if (widgetLoaded) return;
+          widgetLoaded = true;
+          var allowed = ['scroll', 'click', 'touchstart', 'pointerdown', 'keydown'];
+          var events = allowed.slice();
+          for (var i = 0; i < events.length; i++) {
+            window.removeEventListener(events[i], loadMosanedWidget, { passive: true });
+          }
+          var s = document.createElement('script');
+          s.src = 'https://api.mosaned.org/mosaned-widget.js';
+          s.setAttribute('data-widget-key', 'a5ef35e12ca114688dc6bc3436d213b3894a3662');
+          s.async = true;
+          document.body.appendChild(s);
+        }
+        for (var j = 0; j < allowed.length; j++) {
+          window.addEventListener(allowed[j], loadMosanedWidget, { passive: true, once: true });
+        }
+      })();
+    </script>
   </body>
 </html>
