@@ -37,7 +37,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Portal from '../../components/Portal'; 
+import Portal from '../../components/Portal';
+import ResponsiveImage from '../../components/ResponsiveImage'; 
 
 export default function UwpsProduct() {
   const [isMounted, setIsMounted] = useState(false);
@@ -281,7 +282,7 @@ export default function UwpsProduct() {
             
             {/* الشعار */}
             <div className="flex items-center gap-4 mb-6">
-              <img src="/UWPSR.webp" alt="UWPS Logo" className="w-16 h-16 object-contain rounded-2xl bg-slate-900 p-2 shadow-md border border-slate-800" />
+              <ResponsiveImage src="/UWPSR.webp" alt="UWPS Logo" sizes="64px" className="w-16 h-16 object-contain rounded-2xl bg-slate-900 p-2 shadow-md border border-slate-800" />
               <div className="text-right">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 font-bold text-xs shadow-sm">
                   <Sparkles className="w-3.5 h-3.5" />

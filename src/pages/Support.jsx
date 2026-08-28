@@ -149,7 +149,7 @@ export default function Support() {
                 <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-6 border border-green-100 shadow-inner">
                   <CheckCircle2 className="w-12 h-12 text-green-500" />
                 </div>
-                <h3 className="text-3xl font-black text-slate-900 mb-4">تم استلام تذكرتك!</h3>
+                <h2 className="text-3xl font-black text-slate-900 mb-4">تم استلام تذكرتك!</h2>
                 <p className="text-slate-600 font-medium max-w-md mx-auto mb-10">
                   شكراً لتواصلك مع فريق الدعم الفني في عبور. سنراجع مشكلتك ونتواصل معك على بريدك الإلكتروني في أقرب وقت.
                 </p>
@@ -163,9 +163,9 @@ export default function Support() {
 
                 {/* 1. المنتج / الخدمة */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                     <span className="text-uboor-cyan font-mono text-sm">01.</span> ما هي الخدمة التي تحتاج دعماً لها؟
-                  </h3>
+                  </h2>
                   <div className="flex flex-wrap gap-3">
                     {SUPPORT_PRODUCTS.map((product) => {
                       const isSelected = formData.product === product.id;
@@ -189,9 +189,9 @@ export default function Support() {
 
                 {/* 2. نوع المشكلة */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                     <span className="text-uboor-cyan font-mono text-sm">02.</span> نوع المشكلة
-                  </h3>
+                  </h2>
                   <div className="flex flex-wrap gap-3">
                     {ISSUE_TYPES.map((type) => {
                       const Icon = type.icon;
@@ -217,9 +217,9 @@ export default function Support() {
 
                 {/* 3. بيانات التواصل */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
                     <span className="text-uboor-cyan font-mono text-sm">03.</span> بيانات التواصل
-                  </h3>
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col">
                       <input 
@@ -240,9 +240,9 @@ export default function Support() {
 
                 {/* 4. وصف المشكلة */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                     <span className="text-uboor-cyan font-mono text-sm">04.</span> وصف المشكلة
-                  </h3>
+                  </h2>
                   <textarea 
                     name="message" value={formData.message} onChange={handleInputChange} required rows="4"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 text-slate-900 font-medium focus:outline-none focus:border-uboor-cyan focus:bg-white focus:ring-4 focus:ring-uboor-cyan/10 transition-all resize-none placeholder-slate-400"

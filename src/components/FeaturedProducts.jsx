@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ArrowUpLeft, Rocket, Code2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ResponsiveImage from './ResponsiveImage';
 
 export default function FeaturedProducts() {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,8 +29,7 @@ export default function FeaturedProducts() {
   const PRODUCTS = [
     {
       id: 'wa-collector',
-      logoImgLarge: '/WACollectorLogo.webp',
-      logoImgSmall: '/WACollectorLogo.webp',
+      logo: '/WACollectorLogo.webp',
       name: 'WA Collector',
       title: 'استخراج بيانات واتساب بضغطة زر.',
       desc: 'أداة سكرابينج متطورة تسحب بيانات جهات الاتصال من أي قائمة مرئية عبر التمرير التلقائي بأمان تام.',
@@ -39,8 +39,7 @@ export default function FeaturedProducts() {
     },
     {
       id: 'seo-monster',
-      logoImgLarge: '/SEO.webp',
-      logoImgSmall: '/SEO.webp',
+      logo: '/SEO.webp',
       name: 'SEO Monster',
       title: 'المُحلل الشامل لأي صفحة ويب.',
       desc: 'إضافة متطورة تعمل داخل جهازك لتقديم فحص جراحي وعميق لمحركات البحث والأداء.',
@@ -50,8 +49,7 @@ export default function FeaturedProducts() {
     },
     {
       id: 'uwps',
-      logoImgLarge: '/UWPS2R.webp',
-      logoImgSmall: '/UWPSR.webp',
+      logo: '/UWPS2R.webp',
       name: 'UWPS',
       title: 'الفاحص الأمني لـ WordPress.',
       desc: 'أداة احترافية مبنية بـ Rust تفحص مواقع ووردبريس بعمق لاكتشاف الثغرات وتخطي جدران الحماية.',
@@ -61,8 +59,7 @@ export default function FeaturedProducts() {
     },
     {
       id: 'urm',
-      logoImgLarge: '/URMR.webp',
-      logoImgSmall: '/URM2R.webp',
+      logo: '/URMR.webp',
       name: 'URM',
       title: 'مراقب الشبكات المتقدم (eBPF).',
       desc: 'أداة مراقبة شبكية مبنية بـ Rust تلتقط طلبات HTTP/HTTPS من النواة وتتبع اتصالات السيرفر بدقة.',
@@ -112,9 +109,9 @@ export default function FeaturedProducts() {
                   
                   {/* الأيقونة المركزية الكبيرة مع المربع الأبيض */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    {product.logoImgLarge ? (
+                    {product.logo ? (
                       <div className="w-28 h-28 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center p-3 shadow-lg transform group-hover:scale-110 transition-transform duration-500">
-                        <img src={product.logoImgLarge} alt={product.name} className="w-full h-full object-contain" />
+                        <ResponsiveImage src={product.logo} alt={product.name} sizes="(max-width: 640px) 112px, 112px" className="w-full h-full object-contain" />
                       </div>
                     ) : (
                       <product.logo className={`w-32 h-32 ${product.iconColor} opacity-40 transition-transform duration-500 ease-out group-hover:scale-110`} />
@@ -123,9 +120,9 @@ export default function FeaturedProducts() {
                   
                   {/* اسم المنتج والشعار الصغير بالأسفل */}
                   <div className="absolute bottom-6 right-6 flex items-center gap-2 text-white font-black text-lg">
-                    {product.logoImgSmall ? (
+                    {product.logo ? (
                       <div className="w-6 h-6 rounded-md bg-white/30 backdrop-blur-sm flex items-center justify-center p-1">
-                        <img src={product.logoImgSmall} alt={product.name} className="w-full h-full object-contain" />
+                        <ResponsiveImage src={product.logo} alt={product.name} sizes="24px" className="w-full h-full object-contain" />
                       </div>
                     ) : (
                       <product.logo className="w-5 h-5" />

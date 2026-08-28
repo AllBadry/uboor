@@ -154,7 +154,7 @@ export default function Contact() {
                 <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-6 border border-green-100 shadow-inner">
                   <CheckCircle2 className="w-12 h-12 text-green-500" />
                 </div>
-                <h3 className="text-3xl font-black text-slate-900 mb-4">تم استلام طلبك!</h3>
+                <h2 className="text-3xl font-black text-slate-900 mb-4">تم استلام طلبك!</h2>
                 <p className="text-slate-600 font-medium max-w-md mx-auto mb-10">
                   شكراً لتواصلك مع عبور. سيقوم مهندسونا بمراجعة تفاصيل مشروعك والرد عليك في أقرب وقت لترتيب الخطوات التالية.
                 </p>
@@ -168,9 +168,9 @@ export default function Contact() {
                 
                 {/* 1. تحديد نوع المشروع (Pills - Light Theme) */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                     <span className="text-uboor-blue font-mono text-sm">01.</span> ماذا تريد أن نبني لك؟
-                  </h3>
+                  </h2>
                   <div className="flex flex-wrap gap-3">
                     {PROJECT_TYPES.map((type) => {
                       const Icon = type.icon;
@@ -196,9 +196,9 @@ export default function Contact() {
 
                 {/* 2. بيانات العميل */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
                     <span className="text-uboor-blue font-mono text-sm">02.</span> بيانات التواصل
-                  </h3>
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex flex-col">
                       <input 
@@ -219,9 +219,9 @@ export default function Contact() {
 
                 {/* 3. تفاصيل المشروع */}
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                     <span className="text-uboor-blue font-mono text-sm">03.</span> تفاصيل النظام
-                  </h3>
+                  </h2>
                   <textarea 
                     name="message" value={formData.message} onChange={handleInputChange} required rows="4"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-5 py-4 text-slate-900 font-medium focus:outline-none focus:border-uboor-cyan focus:bg-white focus:ring-4 focus:ring-uboor-cyan/10 transition-all resize-none placeholder-slate-400"

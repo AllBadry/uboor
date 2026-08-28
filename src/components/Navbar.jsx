@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import ResponsiveImage from './ResponsiveImage';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,10 +42,11 @@ export default function Navbar() {
           
           {/* 1. الشعار (Logo) - يمين */}
           <Link to="/" className="flex items-center gap-3 group">
-            <img 
+            <ResponsiveImage 
               className="h-12 w-auto transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" 
               src="/UB.webp" 
               alt="شعار شركة عبور" 
+              sizes="(max-width: 768px) 48px, 96px"
             />
             <span className="font-bold text-2xl bg-gradient-blue bg-clip-text text-transparent">
               عُبـور

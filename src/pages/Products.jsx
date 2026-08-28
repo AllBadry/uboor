@@ -15,6 +15,7 @@ import {
   Infinity
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage';
 
 // === قاعدة بيانات المنتجات (لم تتغير) ===
 const PRODUCTS_DATA = [
@@ -271,7 +272,7 @@ export default function Products() {
                     <div className="relative z-10 flex items-start justify-between mb-6">
                       <div className={`w-14 h-14 rounded-2xl ${product.bgIcon} flex items-center justify-center transform group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 shadow-sm ${product.logo ? 'p-1.5' : ''}`}>
                         {product.logo ? (
-                          <img src={product.logo} alt={product.title} className="w-full h-full object-contain" />
+                          <ResponsiveImage src={product.logo} alt={product.title} sizes="56px" className="w-full h-full object-contain" />
                         ) : (
                           <product.icon className={`w-7 h-7 ${product.color}`} />
                         )}

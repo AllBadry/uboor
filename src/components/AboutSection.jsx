@@ -71,7 +71,7 @@ export default function AboutSection() {
                   <Cpu className="w-6 h-6 text-uboor-blue group-hover/item:text-white transition-colors" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xl mb-2 group-hover/item:text-uboor-blue transition-colors">كفاءات برمجية عميقة</h4>
+                  <h3 className="font-bold text-slate-900 text-xl mb-2 group-hover/item:text-uboor-blue transition-colors">كفاءات برمجية عميقة</h3>
                   <p className="text-slate-600 font-medium leading-relaxed">نعتمد في بنيتنا على خوارزميات نظيفة وأدوات قوية دون إثقال الأنظمة بأكواد أو مكتبات غير ضرورية.</p>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export default function AboutSection() {
                   <GitMerge className="w-6 h-6 text-uboor-orange group-hover/item:text-white transition-colors" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xl mb-2 group-hover/item:text-uboor-orange transition-colors">تأثير مجتمعي (Open Source)</h4>
+                  <h3 className="font-bold text-slate-900 text-xl mb-2 group-hover/item:text-uboor-orange transition-colors">تأثير مجتمعي (Open Source)</h3>
                   <p className="text-slate-600 font-medium leading-relaxed">مساهماتنا المفتوحة المصدر وأدواتنا المجانية هي طريقتنا في رسم مستقبل أفضل لجميع المطورين.</p>
                 </div>
               </div>

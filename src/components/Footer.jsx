@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ChevronLeft, ArrowUp, Sparkles } from 'lucide-react';
+import ResponsiveImage from './ResponsiveImage';
 
 export default function Footer() {
   
@@ -27,7 +28,7 @@ export default function Footer() {
             <Link to="/" className="inline-flex items-center gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-uboor-cyan blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full"></div>
-                <img className="h-14 w-auto relative transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" src="/UB.webp" alt="شعار شركة عبور" />
+                <ResponsiveImage className="h-14 w-auto relative transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3" src="/UB.webp" alt="شعار شركة عبور" sizes="(max-width: 768px) 56px, 112px" />
               </div>
               <span className="font-black text-3xl bg-gradient-blue bg-clip-text text-transparent">عُبـور</span>
             </Link>
@@ -55,10 +56,10 @@ export default function Footer() {
 
           {/* العمود الثاني: روابط سريعة */}
           <div className="lg:col-span-3">
-            <h4 className="text-lg font-black text-text-main mb-6 flex items-center gap-2">
+            <h2 className="text-lg font-black text-text-main mb-6 flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-uboor-cyan" />
               روابط هامة
-            </h4>
+            </h2>
             <ul className="space-y-4">
               {['الرئيسية', 'خدمات الويب والأنظمة', 'عن الشركة', 'سياسة الخصوصية' , 'الدعم الفني'].map((item, idx) => {
                 const paths = ['/', '/services', '/about', '/privacy', '/support'];
@@ -76,7 +77,7 @@ export default function Footer() {
 
           {/* العمود الثالث: منتجاتنا */}
           <div className="lg:col-span-2">
-            <h4 className="text-lg font-black text-text-main mb-6">أدواتنا المجانية</h4>
+            <h2 className="text-lg font-black text-text-main mb-6">أدواتنا المجانية</h2>
             <ul className="space-y-4">
               <li>
                 <Link to="/products/wacollector/" className="group flex items-center text-text-muted hover:text-uboor-orange transition-colors">
@@ -113,7 +114,7 @@ export default function Footer() {
 
           {/* العمود الرابع: معلومات التواصل المباشر */}
           <div className="lg:col-span-3">
-            <h4 className="text-lg font-black text-text-main mb-6">تواصل معنا</h4>
+            <h2 className="text-lg font-black text-text-main mb-6">تواصل معنا</h2>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 group">
                 <MapPin className="w-5 h-5 text-uboor-blue mt-0.5 group-hover:scale-110 group-hover:-translate-y-1 transition-transform duration-300" />
