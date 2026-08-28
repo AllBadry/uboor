@@ -1,17 +1,34 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
   <head>
-    <!-- Google tag (gtag.js) -->
-<script defer src="https://www.googletagmanager.com/gtag/js?id=G-PXJ52XRMJW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PXJ52XRMJW');
-</script>
     <meta charset="UTF-8" />
     
+    <!-- Google tag (gtag.js) — يُحمَّل عند أول تفاعل للزائر (يمنع كلفة التحميل المبدئي) -->
+<script>
+  (function () {
+    var loaded = false;
+    var events = ['scroll', 'click', 'touchstart', 'pointerdown', 'keydown'];
+    function load() {
+      if (loaded) return;
+      loaded = true;
+      for (var i = 0; i < events.length; i++) {
+        window.removeEventListener(events[i], load, { passive: true });
+      }
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-PXJ52XRMJW');
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PXJ52XRMJW';
+      document.head.appendChild(s);
+    }
+    for (var i = 0; i < events.length; i++) {
+      window.addEventListener(events[i], load, { passive: true, once: true });
+    }
+  })();
+</script>
     <link rel="icon" type="image/webp" href="/UB.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -19,10 +36,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.google-analytics.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
     </noscript>
     
     <title>المنتجات والأدوات | شركة عبور</title><link rel="canonical" href="https://uboor.org/products/" />
@@ -57,10 +74,10 @@
 }
 </script>
 
-    <script type="module" crossorigin src="/assets/index-BUq9cqTo.js"></script>
+    <script type="module" crossorigin src="/assets/index-B09wtcwm.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-CNC7AqOf.js">
     <link rel="modulepreload" crossorigin href="/assets/icons-D3Oc_ypn.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BZITmjP-.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-D_q2D4q1.css">
   </head>
   <body>
     <div id="root"></div>
