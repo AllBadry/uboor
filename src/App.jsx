@@ -8,6 +8,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Products = lazy(() => import('./pages/Products'));
 const AutoCapture = lazy(() => import('./pages/products/AutoCapture'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const OurWorks = lazy(() => import('./pages/OurWorks'));
 const Services = lazy(() => import('./pages/Services'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -49,6 +50,7 @@ function App() {
               <Route path="/products/uwps" element={<UPWS />} />
               <Route path="/products/urm" element={<URM />} />
               <Route path="/support" element={<Support />} />
+              <Route path="/ourworks" element={<OurWorks />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/products/wacollector/privacy" element={<WaCollectorPrivacy />} />
               <Route path="/products/seo-monster/privacy" element={<SeoMonsterPrivacy />} />

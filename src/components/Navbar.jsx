@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: 'خدماتنا', path: '/services/' },
     {name: 'منتجاتنا' , path: '/products/' },
     { name: 'من نحن', path: '/about/' },
+    { name: 'أعمالنا', path: '/ourworks/' }
   ];
 
   return (
