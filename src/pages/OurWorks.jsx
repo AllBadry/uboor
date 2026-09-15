@@ -67,13 +67,28 @@ export default function OurWork() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // 🌟 استخدام matchMedia لتفعيل GSAP فقط على الشاشات الكبيرة (أكبر من 1024px)
     let mm = gsap.matchMedia();
 
+    // 🌟 1. أنيميشن الدخول (يعمل على جميع الشاشات)
+    mm.add("all", () => {
+      const tl = gsap.timeline();
+      
+      tl.fromTo('.hero-in', 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.2 }
+      )
+      .fromTo('.scroll-indicator',
+        { opacity: 0 },
+        { opacity: 0.4, duration: 1, ease: 'power2.out' },
+        "-=0.5" // يظهر المؤشر قبل انتهاء حركة النصوص بقليل
+      );
+    });
+
+    // 🌟 2. تأثيرات التمرير (تعمل فقط على الشاشات الكبيرة للحفاظ على الأداء)
     mm.add("(min-width: 1024px)", () => {
       const ctx = gsap.context(() => {
         
-        // حركة العنوان الرئيسي
+        // ذوبان الترويسة عند التمرير للأسفل
         gsap.to('.hero-text', {
           yPercent: 40,
           opacity: 0,
@@ -92,7 +107,6 @@ export default function OurWork() {
           const textElements = row.querySelectorAll('.text-reveal');
           const waterMark = row.querySelector('.watermark-number');
           
-          // كشف الإطار بالكامل
           gsap.fromTo(imageWrapper, 
             { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
             { 
@@ -106,7 +120,6 @@ export default function OurWork() {
             }
           );
 
-          // الباراليكس العكسي للصورة داخل الإطار
           gsap.fromTo(imageInside,
             { scale: 1.3, yPercent: 10 },
             {
@@ -122,7 +135,6 @@ export default function OurWork() {
             }
           );
 
-          // طفو الرقم المائي
           gsap.fromTo(waterMark,
             { yPercent: -20 },
             {
@@ -137,7 +149,6 @@ export default function OurWork() {
             }
           );
 
-          // طفو النصوص
           gsap.fromTo(textElements,
             { opacity: 0, y: 40 },
             {
@@ -175,21 +186,23 @@ export default function OurWork() {
         <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] bg-uboor-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div className="hero-text text-center relative z-10 w-full max-w-5xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-uboor-blue font-bold text-xs uppercase tracking-widest mb-8 shadow-sm">
+          {/* أضفنا كلاس hero-in للعناصر التي ستظهر تتابعياً */}
+          <span className="hero-in inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-uboor-blue font-bold text-xs uppercase tracking-widest mb-8 shadow-sm">
             معرض الأعمال الهندسية
           </span>
-          <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-black leading-[1.15] tracking-tight mb-8 text-slate-900">
+          <h1 className="hero-in text-5xl sm:text-7xl lg:text-[5.5rem] font-black leading-[1.15] tracking-tight mb-8 text-slate-900">
             أعمالٌ تُبرهن <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-l from-uboor-blue via-uboor-cyan to-uboor-blue bg-[length:200%_auto] animate-gradient">
               قوة البنية التحتية.
             </span>
           </h1>
-          <p className="text-xl sm:text-2xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
+          <p className="hero-in text-xl sm:text-2xl text-slate-500 font-medium max-w-3xl mx-auto leading-relaxed">
             أنظمة لا تكتفي بالجمال السطحي، بل تغوص في عمق البيانات والأداء. تصفح كيف حولنا أعقد المشاكل إلى منصات فائقة الاستقرار.
           </p>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-40">
+        {/* أضفنا كلاس scroll-indicator لمؤشر التمرير */}
+        <div className="scroll-indicator absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-0">
           <div className="w-px h-12 bg-gradient-to-b from-slate-900 to-transparent"></div>
           <span className="text-[10px] font-black tracking-widest uppercase text-slate-900 rotate-180" style={{ writingMode: 'vertical-rl' }}>التمرير للأسفل</span>
         </div>
@@ -213,29 +226,24 @@ export default function OurWork() {
                 {/* 1. الجانب البصري (الإطار الفاصل) */}
                 <div className="w-full lg:w-7/12 relative group">
                   
-                  {/* توهج لوني خفيف خلف الإطار */}
                   <div className={`absolute -inset-4 ${project.glow} opacity-10 blur-2xl rounded-[3rem] transition-opacity duration-700 group-hover:opacity-20`}></div>
                   
-                  {/* الإطار الأبيض (نافذة المتصفح) */}
                   <div className="img-wrapper relative w-full bg-white p-3 sm:p-5 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border border-slate-200 z-10">
                     
-                    {/* أزرار نافذة نظام التشغيل */}
                     <div className="flex items-center gap-2 mb-4 px-3">
                       <div className="w-3 h-3 rounded-full bg-slate-200"></div>
                       <div className="w-3 h-3 rounded-full bg-slate-200"></div>
                       <div className="w-3 h-3 rounded-full bg-slate-200"></div>
                     </div>
 
-                    {/* حاوية الصورة الداخلية */}
                     <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
                       <img 
                         src={project.image} 
                         alt={project.title}
-                        loading="lazy" // 🌟 تفعيل Lazy Loading
+                        loading="lazy"
                         className="img-inside absolute inset-0 w-full h-full object-cover will-change-transform"
                       />
 
-                      {/* Glassmorphism Hover Overlay */}
                       <div className="absolute inset-0 bg-white/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-md">
                         <a href={project.link} target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full font-black text-lg hover:scale-105 hover:bg-uboor-blue transition-all duration-300 shadow-2xl">
                           تصفح النظام حيّاً <ArrowUpLeft className="w-5 h-5" />
