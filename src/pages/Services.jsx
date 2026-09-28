@@ -1,88 +1,89 @@
 import { useEffect, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet-async'; // 🌟 استيراد Helmet
-import { Globe, Cpu, ShieldCheck, Terminal, Bot, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async'; 
+import { Globe, Cpu, ShieldCheck, ShoppingCart, Bot, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// === بيانات الخدمات والتفاصيل التقنية ===
+// === بيانات الخدمات (تم التحديث لإبراز المتاجر والمواقع التعريفية) ===
 const SERVICES_DATA = [
   {
     id: '01',
-    title: 'أنظمة ويب وديناميكية',
-    subtitle: 'MERN Stack & Cloud Architecture',
-    desc: 'نبني منصات الويب وأدلة الأعمال من الصفر. لا نعتمد على القوالب، بل نكتب هندسة برمجية خالصة قادرة على معالجة آلاف الطلبات اللحظية وتدعم الاستعلامات الجغرافية المكانية.',
-    features: ['قواعد بيانات جغرافية (MongoDB)', 'واجهات سريعة (React.js)', 'معمارية قابلة للتوسع السحابي'],
+    title: 'متاجر إلكترونية ومواقع تعريفية',
+    subtitle: 'E-Commerce & Portfolios',
+    desc: 'نستلم مشروعك من الفكرة وحتى الإطلاق. سواء كنت تبحث عن متجر إلكتروني متكامل لبيع منتجاتك، أو موقع تعريفي (Portfolio) احترافي يعكس هوية شركتك، نحن نصمم ونبرمج واجهات جذابة تضمن لك أعلى معدلات التحويل (Conversion Rates).',
+    features: ['متاجر إلكترونية متكاملة (E-Commerce)', 'مواقع تعريفية للشركات والأفراد (Portfolios)', 'لوحات تحكم سهلة لإدارة المحتوى'],
+    icon: ShoppingCart,
+    color: 'uboor-orange',
+    techCode: `// Client Project Initialization
+const project = new UboorProject({
+  type: 'E-Commerce / Portfolio',
+  ui_ux: 'Modern & Responsive',
+  seo_optimized: true,
+  payment_gateway: 'Integrated'
+});
+await project.launch();`
+  },
+  {
+    id: '02',
+    title: 'أنظمة ويب سحابية',
+    subtitle: 'MERN Stack & Custom Web Apps',
+    desc: 'للشركات التي تبحث عن أنظمة مخصصة ومعقدة. نبني منصات الويب وأدلة الأعمال من الصفر باستخدام هندسة برمجية خالصة قادرة على معالجة آلاف الطلبات اللحظية، دون الاعتماد على قوالب جاهزة تقيد نمو عملك.',
+    features: ['قواعد بيانات متقدمة (MongoDB/SQL)', 'واجهات تفاعلية سريعة (React.js)', 'معمارية قابلة للتوسع السحابي'],
     icon: Globe,
     color: 'uboor-blue',
-    techCode: `// System Architecture
+    techCode: `// Cloud Architecture
 const uboorWebNode = {
   stack: ['MongoDB', 'Express', 'React', 'Node'],
   latency: '< 50ms',
-  geospatialQueries: true,
+  concurrent_users: '10,000+',
   status: 'ONLINE'
 };`
   },
   {
-    id: '02',
+    id: '03',
     title: 'تطبيقات سطح مكتب',
     subtitle: 'Tauri & Rust Native Performance',
-    desc: 'للأنظمة الداخلية الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام إطار Tauri ولغة Rust لضمان أمان الذاكرة، استقرار النظام، وسرعة معالجة صاروخية بحجم ملفات خفيف جداً لا يمكن لتقنيات الويب التقليدية مجاراته.',
-    features: ['أمان الذاكرة (Memory Safety)', 'تطبيقات خفيفة جداً (Tauri)', 'أداء متفوق خالي من التأخير'],
+    desc: 'للأنظمة الثقيلة التي تتطلب أداءً يلامس عتاد الجهاز، نبرمج تطبيقات (Native) باستخدام Tauri و Rust لضمان أمان الذاكرة وسرعة معالجة صاروخية بحجم ملفات خفيف جداً لا يمكن لتقنيات الويب التقليدية مجاراته.',
+    features: ['أمان الذاكرة (Memory Safety)', 'تطبيقات خفيفة جداً (Cross-platform)', 'أداء متفوق خالي من التأخير'],
     icon: Cpu,
-    color: 'uboor-orange',
+    color: 'slate-800',
     techCode: `// Native Execution with Tauri & Rust
 #[tauri::command]
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![initialize_core])
+        .invoke_handler(tauri::generate_handler![init_core])
         .run(tauri::generate_context!())
-        .expect("Error running Uboor app");
+        .expect("Error running app");
 }`
   },
   {
-    id: '03',
-    title: 'الأمن السيبراني',
+    id: '04',
+    title: 'الأمن السيبراني وحماية البيانات',
     subtitle: 'Digital Forensics & Security',
-    desc: 'حماية بيانات عملائك ليست خياراً ثانوياً. نطبق مفاهيم الأدلة الجنائية الرقمية ونحمي خوادمك بأحدث بروتوكولات الأمان لمنع الثغرات والاختراقات.',
-    features: ['بروتوكولات (DNS, SPF, DKIM)', 'فحص الثغرات المتقدم', 'الأدلة الجنائية الرقمية'],
+    desc: 'حماية بيانات عملائك ليست خياراً ثانوياً. نحمي خوادمك ومواقعك بأحدث بروتوكولات الأمان لمنع الثغرات، حجب الهجمات (DDoS)، وتأمين عمليات الدفع الإلكتروني بصرامة تامة.',
+    features: ['بروتوكولات (DNS, SPF, DKIM)', 'فحص واختبار ثغرات النظام', 'تأمين بوابات الدفع الإلكتروني'],
     icon: ShieldCheck,
-    color: 'text-main',
+    color: 'emerald-500',
     techCode: `[ UBOOR SECURE SHELL ]
 > Authenticating keys...
-> SPF/DKIM records: VERIFIED
 > Network vulnerabilities: 0
+> DDoS Protection: ACTIVE
 > Firewall status: MAX_ENFORCE
 > Connection: SECURE`
   },
   {
-    id: '04',
-    title: 'أدوات مفتوحة المصدر',
-    subtitle: 'Community Contributions',
-    desc: 'نحن نرد الجميل للمجتمع التقني. نبتكر أدوات وإضافات مجانية بالكامل (مثل Uboor WA Contacts Exporter) لتسهيل أعمال المطورين والشركات حول العالم.',
-    features: ['إضافات متصفح احترافية', 'أدوات استخراج بيانات', 'مساهمات GitHub'],
-    icon: Terminal,
-    color: 'uboor-cyan',
-    techCode: `$ git clone https://github.com/uboor/...
-$ npm install uboor-tools
-$ npm run build
-
-> Compiling open-source modules...
-> Ready to deploy. Knowledge is free.`
-  },
-  {
     id: '05',
-    title: 'أتمتة العمليات (AI)',
+    title: 'أتمتة العمليات بالذكاء الاصطناعي',
     subtitle: 'AI Agents & Automation',
-    desc: 'ندمج أحدث نماذج اللغات (LLMs) داخل أنظمتك لتحويل العمليات الروتينية والمكررة إلى أنظمة ذاتية القيادة، مما يوفر مئات الساعات من العمل.',
-    features: ['وكلاء ذكاء اصطناعي (AI Agents)', 'أتمتة المهام اليومية', 'تحليل البيانات الضخمة'],
+    desc: 'ندمج أحدث نماذج الذكاء الاصطناعي داخل متجرك أو نظامك لتحويل العمليات المكررة إلى أنظمة ذاتية (مثل خدمة العملاء الآلية، وتحليل المبيعات)، مما يوفر مئات الساعات من العمل.',
+    features: ['وكلاء ذكاء اصطناعي (AI Agents)', 'روبوتات خدمة عملاء متقدمة', 'تحليل البيانات الضخمة'],
     icon: Bot,
-    color: 'purple-500',
+    color: 'uboor-cyan',
     techCode: `import { AIAgent } from 'uboor-ai'
 
 const agent = new AIAgent({
   model: 'gpt-4-turbo',
-  tasks: ['Data Entry', 'Analysis']
+  tasks: ['Customer Support', 'Sales Analysis']
 });
-
 await agent.automateWorkflow();`
   }
 ];
@@ -127,7 +128,7 @@ export default function Services() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "الخدمات الهندسية والبرمجية | شركة عبور",
-    "description": "تعرف على الترسانة التقنية التي نستخدمها لهندسة أنظمة قوية، آمنة، وقابلة للتوسع. خدماتنا تشمل أنظمة الويب، تطبيقات C++، والأمن السيبراني.",
+    "description": "نستلم مشاريعك البرمجية من الصفر. برمجة وتصميم المتاجر الإلكترونية، مواقع الشركات (Portfolios)، الأنظمة السحابية المعقدة، وتطبيقات سطح المكتب.",
     "url": "https://uboor.org/services",
     "publisher": {
       "@type": "Organization",
@@ -151,14 +152,13 @@ export default function Services() {
     <div className="bg-bg-pure-white text-text-main font-cairo min-h-screen selection:bg-uboor-cyan selection:text-white">
       
       <Helmet>
-        <title>الخدمات الهندسية والبرمجية | شركة عبور</title>
-        <meta name="description" content="نحن لا نبيع حلولاً معلبة. اكتشف خدمات عبور المتقدمة في بناء أنظمة MERN السحابية، تطبيقات C++، الأمن السيبراني، وأتمتة العمليات بالذكاء الاصطناعي." />
+        <title>خدماتنا | تصميم المتاجر والمواقع والأنظمة البرمجية - عبور</title>
+        <meta name="description" content="جاهزون لاستلام مشروعك القادم. نقدم خدمات تصميم وبرمجة المتاجر الإلكترونية، مواقع Portfolios، أنظمة الويب المعقدة، وتطبيقات سطح المكتب بأعلى معايير الجودة." />
         <script type="application/ld+json">
           {JSON.stringify(servicesSchema)}
         </script>
       </Helmet>
 
-      {/* تم إضافة pb-10 أو مسافة سفلية عامة إذا لزم الأمر، لكن الاعتماد الأكبر على الصندوق نفسه */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row relative pt-28 lg:pt-36">
         
         {/* =========================================
@@ -172,7 +172,7 @@ export default function Services() {
 
             <div className="flex justify-between items-center mb-8 relative z-10">
               <span className="font-mono text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                UBOOR_ENGINE // {currentService.id}
+                UBOOR_SERVICES // {currentService.id}
               </span>
               <div className={`w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center shadow-sm transition-colors duration-500`}>
                 <ActiveIcon className={`w-6 h-6 text-${currentService.color}`} />
@@ -212,10 +212,10 @@ export default function Services() {
           
           <div className={`mb-24 transition-all duration-1000 delay-100 ease-out transform ${isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-5xl lg:text-7xl font-black text-text-main tracking-tighter mb-6">
-              بنيتنا <br /> <span className="text-uboor-cyan">الهندسية</span>
+              خدماتنا <br /> <span className="text-uboor-blue">وحلولنا الرقمية</span>
             </h1>
             <p className="text-lg text-text-muted leading-relaxed max-w-lg font-medium">
-              نحن لا نبيع حلولاً معلبة. تعرف على الترسانة التقنية التي نستخدمها لهندسة أنظمة قوية، آمنة، وقابلة للتوسع.
+              نستلم مشروعك البرمجي من الفكرة وحتى الإطلاق. سواء كنت تحتاج إلى متجر إلكتروني لزيادة مبيعاتك، موقع تعريفي لشركتك، أو نظام سحابي معقد، نحن جاهزون للتنفيذ.
             </p>
           </div>
 
@@ -250,12 +250,16 @@ export default function Services() {
             ))}
           </div>
 
-          {/* 🌟 التعديل هنا: إضافة mb-20 lg:mb-32 لفك الارتباط مع الفوتر */}
-          <div className="mt-10 mb-20 lg:mb-32 p-10 bg-bg-off-white rounded-3xl border border-gray-200 text-center">
-            <h3 className="text-3xl font-black text-text-main mb-4">هل النظام الذي تبحث عنه غير مدرج؟</h3>
-            <p className="text-text-muted mb-8">نحن مهندسون، يسعدنا بناء الأنظمة المعقدة والمخصصة من الصفر.</p>
-            <Link to="/contact" className="inline-flex items-center justify-center gap-3 bg-text-main text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-uboor-blue transition-colors w-full sm:w-auto">
-              تحدث مع خبرائنا
+          {/* =========================================
+              صندوق الإجراء (Call to Action) المحدث والمشجع 
+              ========================================= */}
+          <div className="mt-10 mb-20 lg:mb-32 p-10 bg-bg-off-white rounded-3xl border border-gray-200 text-center shadow-sm">
+            <h3 className="text-3xl font-black text-text-main mb-4">جاهزون لاستلام مشروعك القادم</h3>
+            <p className="text-text-muted mb-8 text-lg">
+              سواء كان متجراً إلكترونياً، موقعاً تعريفياً (Portfolio)، أو فكرة لتطبيق مخصص، فريقنا الهندسي جاهز لتحويل فكرتك إلى واقع ملموس.
+            </p>
+            <Link to="/contact" className="inline-flex items-center justify-center gap-3 bg-text-main text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-uboor-orange transition-colors w-full sm:w-auto">
+              تحدث معنا وابدأ مشروعك
               <ArrowLeft className="w-5 h-5" />
             </Link>
           </div>
