@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ExternalLink, Server, Database, Code2, MapPin, ArrowUpLeft } from 'lucide-react';
+import { ExternalLink, Server, Database, Code2, ShieldCheck, ArrowUpLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -50,14 +50,14 @@ const PROJECTS = [
   },
   {
     id: '04',
-    title: 'دليل العيادات الذكي',
-    client: 'Belfastdentist.co.uk',
-    category: 'نظام خرائط وأتمتة (SaaS)',
-    desc: 'دليل عيادات أسنان متطور لمنطقة بيلفاست. يدمج دوال جغرافية حديثة تحسب المسافة بناءً على الرمز البريدي، مع نظام أتمتة يرسل رسائل فورية للعيادات التي يختارها المريض بضغطة زر.',
-    tech: ['Geospatial API', 'MERN Stack', 'Auto-Messaging'],
-    image: '/portfolies/belfastpage.png', 
-    link: 'https://belfastdentist.co.uk',
-    icon: MapPin,
+    title: 'شركة اليقظة للأمن والحماية',
+    client: 'Vigilance4security.com',
+    category: 'موقع مؤسسي & خدمات أمنية',
+    desc: 'منصة إلكترونية متكاملة لشركة أمن وحماية أردنية متخصصة في حماية المنشآت والممتلكات. تعرض الخدمات الأمنية والزي الرسمي وغرفة العمليات، مع نظام استقبال طلبات عروض الأسعار والاستفسارات وربطها مباشرة بفريق العمليات.',
+    tech: ['React', 'TailwindCSS', 'Node.js', 'CRM Integration'],
+    image: '/portfolies/V4S.png', 
+    link: 'https://vigilance4security.com',
+    icon: ShieldCheck,
     accent: 'text-uboor-cyan',
     glow: 'bg-uboor-cyan',
   },
